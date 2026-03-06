@@ -481,7 +481,10 @@
 
         async function supprimerSuggestion(id) {
             try {
-                const response = await fetch(`http://localhost:5000/api/suggestion/${id}`, {
+                // ⚠️ CHANGEMENT ICI : URL de production au lieu de localhost
+                const API_URL = 'https://lear-backend.onrender.com/api';
+                
+                const response = await fetch(`${API_URL}/suggestion/${id}`, {
                     method: 'DELETE'
                 });
 
