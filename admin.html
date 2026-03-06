@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Générer QR Code</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(145deg, #f8faff 0%, #f0f4fa 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #E31837;
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 32px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        button {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #E31837, #B3122B);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(227, 24, 55, 0.4);
+        }
+
+        #qrcode-container {
+            display: none;
+            text-align: center;
+            margin-top: 30px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        #qrcode-container.show {
+            display: block;
+        }
+
+        .success-title {
+            color: #2ecc71;
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        #qrcode-image {
+            max-width: 300px;
+            margin: 20px auto;
+            border: 4px solid #E31837;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        #url-display {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            word-break: break-all;
+            color: #0033A0;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #0033A0, #00227A);
+            margin-top: 15px;
+        }
+
+        .btn-secondary:hover {
+            box-shadow: 0 10px 30px rgba(0, 51, 160, 0.4);
+        }
+
+        .info-box {
+            background: #e7f3ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .info-box h3 {
+            color: #0033A0;
+            margin-bottom: 10px;
+        }
+
+        .info-box ul {
+            color: #666;
+            line-height: 1.8;
+            margin-left: 20px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-qrcode"></i> Générateur de QR Code</h1>
+        <p class="subtitle">Cliquez sur le bouton pour générer le QR code de votre application Lear Corporation</p>
+        
+        <button onclick="generer()">
+            <i class="fas fa-mobile-alt"></i> Générer le QR Code
+        </button>
+
+        <div id="qrcode-container">
+            <h2 class="success-title"><i class="fas fa-check-circle"></i> QR Code généré avec succès !</h2>
+            <img id="qrcode-image" src="" alt="QR Code">
+            <div id="url-display"></div>
+            
+            <button onclick="telecharger()" class="btn-secondary">
+                <i class="fas fa-download"></i> Télécharger le QR Code
+            </button>
+            
+            <button onclick="imprimer()" class="btn-secondary">
+                <i class="fas fa-print"></i> Imprimer
+            </button>
+        </div>
+
+        <div class="info-box">
+            <h3><i class="fas fa-info-circle"></i> Comment utiliser ?</h3>
+            <ul>
+                <li>Cliquez sur "Générer le QR Code"</li>
+                <li>Téléchargez ou imprimez le QR code</li>
+                <li>Placez-le sur vos supports (affiches, flyers, badges)</li>
+                <li>Les employés scannent le code avec leur smartphone</li>
+                <li>L'application s'ouvre automatiquement !</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="api.js"></script>
+    <script>
+        let qrCodeData = null;
+
+        async function generer() {
+            console.log('Génération du QR code...');
+            
+            const result = await genererQRCode();
+            
+            if (result.success) {
+                qrCodeData = result.qrCode;
+                document.getElementById('qrcode-image').src = result.qrCode;
+                document.getElementById('url-display').innerHTML = 
+                    `<i class="fas fa-link"></i> URL: ${result.url}`;
+                document.getElementById('qrcode-container').classList.add('show');
+                
+                console.log('✅ QR Code généré:', result.url);
+            } else {
+                alert('❌ Erreur: ' + result.message);
+                console.error('Erreur:', result);
+            }
+        }
+
+        function telecharger() {
+            if (!qrCodeData) return;
+            
+            const link = document.createElement('a');
+            link.href = qrCodeData;
+            link.download = 'qrcode-lear-corporation.png';
+            link.click();
+            
+            console.log('✅ QR Code téléchargé');
+        }
+
+        function imprimer() {
+            if (!qrCodeData) return;
+            
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(`
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>QR Code - Lear Corporation</title>
+                    <style>
+                        body {
+                            text-align: center;
+                            padding: 40px;
+                            font-family: Arial, sans-serif;
+                        }
+                        h1 { 
+                            color: #E31837;
+                            margin-bottom: 30px;
+                        }
+                        img { 
+                            max-width: 400px;
+                            margin: 30px auto;
+                            border: 4px solid #E31837;
+                            padding: 20px;
+                        }
+                        p {
+                            color: #666;
+                            font-size: 18px;
+                            margin-top: 20px;
+                        }
+                        .footer {
+                            margin-top: 40px;
+                            color: #999;
+                            font-size: 14px;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <h1>LEAR CORPORATION</h1>
+                    <h2>Amélioration Continue</h2>
+                    <img src="${qrCodeData}" alt="QR Code">
+                    <p>Scannez ce code pour accéder à l'application de suggestions</p>
+                    <div class="footer">
+                        <p>Parc Industriel de Meknès</p>
+                    </div>
+                </body>
+                </html>
+            `);
+            printWindow.document.close();
+            
+            setTimeout(() => {
+                printWindow.print();
+            }, 500);
+            
+            console.log('✅ Impression lancée');
+        }
+    </script>
+</body>
+</html>

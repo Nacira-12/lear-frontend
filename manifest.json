@@ -1,0 +1,17 @@
+{
+  "name": "Lear Corporation - Amélioration Continue",
+  "short_name": "Lear AG",
+  "description": "Application de suggestions Lear Corporation",
+  "start_url": "/app.html",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#E31837",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
