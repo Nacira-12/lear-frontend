@@ -84,14 +84,16 @@
             font-size: 24px;
         }
 
-        #qrcode-image {
-            max-width: 300px;
+        #qrcode {
+            display: flex;
+            justify-content: center;
             margin: 20px auto;
-            border: 4px solid #E31837;
             padding: 20px;
             background: white;
             border-radius: 15px;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border: 4px solid #E31837;
+            width: fit-content;
         }
 
         #url-display {
@@ -146,7 +148,7 @@
 
         <div id="qrcode-container">
             <h2 class="success-title"><i class="fas fa-check-circle"></i> QR Code généré avec succès !</h2>
-            <img id="qrcode-image" src="" alt="QR Code">
+            <div id="qrcode"></div>
             <div id="url-display"></div>
             
             <button onclick="telecharger()" class="btn-secondary">
@@ -170,95 +172,138 @@
         </div>
     </div>
 
-    <script src="api.js"></script>
+    <!-- Bibliothèque QRCode.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    
     <script>
-        let qrCodeData = null;
+        // ⚠️ CHANGEZ CETTE URL SI VOTRE SITE NETLIFY A UN NOM DIFFÉRENT
+        const APP_URL = 'https://lear-ci-suggestions.netlify.app/app.html';
+        
+        let qrCodeInstance = null;
 
-        async function generer() {
-            console.log('Génération du QR code...');
+        function generer() {
+            console.log('Génération du QR code pour:', APP_URL);
             
-            const result = await genererQRCode();
+            // Vider le conteneur si déjà un QR code
+            const qrcodeDiv = document.getElementById('qrcode');
+            qrcodeDiv.innerHTML = '';
             
-            if (result.success) {
-                qrCodeData = result.qrCode;
-                document.getElementById('qrcode-image').src = result.qrCode;
-                document.getElementById('url-display').innerHTML = 
-                    `<i class="fas fa-link"></i> URL: ${result.url}`;
-                document.getElementById('qrcode-container').classList.add('show');
-                
-                console.log('✅ QR Code généré:', result.url);
-            } else {
-                alert('❌ Erreur: ' + result.message);
-                console.error('Erreur:', result);
-            }
+            // Générer le QR Code
+            qrCodeInstance = new QRCode(qrcodeDiv, {
+                text: APP_URL,
+                width: 256,
+                height: 256,
+                colorDark: "#000000",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+            
+            // Afficher l'URL
+            document.getElementById('url-display').innerHTML = 
+                `<i class="fas fa-link"></i> URL: ${APP_URL}`;
+            
+            // Afficher le conteneur
+            document.getElementById('qrcode-container').classList.add('show');
+            
+            console.log('✅ QR Code généré avec succès');
         }
 
         function telecharger() {
-            if (!qrCodeData) return;
+            if (!qrCodeInstance) {
+                alert('Veuillez d\'abord générer le QR code');
+                return;
+            }
             
-            const link = document.createElement('a');
-            link.href = qrCodeData;
-            link.download = 'qrcode-lear-corporation.png';
-            link.click();
-            
-            console.log('✅ QR Code téléchargé');
+            // Récupérer l'image du QR code
+            const canvas = document.querySelector('#qrcode canvas');
+            if (canvas) {
+                // Convertir en image et télécharger
+                const link = document.createElement('a');
+                link.href = canvas.toDataURL('image/png');
+                link.download = 'qrcode-lear-corporation.png';
+                link.click();
+                
+                console.log('✅ QR Code téléchargé');
+            } else {
+                alert('Erreur lors de la récupération du QR code');
+            }
         }
 
         function imprimer() {
-            if (!qrCodeData) return;
+            if (!qrCodeInstance) {
+                alert('Veuillez d\'abord générer le QR code');
+                return;
+            }
             
-            const printWindow = window.open('', '_blank');
-            printWindow.document.write(`
-                <!DOCTYPE html>
-                <html>
-                <head>
-                    <title>QR Code - Lear Corporation</title>
-                    <style>
-                        body {
-                            text-align: center;
-                            padding: 40px;
-                            font-family: Arial, sans-serif;
-                        }
-                        h1 { 
-                            color: #E31837;
-                            margin-bottom: 30px;
-                        }
-                        img { 
-                            max-width: 400px;
-                            margin: 30px auto;
-                            border: 4px solid #E31837;
-                            padding: 20px;
-                        }
-                        p {
-                            color: #666;
-                            font-size: 18px;
-                            margin-top: 20px;
-                        }
-                        .footer {
-                            margin-top: 40px;
-                            color: #999;
-                            font-size: 14px;
-                        }
-                    </style>
-                </head>
-                <body>
-                    <h1>LEAR CORPORATION</h1>
-                    <h2>Amélioration Continue</h2>
-                    <img src="${qrCodeData}" alt="QR Code">
-                    <p>Scannez ce code pour accéder à l'application de suggestions</p>
-                    <div class="footer">
-                        <p>Parc Industriel de Meknès</p>
-                    </div>
-                </body>
-                </html>
-            `);
-            printWindow.document.close();
-            
-            setTimeout(() => {
-                printWindow.print();
-            }, 500);
-            
-            console.log('✅ Impression lancée');
+            const canvas = document.querySelector('#qrcode canvas');
+            if (canvas) {
+                const qrCodeDataUrl = canvas.toDataURL('image/png');
+                
+                const printWindow = window.open('', '_blank');
+                printWindow.document.write(`
+                    <!DOCTYPE html>
+                    <html>
+                    <head>
+                        <title>QR Code - Lear Corporation</title>
+                        <style>
+                            body {
+                                text-align: center;
+                                padding: 40px;
+                                font-family: Arial, sans-serif;
+                            }
+                            h1 { 
+                                color: #E31837;
+                                margin-bottom: 10px;
+                            }
+                            h2 {
+                                color: #0033A0;
+                                margin-bottom: 30px;
+                                font-size: 20px;
+                            }
+                            img { 
+                                max-width: 400px;
+                                margin: 30px auto;
+                                border: 4px solid #E31837;
+                                padding: 20px;
+                            }
+                            p {
+                                color: #666;
+                                font-size: 18px;
+                                margin-top: 20px;
+                            }
+                            .instructions {
+                                margin-top: 30px;
+                                font-size: 16px;
+                                font-weight: bold;
+                                color: #E31837;
+                            }
+                            .footer {
+                                margin-top: 40px;
+                                color: #999;
+                                font-size: 14px;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <h1>LEAR CORPORATION</h1>
+                        <h2>Amélioration Continue</h2>
+                        <img src="${qrCodeDataUrl}" alt="QR Code">
+                        <p class="instructions">Scannez ce code pour soumettre vos idées</p>
+                        <p>Votre contribution compte !</p>
+                        <div class="footer">
+                            <p>Parc Industriel de Meknès</p>
+                        </div>
+                    </body>
+                    </html>
+                `);
+                printWindow.document.close();
+                
+                setTimeout(() => {
+                    printWindow.print();
+                }, 500);
+                
+                console.log('✅ Impression lancée');
+            }
         }
     </script>
 </body>
