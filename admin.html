@@ -138,6 +138,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+    <script>
+        if (sessionStorage.getItem('adminAuthenticated') !== 'true') {
+            window.location.href = 'login-admin.html';
+        }
+    </script>
+
     <div class="container">
         <h1><i class="fas fa-qrcode"></i> Générateur de QR Code</h1>
         <p class="subtitle">Cliquez sur le bouton pour générer le QR code de votre application Lear Corporation</p>
@@ -158,6 +164,10 @@
             <button onclick="imprimer()" class="btn-secondary">
                 <i class="fas fa-print"></i> Imprimer
             </button>
+            
+            <button onclick="window.location.href='dashboard.html'" class="btn-secondary">
+                <i class="fas fa-arrow-left"></i> Retour au Dashboard
+            </button>
         </div>
 
         <div class="info-box">
@@ -172,11 +182,9 @@
         </div>
     </div>
 
-    <!-- Bibliothèque QRCode.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     
     <script>
-        // ⚠️ CHANGEZ CETTE URL SI VOTRE SITE NETLIFY A UN NOM DIFFÉRENT
         const APP_URL = 'https://lear-ci-suggestions.netlify.app/app.html';
         
         let qrCodeInstance = null;
@@ -184,11 +192,9 @@
         function generer() {
             console.log('Génération du QR code pour:', APP_URL);
             
-            // Vider le conteneur si déjà un QR code
             const qrcodeDiv = document.getElementById('qrcode');
             qrcodeDiv.innerHTML = '';
             
-            // Générer le QR Code
             qrCodeInstance = new QRCode(qrcodeDiv, {
                 text: APP_URL,
                 width: 256,
@@ -198,11 +204,9 @@
                 correctLevel: QRCode.CorrectLevel.H
             });
             
-            // Afficher l'URL
             document.getElementById('url-display').innerHTML = 
                 `<i class="fas fa-link"></i> URL: ${APP_URL}`;
             
-            // Afficher le conteneur
             document.getElementById('qrcode-container').classList.add('show');
             
             console.log('✅ QR Code généré avec succès');
@@ -214,18 +218,14 @@
                 return;
             }
             
-            // Récupérer l'image du QR code
             const canvas = document.querySelector('#qrcode canvas');
             if (canvas) {
-                // Convertir en image et télécharger
                 const link = document.createElement('a');
                 link.href = canvas.toDataURL('image/png');
                 link.download = 'qrcode-lear-corporation.png';
                 link.click();
                 
                 console.log('✅ QR Code téléchargé');
-            } else {
-                alert('Erreur lors de la récupération du QR code');
             }
         }
 
