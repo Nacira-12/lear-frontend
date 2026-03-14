@@ -45,7 +45,6 @@
             padding: 20px;
         }
 
-        /* LANGUAGE SELECTOR */
         .language-selector {
             position: fixed;
             top: 22px; right: 22px;
@@ -82,11 +81,7 @@
             box-shadow: 0 6px 18px rgba(200,16,46,0.30);
         }
 
-        /* LOGIN PAGE */
-        .login-wrapper {
-            width: 100%;
-            max-width: 500px;
-        }
+        .login-wrapper { width: 100%; max-width: 500px; }
 
         .login-card {
             background: var(--white);
@@ -134,7 +129,6 @@
             text-transform: uppercase;
         }
 
-        /* LOGIN INPUTS */
         .input-group-modern { margin-bottom: 18px; }
 
         .input-group-modern > label {
@@ -189,17 +183,9 @@
             background: #fff5f6;
         }
 
-        /* Field-level errors */
-        .field-error {
-            display: none;
-            color: var(--red);
-            font-size: 11.5px;
-            margin-top: 5px;
-            font-weight: 600;
-        }
+        .field-error { display: none; color: var(--red); font-size: 11.5px; margin-top: 5px; font-weight: 600; }
         .field-error.show { display: block; }
 
-        /* Global login alert */
         .login-alert {
             display: none;
             background: linear-gradient(135deg, var(--red), var(--red-dark));
@@ -251,7 +237,6 @@
             border-top: 1px solid var(--grey-light);
         }
 
-        /* MAIN PAGE */
         .main-wrapper {
             display: none;
             width: 100%;
@@ -262,16 +247,12 @@
             padding: 28px;
             box-shadow: var(--sh-lg);
         }
-        .main-wrapper.active {
-            display: block;
-            animation: fadeScale 0.45s ease;
-        }
+        .main-wrapper.active { display: block; animation: fadeScale 0.45s ease; }
         @keyframes fadeScale {
             from { opacity: 0; transform: scale(0.97); }
             to   { opacity: 1; transform: scale(1); }
         }
 
-        /* HEADER */
         .header-premium {
             background: var(--white);
             border-radius: 4px;
@@ -294,19 +275,8 @@
         }
 
         .brand-premium { display: flex; align-items: center; gap: 20px; }
-
-        .brand-text-premium h2 {
-            font-size: 24px;
-            font-weight: 900;
-            color: var(--blue);
-        }
-        .brand-text-premium p {
-            color: var(--grey);
-            font-size: 12px;
-            font-style: italic;
-            margin-top: 2px;
-        }
-
+        .brand-text-premium h2 { font-size: 24px; font-weight: 900; color: var(--blue); }
+        .brand-text-premium p  { color: var(--grey); font-size: 12px; font-style: italic; margin-top: 2px; }
         .user-premium { display: flex; align-items: center; gap: 20px; }
 
         .user-card {
@@ -323,13 +293,8 @@
             width: 48px; height: 48px;
             background: linear-gradient(135deg, var(--blue), var(--red));
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 900;
-            font-size: 18px;
-            flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-weight: 900; font-size: 18px; flex-shrink: 0;
         }
 
         .user-info-premium h4 { color: var(--blue); font-weight: 700; font-size: 14px; }
@@ -337,140 +302,87 @@
 
         .user-dept-badge {
             background: linear-gradient(135deg, var(--blue), var(--blue-mid));
-            color: white;
-            font-size: 10px;
-            font-weight: 700;
-            padding: 3px 10px;
-            border-radius: 2px;
-            margin-top: 4px;
-            display: inline-block;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
+            color: white; font-size: 10px; font-weight: 700;
+            padding: 3px 10px; border-radius: 2px; margin-top: 4px;
+            display: inline-block; letter-spacing: 0.5px; text-transform: uppercase;
         }
 
         .btn-logout {
             background: linear-gradient(135deg, var(--red), var(--red-dark));
-            color: white;
-            border: none;
-            padding: 11px 22px;
-            border-radius: 4px;
-            font-weight: 700;
-            font-size: 12px;
-            cursor: pointer;
-            transition: all 0.25s;
-            text-transform: uppercase;
-            letter-spacing: 1.2px;
+            color: white; border: none; padding: 11px 22px; border-radius: 4px;
+            font-weight: 700; font-size: 12px; cursor: pointer; transition: all 0.25s;
+            text-transform: uppercase; letter-spacing: 1.2px;
             font-family: 'Times New Roman', Times, serif;
             box-shadow: 0 6px 18px rgba(200,16,46,0.25);
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            display: flex; align-items: center; gap: 8px;
         }
         .btn-logout:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(200,16,46,0.35); }
 
-        /* CARD */
         .card-premium {
-            background: var(--white);
-            border-radius: 4px;
-            padding: 36px 40px;
-            box-shadow: var(--sh-sm);
-            border: 1px solid var(--grey-light);
-            position: relative;
-            overflow: hidden;
+            background: var(--white); border-radius: 4px; padding: 36px 40px;
+            box-shadow: var(--sh-sm); border: 1px solid var(--grey-light);
+            position: relative; overflow: hidden;
         }
         .card-premium::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 4px;
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
             background: linear-gradient(90deg, var(--red), var(--gold), var(--blue));
         }
 
         .card-header-premium {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 32px;
-            padding-bottom: 20px;
+            display: flex; align-items: center; gap: 16px;
+            margin-bottom: 32px; padding-bottom: 20px;
             border-bottom: 1px solid var(--cream-dark);
         }
 
         .card-icon-premium {
             width: 58px; height: 58px;
             background: linear-gradient(135deg, var(--blue), var(--red));
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 24px;
-            flex-shrink: 0;
+            border-radius: 4px; display: flex; align-items: center;
+            justify-content: center; color: white; font-size: 24px; flex-shrink: 0;
         }
 
         .card-title-premium h3 { font-size: 22px; font-weight: 900; color: var(--blue); }
         .card-title-premium p  { color: var(--red); font-size: 15px; font-style: italic; margin-top: 3px; }
 
         .freq-hint {
-            font-size: 13.5px;
-            color: var(--grey);
-            font-style: italic;
-            margin-top: 7px;
-            padding: 8px 12px;
-            background: #f4f7fb;
-            border-left: 3px solid var(--blue);
-            border-radius: 0 4px 4px 0;
-            line-height: 1.5;
+            font-size: 13.5px; color: var(--grey); font-style: italic;
+            margin-top: 7px; padding: 8px 12px; background: #f4f7fb;
+            border-left: 3px solid var(--blue); border-radius: 0 4px 4px 0; line-height: 1.5;
         }
         html[lang="ar"] .freq-hint { border-left: none; border-right: 3px solid var(--blue); border-radius: 4px 0 0 4px; }
 
-        /* FORM */
         .form-premium { display: grid; gap: 22px; }
 
-        .form-group-premium > label,
-        .section-label {
-            display: block;
-            margin-bottom: 9px;
-            color: var(--grey-dark);
-            font-weight: 700;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 1.2px;
+        .form-group-premium > label, .section-label {
+            display: block; margin-bottom: 9px; color: var(--grey-dark);
+            font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 1.2px;
         }
         .req { color: var(--red); margin-left: 2px; }
 
         .form-group-premium input,
         .form-group-premium select,
         .form-group-premium textarea {
-            width: 100%;
-            padding: 13px 16px;
-            border: 1.5px solid var(--grey-light);
-            border-radius: 4px;
-            font-size: 15px;
-            background: #FFFFFF;
-            color: var(--black);
-            font-family: 'Times New Roman', Times, serif;
-            transition: all 0.25s;
+            width: 100%; padding: 13px 16px;
+            border: 1.5px solid var(--grey-light); border-radius: 4px;
+            font-size: 15px; background: #FFFFFF; color: var(--black);
+            font-family: 'Times New Roman', Times, serif; transition: all 0.25s;
         }
         .form-group-premium textarea { min-height: 96px; resize: vertical; }
         .form-group-premium input:focus,
         .form-group-premium select:focus,
         .form-group-premium textarea:focus {
-            outline: none;
-            border-color: var(--blue);
-            background: #fff;
-            box-shadow: 0 4px 14px rgba(0,47,108,0.10);
+            outline: none; border-color: var(--blue);
+            background: #fff; box-shadow: 0 4px 14px rgba(0,47,108,0.10);
         }
 
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
 
         .form-divider {
-            border: none;
-            height: 1px;
+            border: none; height: 1px;
             background: linear-gradient(90deg, transparent, var(--grey-light), transparent);
             margin: 4px 0;
         }
 
-        /* ZONE D'IMPACT — multi-select */
         .multi-check-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
@@ -478,16 +390,9 @@
         }
 
         .check-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 14px;
-            border: 1.5px solid var(--grey-light);
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.2s;
-            background: #FFFFFF;
-            user-select: none;
+            display: flex; align-items: center; gap: 10px; padding: 10px 14px;
+            border: 1.5px solid var(--grey-light); border-radius: 4px;
+            cursor: pointer; transition: all 0.2s; background: #FFFFFF; user-select: none;
         }
         .check-item:hover { border-color: var(--blue-mid); background: #f0f4fb; }
         .check-item.selected {
@@ -495,21 +400,10 @@
             background: linear-gradient(135deg, rgba(0,47,108,0.07), rgba(0,47,108,0.02));
             box-shadow: 0 3px 10px rgba(0,47,108,0.10);
         }
-        .check-item input[type="checkbox"] {
-            width: 16px; height: 16px;
-            accent-color: var(--blue);
-            cursor: pointer;
-            flex-shrink: 0;
-        }
-        .check-item span {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--grey-dark);
-            line-height: 1.3;
-        }
+        .check-item input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--blue); cursor: pointer; flex-shrink: 0; }
+        .check-item span { font-size: 14px; font-weight: 600; color: var(--grey-dark); line-height: 1.3; }
         .check-item.selected span { color: var(--blue); }
 
-        /* KPI — multi-select */
         .kpi-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -517,16 +411,9 @@
         }
 
         .kpi-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 14px;
-            border: 1.5px solid var(--grey-light);
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.2s;
-            background: #FFFFFF;
-            user-select: none;
+            display: flex; align-items: center; gap: 10px; padding: 10px 14px;
+            border: 1.5px solid var(--grey-light); border-radius: 4px;
+            cursor: pointer; transition: all 0.2s; background: #FFFFFF; user-select: none;
         }
         .kpi-item:hover { border-color: var(--red-mid); background: #fff5f6; }
         .kpi-item.selected {
@@ -534,65 +421,31 @@
             background: linear-gradient(135deg, rgba(200,16,46,0.07), rgba(200,16,46,0.02));
             box-shadow: 0 3px 10px rgba(200,16,46,0.10);
         }
-        .kpi-item input[type="checkbox"] {
-            width: 16px; height: 16px;
-            accent-color: var(--red);
-            cursor: pointer;
-            flex-shrink: 0;
-        }
-        .kpi-item span {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--grey-dark);
-            line-height: 1.3;
-        }
+        .kpi-item input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--red); cursor: pointer; flex-shrink: 0; }
+        .kpi-item span { font-size: 14px; font-weight: 600; color: var(--grey-dark); line-height: 1.3; }
         .kpi-item.selected span { color: var(--red); }
 
-        /* SUBMIT */
         .btn-submit-premium {
             background: linear-gradient(135deg, var(--blue), var(--red));
-            color: white;
-            border: none;
-            padding: 17px;
-            border-radius: 4px;
-            font-size: 13px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 2.5px;
-            font-family: 'Times New Roman', Times, serif;
-            margin-top: 6px;
+            color: white; border: none; padding: 17px; border-radius: 4px;
+            font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.3s;
+            text-transform: uppercase; letter-spacing: 2.5px;
+            font-family: 'Times New Roman', Times, serif; margin-top: 6px;
             box-shadow: 0 8px 24px rgba(0,47,108,0.22);
         }
         .btn-submit-premium:hover {
             background: linear-gradient(135deg, var(--red), var(--blue));
-            transform: translateY(-2px);
-            box-shadow: 0 14px 34px rgba(200,16,46,0.28);
+            transform: translateY(-2px); box-shadow: 0 14px 34px rgba(200,16,46,0.28);
         }
 
-        /* ALERTS */
         .alert-premium {
-            padding: 16px 20px;
-            border-radius: 4px;
-            margin-top: 14px;
-            display: none;
-            font-weight: 600;
-            font-size: 13.5px;
+            padding: 16px 20px; border-radius: 4px; margin-top: 14px;
+            display: none; font-weight: 600; font-size: 13.5px;
             animation: slideDown 0.3s ease;
         }
-        .alert-premium.success {
-            display: block;
-            background: linear-gradient(135deg, var(--blue), var(--blue-mid));
-            color: white;
-        }
-        .alert-premium.error {
-            display: block;
-            background: linear-gradient(135deg, var(--red), var(--red-mid));
-            color: white;
-        }
+        .alert-premium.success { display: block; background: linear-gradient(135deg, var(--blue), var(--blue-mid)); color: white; }
+        .alert-premium.error   { display: block; background: linear-gradient(135deg, var(--red), var(--red-mid)); color: white; }
 
-        /* RESPONSIVE */
         @media (max-width: 900px) {
             .form-row { grid-template-columns: 1fr; }
             .multi-check-grid, .kpi-grid { grid-template-columns: 1fr 1fr; }
@@ -611,17 +464,15 @@
 </head>
 <body>
 
-    <!-- Language -->
     <div class="language-selector">
         <button class="lang-btn active" onclick="changeLanguage('fr')">FR</button>
         <button class="lang-btn"        onclick="changeLanguage('en')">EN</button>
         <button class="lang-btn"        onclick="changeLanguage('ar')">AR</button>
     </div>
 
-    <!-- ════════════ LOGIN ════════════ -->
+    <!-- LOGIN -->
     <div id="loginPage" class="login-wrapper">
         <div class="login-card">
-
             <div class="lear-branding">
                 <svg width="220" viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="100" cy="100" r="90" fill="#C8102E"/>
@@ -663,17 +514,17 @@
                     <i class="fas fa-sitemap"></i>
                     <select id="departement" onchange="clearErr('departement')">
                         <option value="" data-i18n="select_dept">-- Sélectionnez votre département --</option>
-                        <option value="Ingénierie"                        data-i18n="dept_engineering">Ingénierie</option>
-                        <option value="Production"                        data-i18n="dept_production">Production</option>
-                        <option value="Maintenance"                       data-i18n="dept_maintenance">Maintenance</option>
-                        <option value="Supply Chain"                      data-i18n="dept_supply">Supply Chain</option>
-                        <option value="Qualité"                           data-i18n="dept_quality">Qualité</option>
-                        <option value="Commercial / Ventes"               data-i18n="dept_sales">Commercial / Ventes</option>
-                        <option value="Santé Sécurité Environnement (HSE)" data-i18n="dept_hse">Santé Sécurité Environnement (HSE)</option>
-                        <option value="Ressources Humaines (RH)"          data-i18n="dept_hr">Ressources Humaines (RH)</option>
-                        <option value="Finances / Comptabilité"           data-i18n="dept_finance">Finances / Comptabilité</option>
-                        <option value="Systèmes d'Information (IT)"       data-i18n="dept_it">Systèmes d'Information (IT)</option>
-                        <option value="Services Généraux"                 data-i18n="dept_general">Services Généraux</option>
+                        <option value="Ingénierie">Ingénierie</option>
+                        <option value="Production">Production</option>
+                        <option value="Maintenance">Maintenance</option>
+                        <option value="Supply Chain">Supply Chain</option>
+                        <option value="Qualité">Qualité</option>
+                        <option value="Commercial / Ventes">Commercial / Ventes</option>
+                        <option value="Santé Sécurité Environnement (HSE)">Santé Sécurité Environnement (HSE)</option>
+                        <option value="Ressources Humaines (RH)">Ressources Humaines (RH)</option>
+                        <option value="Finances / Comptabilité">Finances / Comptabilité</option>
+                        <option value="Systèmes d'Information (IT)">Systèmes d'Information (IT)</option>
+                        <option value="Services Généraux">Services Généraux</option>
                     </select>
                 </div>
                 <div class="field-error" id="err-departement"></div>
@@ -690,9 +541,8 @@
         </div>
     </div>
 
-    <!-- ════════════ MAIN PAGE ════════════ -->
+    <!-- MAIN PAGE -->
     <div id="mainPage" class="main-wrapper">
-
         <div class="header-premium">
             <div class="brand-premium">
                 <svg width="130" viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
@@ -734,20 +584,16 @@
             </div>
 
             <div class="form-premium">
-
-                <!-- Titre -->
                 <div class="form-group-premium">
                     <label><span data-i18n="idea_title">TITRE DE L'IDÉE</span><span class="req"> *</span></label>
                     <input type="text" id="titreIdee" placeholder="Donnez un titre concis à votre idée">
                 </div>
 
-                <!-- Problème -->
                 <div class="form-group-premium">
                     <label><span data-i18n="problem_encountered">PROBLÈME RENCONTRÉ</span><span class="req"> *</span></label>
                     <input type="text" id="probleme" placeholder="Décrivez le problème observé">
                 </div>
 
-                <!-- Fréquence -->
                 <div class="form-row">
                     <div class="form-group-premium">
                         <label><span data-i18n="frequency">FRÉQUENCE</span></label>
@@ -762,61 +608,31 @@
                     <div></div>
                 </div>
 
-                <!-- Zones d'impact -->
                 <div class="form-group-premium">
                     <label class="section-label">
                         <i class="fas fa-map-marked-alt" style="color:var(--blue);margin-right:6px;"></i>
                         <span data-i18n="impact_area">ZONES D'IMPACT</span>
                     </label>
                     <div class="multi-check-grid" id="zoneGrid">
-                        <label class="check-item" onclick="toggleCheck(this)">
-                            <input type="checkbox" value="Logistique Entrée">
-                            <span data-i18n="zone_logistique">Logistique Entrée</span>
-                        </label>
-                        <label class="check-item" onclick="toggleCheck(this)">
-                            <input type="checkbox" value="Coupe">
-                            <span data-i18n="zone_coupe">Coupe</span>
-                        </label>
-                        <label class="check-item" onclick="toggleCheck(this)">
-                            <input type="checkbox" value="Préparation">
-                            <span data-i18n="zone_preparation">Préparation</span>
-                        </label>
-                        <label class="check-item" onclick="toggleCheck(this)">
-                            <input type="checkbox" value="Assemblage">
-                            <span data-i18n="zone_assemblage">Assemblage</span>
-                        </label>
-                        <label class="check-item" onclick="toggleCheck(this)">
-                            <input type="checkbox" value="Contrôle Qualité ECHOS Prise de Charge">
-                            <span data-i18n="zone_qualite">Contrôle Qualité ECHOS Prise de Charge</span>
-                        </label>
-                        <label class="check-item" onclick="toggleCheck(this)">
-                            <input type="checkbox" value="Maintenance">
-                            <span data-i18n="zone_maintenance">Maintenance</span>
-                        </label>
-                        <label class="check-item" onclick="toggleCheck(this)">
-                            <input type="checkbox" value="Expédition / Livraison">
-                            <span data-i18n="zone_expedition">Expédition / Livraison</span>
-                        </label>
-                        <label class="check-item" onclick="toggleCheck(this)">
-                            <input type="checkbox" value="Sécurité / RH">
-                            <span data-i18n="zone_securite">Sécurité / RH</span>
-                        </label>
-                        <label class="check-item" onclick="toggleCheck(this)">
-                            <input type="checkbox" value="Support / Administration">
-                            <span data-i18n="zone_support">Support / Administration</span>
-                        </label>
+                        <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" value="Logistique Entrée"><span>Logistique Entrée</span></label>
+                        <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" value="Coupe"><span>Coupe</span></label>
+                        <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" value="Préparation"><span>Préparation</span></label>
+                        <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" value="Assemblage"><span>Assemblage</span></label>
+                        <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" value="Contrôle Qualité ECHOS Prise de Charge"><span>Contrôle Qualité ECHOS Prise de Charge</span></label>
+                        <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" value="Maintenance"><span>Maintenance</span></label>
+                        <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" value="Expédition / Livraison"><span>Expédition / Livraison</span></label>
+                        <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" value="Sécurité / RH"><span>Sécurité / RH</span></label>
+                        <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" value="Support / Administration"><span>Support / Administration</span></label>
                     </div>
                 </div>
 
                 <hr class="form-divider">
 
-                <!-- Description -->
                 <div class="form-group-premium">
                     <label><span data-i18n="your_idea">DESCRIPTION DE L'IDÉE</span><span class="req"> *</span></label>
                     <textarea id="idee" placeholder="Décrivez votre solution en détail..."></textarea>
                 </div>
 
-                <!-- Gain estimé -->
                 <div class="form-group-premium">
                     <label><span data-i18n="estimated_gain">GAIN ESTIMÉ</span></label>
                     <input type="text" id="gain">
@@ -824,27 +640,26 @@
 
                 <hr class="form-divider">
 
-                <!-- KPIs -->
                 <div class="form-group-premium">
                     <label class="section-label">
                         <i class="fas fa-chart-bar" style="color:var(--red);margin-right:6px;"></i>
                         <span data-i18n="kpi_label">KPIs IMPACTÉS</span>
                     </label>
                     <div class="kpi-grid">
-                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Augmenter Productivité"><span data-i18n="kpi_productivity">Augmenter Productivité</span></label>
-                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Réduire Coûts"><span data-i18n="kpi_cost">Réduire Coûts</span></label>
-                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Améliorer Qualité"><span data-i18n="kpi_quality">Améliorer Qualité</span></label>
-                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Réduire Délais"><span data-i18n="kpi_delay">Réduire Délais</span></label>
-                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Diminuer Rebuts"><span data-i18n="kpi_scrap">Diminuer Rebuts</span></label>
-                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Réduire Arrêts"><span data-i18n="kpi_downtime">Réduire Arrêts</span></label>
-                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Améliorer Traçabilité"><span data-i18n="kpi_traceability">Améliorer Traçabilité</span></label>
-                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Optimiser Stocks"><span data-i18n="kpi_stock">Optimiser Stocks</span></label>
-                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Réduire Accidents"><span data-i18n="kpi_safety">Réduire Accidents</span></label>
-                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Améliorer Satisfaction"><span data-i18n="kpi_satisfaction">Améliorer Satisfaction</span></label>
-                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Réduire Énergie"><span data-i18n="kpi_energy">Réduire Énergie</span></label>
-                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Optimiser Ressources"><span data-i18n="kpi_resources">Optimiser Ressources</span></label>
-                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Réduire Scrap"><span data-i18n="kpi_reduce_scrap">Réduire Scrap</span></label>
-                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Améliorer Ergonomie"><span data-i18n="kpi_ergonomics">Améliorer Ergonomie</span></label>
+                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Augmenter Productivité"><span>Augmenter Productivité</span></label>
+                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Réduire Coûts"><span>Réduire Coûts</span></label>
+                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Améliorer Qualité"><span>Améliorer Qualité</span></label>
+                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Réduire Délais"><span>Réduire Délais</span></label>
+                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Diminuer Rebuts"><span>Diminuer Rebuts</span></label>
+                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Réduire Arrêts"><span>Réduire Arrêts</span></label>
+                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Améliorer Traçabilité"><span>Améliorer Traçabilité</span></label>
+                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Optimiser Stocks"><span>Optimiser Stocks</span></label>
+                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Réduire Accidents"><span>Réduire Accidents</span></label>
+                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Améliorer Satisfaction"><span>Améliorer Satisfaction</span></label>
+                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Réduire Énergie"><span>Réduire Énergie</span></label>
+                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Optimiser Ressources"><span>Optimiser Ressources</span></label>
+                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Réduire Scrap"><span>Réduire Scrap</span></label>
+                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Améliorer Ergonomie"><span>Améliorer Ergonomie</span></label>
                     </div>
                 </div>
 
@@ -858,6 +673,7 @@
         </div>
     </div>
 
+    <script src="api.js"></script>
     <script>
     const T = {
         fr: {
@@ -871,25 +687,13 @@
             logout:'DÉCONNEXION', submit_idea:'Soumettre une idée', your_contribution:'Votre contribution compte',
             idea_title:"TITRE DE L'IDÉE", problem_encountered:'PROBLÈME RENCONTRÉ',
             frequency:'FRÉQUENCE', daily:'Quotidienne', weekly:'Hebdomadaire', monthly:'Mensuelle', occasional:'Occasionnelle',
-            impact_area:"ZONES D'IMPACT",
-            zone_logistique:'Logistique Entrée', zone_coupe:'Coupe', zone_preparation:'Préparation',
-            zone_assemblage:'Assemblage', zone_qualite:'Contrôle Qualité ECHOS Prise de Charge',
-            zone_maintenance:'Maintenance', zone_expedition:'Expédition / Livraison',
-            zone_securite:'Sécurité / RH', zone_support:'Support / Administration',
-            your_idea:"DESCRIPTION DE L'IDÉE", estimated_gain:'GAIN ESTIMÉ', kpi_label:'KPIs IMPACTÉS',
-            kpi_productivity:'Augmenter Productivité', kpi_cost:'Réduire Coûts', kpi_quality:'Améliorer Qualité',
-            kpi_delay:'Réduire Délais', kpi_scrap:'Diminuer Rebuts', kpi_downtime:'Réduire Arrêts',
-            kpi_traceability:'Améliorer Traçabilité', kpi_stock:'Optimiser Stocks', kpi_safety:'Réduire Accidents',
-            kpi_satisfaction:'Améliorer Satisfaction', kpi_energy:'Réduire Énergie', kpi_resources:'Optimiser Ressources',
-            kpi_reduce_scrap:'Réduire Scrap', kpi_ergonomics:'Améliorer Ergonomie',
+            impact_area:"ZONES D'IMPACT", your_idea:"DESCRIPTION DE L'IDÉE", estimated_gain:'GAIN ESTIMÉ', kpi_label:'KPIs IMPACTÉS',
             validate_suggestion:'VALIDER MA SUGGESTION',
             freq_hint:"À quelle fréquence ce problème survient-il ? Indiquez si le problème se produit tous les jours, chaque semaine, chaque mois ou de manière irrégulière.",
             fill_required_fields:'Veuillez remplir les champs obligatoires (Titre, Problème, Description).',
             suggestion_registered:'Merci pour votre participation ! Votre suggestion a été validée avec succès.',
-            err_matricule:'Veuillez saisir votre matricule.',
-            err_nom:'Veuillez saisir votre nom complet.',
-            err_dept:'Veuillez sélectionner votre département.',
-            err_all:'Veuillez remplir toutes les informations requises.'
+            err_matricule:'Veuillez saisir votre matricule.', err_nom:'Veuillez saisir votre nom complet.',
+            err_dept:'Veuillez sélectionner votre département.', err_all:'Veuillez remplir toutes les informations requises.'
         },
         en: {
             industrial_park:'INDUSTRIAL PARK OF MEKNES', matricule:'EMPLOYEE ID', full_name:'FULL NAME', department:'DEPARTMENT',
@@ -902,25 +706,13 @@
             logout:'LOGOUT', submit_idea:'Submit an Idea', your_contribution:'Your contribution matters',
             idea_title:'IDEA TITLE', problem_encountered:'PROBLEM ENCOUNTERED',
             frequency:'FREQUENCY', daily:'Daily', weekly:'Weekly', monthly:'Monthly', occasional:'Occasional',
-            impact_area:'IMPACT AREAS',
-            zone_logistique:'Inbound Logistics', zone_coupe:'Cutting', zone_preparation:'Preparation',
-            zone_assemblage:'Assembly', zone_qualite:'Quality Control ECHOS Intake',
-            zone_maintenance:'Maintenance', zone_expedition:'Shipping / Delivery',
-            zone_securite:'Safety / HR', zone_support:'Support / Administration',
-            your_idea:'IDEA DESCRIPTION', estimated_gain:'ESTIMATED GAIN', kpi_label:'IMPACTED KPIs',
-            kpi_productivity:'Increase Productivity', kpi_cost:'Reduce Costs', kpi_quality:'Improve Quality',
-            kpi_delay:'Reduce Lead Times', kpi_scrap:'Reduce Rejects', kpi_downtime:'Reduce Downtime',
-            kpi_traceability:'Improve Traceability', kpi_stock:'Optimize Inventory', kpi_safety:'Reduce Accidents',
-            kpi_satisfaction:'Improve Satisfaction', kpi_energy:'Reduce Energy', kpi_resources:'Optimize Resources',
-            kpi_reduce_scrap:'Reduce Scrap', kpi_ergonomics:'Improve Ergonomics',
+            impact_area:'IMPACT AREAS', your_idea:'IDEA DESCRIPTION', estimated_gain:'ESTIMATED GAIN', kpi_label:'IMPACTED KPIs',
             validate_suggestion:'VALIDATE MY SUGGESTION',
             freq_hint:"How often does this problem occur? Indicate whether the issue happens every day, every week, every month, or only occasionally.",
             fill_required_fields:'Please fill in the required fields (Title, Problem, Description).',
             suggestion_registered:'Thank you for your participation! Your suggestion has been successfully validated.',
-            err_matricule:'Please enter your employee ID.',
-            err_nom:'Please enter your full name.',
-            err_dept:'Please select your department.',
-            err_all:'Please fill in all required information.'
+            err_matricule:'Please enter your employee ID.', err_nom:'Please enter your full name.',
+            err_dept:'Please select your department.', err_all:'Please fill in all required information.'
         },
         ar: {
             industrial_park:'مدينة مكناس الصناعية', matricule:'رقم الموظف', full_name:'الاسم الكامل', department:'القسم',
@@ -933,25 +725,13 @@
             logout:'تسجيل الخروج', submit_idea:'تقديم فكرة', your_contribution:'مساهمتك مهمة',
             idea_title:'عنوان الفكرة', problem_encountered:'المشكلة التي واجهتها',
             frequency:'التكرار', daily:'يومي', weekly:'أسبوعي', monthly:'شهري', occasional:'عرضي',
-            impact_area:'مناطق التأثير',
-            zone_logistique:'اللوجستيك الوارد', zone_coupe:'القطع', zone_preparation:'التحضير',
-            zone_assemblage:'التجميع', zone_qualite:'مراقبة الجودة',
-            zone_maintenance:'الصيانة', zone_expedition:'الشحن والتسليم',
-            zone_securite:'السلامة / الموارد البشرية', zone_support:'الدعم / الإدارة',
-            your_idea:'وصف الفكرة', estimated_gain:'الكسب المقدر', kpi_label:'مؤشرات الأداء المتأثرة',
-            kpi_productivity:'زيادة الإنتاجية', kpi_cost:'تخفيض التكاليف', kpi_quality:'تحسين الجودة',
-            kpi_delay:'تقليل المهل', kpi_scrap:'تقليل المرفوضات', kpi_downtime:'تقليل التوقفات',
-            kpi_traceability:'تحسين التتبع', kpi_stock:'تحسين المخزون', kpi_safety:'تقليل الحوادث',
-            kpi_satisfaction:'تحسين الرضا', kpi_energy:'تقليل الطاقة', kpi_resources:'تحسين الموارد',
-            kpi_reduce_scrap:'تقليل الخردة', kpi_ergonomics:'تحسين بيئة العمل',
+            impact_area:'مناطق التأثير', your_idea:'وصف الفكرة', estimated_gain:'الكسب المقدر', kpi_label:'مؤشرات الأداء المتأثرة',
             validate_suggestion:'تأكيد الاقتراح',
             freq_hint:"ما مدى تكرار هذه المشكلة؟ حدد ما إذا كانت تحدث يومياً أو أسبوعياً أو شهرياً أو بشكل متقطع.",
             fill_required_fields:'يرجى ملء الحقول المطلوبة (العنوان، المشكلة، الوصف).',
             suggestion_registered:'شكرا لمشاركتكم! تم تأكيد اقتراحكم بنجاح.',
-            err_matricule:'يرجى إدخال رقم الموظف.',
-            err_nom:'يرجى إدخال الاسم الكامل.',
-            err_dept:'يرجى اختيار القسم.',
-            err_all:'يرجى ملء جميع المعلومات المطلوبة.'
+            err_matricule:'يرجى إدخال رقم الموظف.', err_nom:'يرجى إدخال الاسم الكامل.',
+            err_dept:'يرجى اختيار القسم.', err_all:'يرجى ملء جميع المعلومات المطلوبة.'
         }
     };
 
@@ -973,7 +753,6 @@
             const v = T[lang][el.getAttribute('data-i18n')];
             if (v) el.textContent = v;
         });
-        // Refresh visible field errors in current language
         ['matricule','nom','departement'].forEach(id => {
             const err = document.getElementById('err-'+id);
             const key = id==='departement' ? 'err_dept' : id==='nom' ? 'err_nom' : 'err_matricule';
@@ -993,25 +772,21 @@
         const n = document.getElementById('nom').value.trim();
         const d = document.getElementById('departement').value;
         let bad = false;
-
         if (!m) { setErr('matricule','err_matricule'); bad=true; }
-        if (!n) { setErr('nom','err_nom');             bad=true; }
-        if (!d) { setErr('departement','err_dept');    bad=true; }
-
+        if (!n) { setErr('nom','err_nom'); bad=true; }
+        if (!d) { setErr('departement','err_dept'); bad=true; }
         if (bad) {
             const a = document.getElementById('loginAlert');
             a.textContent = T[lang].err_all;
             a.classList.add('show');
             return;
         }
-
         utilisateur = { matricule:m, nom:n, departement:d };
         const ini = n.split(' ').map(x=>x[0]).join('').toUpperCase().slice(0,2);
         document.getElementById('avatarInitials').textContent         = ini;
         document.getElementById('displayNameHeader').textContent      = n;
         document.getElementById('displayMatriculeHeader').textContent = m;
         document.getElementById('displayDeptHeader').textContent      = d;
-
         document.getElementById('loginPage').style.display = 'none';
         document.getElementById('mainPage').classList.add('active');
     }
@@ -1042,21 +817,16 @@
         const probleme = document.getElementById('probleme').value.trim();
         const idee     = document.getElementById('idee').value.trim();
         if (!titre || !probleme || !idee) { showMsg(T[lang].fill_required_fields,'error'); return; }
-
         const zones = [...document.querySelectorAll('#zoneGrid .check-item.selected input')].map(cb=>cb.value);
         const kpis  = [...document.querySelectorAll('.kpi-item.selected input')].map(cb=>cb.value);
-
         const data = { ...utilisateur, titreIdee:titre, probleme,
             frequence: document.getElementById('frequence').value,
             zonesImpact: zones, idee, gain: document.getElementById('gain').value, kpisImpactes: kpis };
-
         console.log('Envoi:', data);
         try {
-            if (typeof creerSuggestion === 'function') {
-                const r = await creerSuggestion(data);
-                if (r.success) { showMsg(T[lang].suggestion_registered,'success'); resetForm(); }
-                else showMsg('Erreur : '+(r.message||'inconnue'),'error');
-            } else { showMsg(T[lang].suggestion_registered,'success'); resetForm(); }
+            const r = await creerSuggestion(data);
+            if (r.success) { showMsg(T[lang].suggestion_registered,'success'); resetForm(); }
+            else showMsg('Erreur : '+(r.message||'inconnue'),'error');
         } catch(e) { showMsg('Erreur de connexion au serveur.','error'); }
     }
 
