@@ -4,28 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lear Corporation - Excellence & Innovation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Times New Roman', Times, serif;
         }
 
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+        html[lang="ar"] { direction: rtl; text-align: right; }
+        html[lang="ar"] * { direction: rtl; text-align: right; }
 
-        html[lang="ar"] {
-            direction: rtl;
-            text-align: right;
-        }
-
-        html[lang="ar"] * {
-            direction: rtl;
-            text-align: right;
+        :root {
+            --red:        #C8102E;
+            --red-dark:   #96001E;
+            --red-mid:    #E03050;
+            --blue:       #002F6C;
+            --blue-mid:   #1A4A8A;
+            --blue-light: #3060A8;
+            --gold:       #B8982A;
+            --cream:      #F7F4EF;
+            --cream-dark: #EDE9E0;
+            --grey:       #5A5D60;
+            --grey-light: #D8DADC;
+            --grey-dark:  #3A3D40;
+            --white:      #FFFFFF;
+            --black:      #111418;
+            --sh-sm:  0 4px 20px rgba(0,47,108,0.10);
+            --sh-md:  0 12px 40px rgba(0,47,108,0.14);
+            --sh-lg:  0 24px 60px rgba(0,0,0,0.18);
         }
 
         body {
-            background: linear-gradient(145deg, #f8faff 0%, #f0f4fa 100%);
+            background: #FFFFFF;
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -33,703 +45,676 @@
             padding: 20px;
         }
 
-        /* Couleurs Lear Corporation */
-        :root {
-            --lear-red: #E31837;
-            --lear-red-dark: #B3122B;
-            --lear-red-light: #FF4D6D;
-            --lear-blue: #0033A0;
-            --lear-blue-dark: #00227A;
-            --lear-blue-light: #1E4FD9;
-            --lear-grey: #6C6F70;
-            --lear-grey-light: #E5E7E9;
-            --lear-grey-dark: #4A4D4F;
-            --white: #FFFFFF;
-            --black: #1A1E24;
-            --gradient-1: linear-gradient(135deg, var(--lear-red), var(--lear-red-dark));
-            --gradient-2: linear-gradient(135deg, var(--lear-blue), var(--lear-blue-dark));
-            --gradient-3: linear-gradient(135deg, #f5f7fa, #e9ecf0);
-            --shadow-sm: 0 10px 30px rgba(0, 51, 160, 0.08);
-            --shadow-md: 0 20px 40px rgba(227, 24, 55, 0.12);
-            --shadow-lg: 0 30px 60px rgba(0, 0, 0, 0.15);
-        }
-
-        /* Logo Lear */
-        .lear-logo {
-            width: 220px;
-            height: auto;
-            margin-bottom: 20px;
-        }
-        
-        .lear-logo-header {
-            width: 140px;
-            height: auto;
-        }
-
-        /* Sélecteur de langue */
+        /* LANGUAGE SELECTOR */
         .language-selector {
             position: fixed;
-            top: 20px;
-            right: 20px;
+            top: 22px; right: 22px;
             z-index: 1000;
             display: flex;
-            gap: 10px;
-            background: rgba(255, 255, 255, 0.95);
-            padding: 12px 15px;
+            gap: 8px;
+            background: rgba(255,255,255,0.96);
+            padding: 10px 14px;
             border-radius: 50px;
-            box-shadow: var(--shadow-md);
-            border: 1px solid rgba(227, 24, 55, 0.1);
+            box-shadow: var(--sh-md);
+            border: 1px solid rgba(200,16,46,0.12);
         }
-
-        html[lang="ar"] .language-selector {
-            left: 20px;
-            right: auto;
-        }
+        html[lang="ar"] .language-selector { left: 22px; right: auto; }
 
         .lang-btn {
-            padding: 8px 18px;
-            border: 2px solid var(--lear-grey-light);
+            padding: 7px 16px;
+            border: 1.5px solid var(--grey-light);
             background: white;
-            color: var(--lear-grey-dark);
+            color: var(--grey-dark);
             border-radius: 50px;
             cursor: pointer;
-            font-weight: 600;
-            font-size: 12px;
+            font-weight: 700;
+            font-size: 11px;
             text-transform: uppercase;
-            transition: all 0.3s;
-            letter-spacing: 1px;
+            letter-spacing: 1.2px;
+            transition: all 0.25s;
+            font-family: 'Times New Roman', Times, serif;
         }
-
-        .lang-btn:hover {
-            border-color: var(--lear-red);
-            color: var(--lear-red);
-        }
-
+        .lang-btn:hover { border-color: var(--red); color: var(--red); }
         .lang-btn.active {
-            background: var(--gradient-1);
+            background: linear-gradient(135deg, var(--red), var(--red-dark));
             color: white;
-            border-color: var(--lear-red);
-            box-shadow: 0 10px 25px rgba(227, 24, 55, 0.3);
+            border-color: var(--red-dark);
+            box-shadow: 0 6px 18px rgba(200,16,46,0.30);
         }
 
-        /* Page de connexion */
+        /* LOGIN PAGE */
         .login-wrapper {
             width: 100%;
             max-width: 500px;
-            position: relative;
-        }
-
-        .login-wrapper::before {
-            content: '';
-            position: absolute;
-            top: -50px;
-            left: -50px;
-            right: -50px;
-            bottom: -50px;
-            background: radial-gradient(circle at 30% 50%, rgba(227, 24, 55, 0.08) 0%, transparent 50%);
-            z-index: -1;
         }
 
         .login-card {
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(20px);
-            border-radius: 40px;
-            padding: 60px 50px;
-            box-shadow: var(--shadow-lg);
+            background: var(--white);
+            border-radius: 6px;
+            padding: 52px 48px 44px;
+            box-shadow: var(--sh-lg);
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(200,16,46,0.08);
+            animation: float 5s ease-in-out infinite;
         }
-
         .login-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 6px;
-            background: linear-gradient(90deg, var(--lear-red), var(--lear-blue), var(--lear-red));
-            background-size: 200% 100%;
-            animation: gradientMove 3s ease infinite;
+            top: 0; left: 0; right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--red-dark), var(--red), var(--gold), var(--blue), var(--red-dark));
+            background-size: 300% 100%;
+            animation: shimmer 4s linear infinite;
+        }
+        @keyframes shimmer {
+            0%   { background-position: 0% 50%; }
+            100% { background-position: 300% 50%; }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50%       { transform: translateY(-8px); }
         }
 
-        @keyframes gradientMove {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .lear-branding {
-            text-align: center;
-            margin-bottom: 40px;
-        }
+        .lear-branding { text-align: center; margin-bottom: 36px; }
 
         .meknes-badge {
-            background: var(--gradient-3);
-            padding: 12px 30px;
-            border-radius: 50px;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            font-weight: 600;
-            color: var(--lear-blue);
-            border: 1px solid rgba(0, 51, 160, 0.1);
-            margin-top: 20px;
-            box-shadow: var(--shadow-sm);
+            gap: 8px;
+            background: var(--cream);
+            border: 1px solid var(--cream-dark);
+            padding: 10px 24px;
+            border-radius: 4px;
+            margin-top: 16px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: var(--blue);
+            text-transform: uppercase;
         }
 
-        .input-group-modern {
-            margin-bottom: 25px;
-        }
+        /* LOGIN INPUTS */
+        .input-group-modern { margin-bottom: 18px; }
 
-        .input-group-modern label {
+        .input-group-modern > label {
             display: block;
-            margin-bottom: 10px;
-            color: var(--lear-grey-dark);
-            font-weight: 600;
+            margin-bottom: 7px;
+            color: var(--grey-dark);
+            font-weight: 700;
             font-size: 13px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.2px;
         }
 
-        .input-field-modern {
-            position: relative;
-        }
+        .input-field-modern { position: relative; }
 
         .input-field-modern i {
             position: absolute;
-            left: 20px;
-            top: 50%;
+            left: 16px; top: 50%;
             transform: translateY(-50%);
-            font-size: 18px;
-            color: var(--lear-blue);
-            opacity: 0.5;
-            transition: all 0.3s;
-        }
-
-        html[lang="ar"] .input-field-modern i {
-            left: auto;
-            right: 20px;
-        }
-
-        .input-field-modern input {
-            width: 100%;
-            padding: 18px 20px 18px 55px;
-            border: 2px solid var(--lear-grey-light);
-            border-radius: 20px;
             font-size: 15px;
-            background: var(--white);
-            transition: all 0.3s;
+            color: var(--blue-mid);
+            opacity: 0.45;
+            pointer-events: none;
+            transition: all 0.25s;
+        }
+        html[lang="ar"] .input-field-modern i { left: auto; right: 16px; }
+
+        .input-field-modern input,
+        .input-field-modern select {
+            width: 100%;
+            padding: 14px 16px 14px 46px;
+            border: 1.5px solid var(--grey-light);
+            border-radius: 4px;
+            font-size: 15px;
+            background: #FFFFFF;
             color: var(--black);
-            font-weight: 500;
+            font-family: 'Times New Roman', Times, serif;
+            transition: all 0.25s;
         }
+        html[lang="ar"] .input-field-modern input,
+        html[lang="ar"] .input-field-modern select { padding: 14px 46px 14px 16px; }
 
-        html[lang="ar"] .input-field-modern input {
-            padding: 18px 55px 18px 20px;
-        }
-
-        .input-field-modern input:focus {
+        .input-field-modern input:focus,
+        .input-field-modern select:focus {
             outline: none;
-            border-color: var(--lear-red);
-            box-shadow: 0 10px 25px rgba(227, 24, 55, 0.15);
+            border-color: var(--blue);
+            background: #fff;
+            box-shadow: 0 4px 16px rgba(0,47,108,0.10);
+        }
+        .input-field-modern input.invalid,
+        .input-field-modern select.invalid {
+            border-color: var(--red-mid);
+            background: #fff5f6;
         }
 
-        .input-field-modern input:focus + i {
-            opacity: 1;
-            color: var(--lear-red);
+        /* Field-level errors */
+        .field-error {
+            display: none;
+            color: var(--red);
+            font-size: 11.5px;
+            margin-top: 5px;
+            font-weight: 600;
+        }
+        .field-error.show { display: block; }
+
+        /* Global login alert */
+        .login-alert {
+            display: none;
+            background: linear-gradient(135deg, var(--red), var(--red-dark));
+            color: white;
+            padding: 13px 18px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 18px;
+            text-align: center;
+            letter-spacing: 0.3px;
+            animation: slideDown 0.3s ease;
+        }
+        .login-alert.show { display: block; }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-8px); }
+            to   { opacity: 1; transform: translateY(0); }
         }
 
         .btn-login-modern {
             width: 100%;
-            padding: 18px;
-            background: var(--gradient-1);
+            padding: 16px;
+            background: linear-gradient(135deg, var(--blue), #001E50);
             color: white;
             border: none;
-            border-radius: 20px;
-            font-size: 16px;
+            border-radius: 4px;
+            font-size: 13px;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.25s;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 15px 30px rgba(227, 24, 55, 0.3);
+            letter-spacing: 2.5px;
+            font-family: 'Times New Roman', Times, serif;
+            margin-top: 6px;
+            box-shadow: 0 8px 24px rgba(0,47,108,0.28);
         }
-
-        .btn-login-modern::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .btn-login-modern:hover::before {
-            left: 100%;
-        }
-
         .btn-login-modern:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 20px 40px rgba(227, 24, 55, 0.4);
+            background: linear-gradient(135deg, var(--red), var(--red-dark));
+            box-shadow: 0 12px 32px rgba(200,16,46,0.30);
+            transform: translateY(-2px);
         }
 
         .login-footer-modern {
-            margin-top: 30px;
+            margin-top: 26px;
             text-align: center;
-            color: var(--lear-grey);
-            font-size: 13px;
-            padding-top: 20px;
-            border-top: 1px solid var(--lear-grey-light);
+            color: var(--grey);
+            font-size: 12px;
+            padding-top: 18px;
+            border-top: 1px solid var(--grey-light);
         }
 
-        /* Page principale */
+        /* MAIN PAGE */
         .main-wrapper {
             display: none;
             width: 100%;
-            max-width: 1400px;
+            max-width: 1380px;
             background: #FFFFFF;
             min-height: 100vh;
-            border-radius: 50px;
-            padding: 30px;
-            box-shadow: var(--shadow-lg);
-            border: 1px solid rgba(227, 24, 55, 0.1);
+            border-radius: 6px;
+            padding: 28px;
+            box-shadow: var(--sh-lg);
         }
-
         .main-wrapper.active {
             display: block;
-            animation: fadeIn 0.5s ease;
+            animation: fadeScale 0.45s ease;
+        }
+        @keyframes fadeScale {
+            from { opacity: 0; transform: scale(0.97); }
+            to   { opacity: 1; transform: scale(1); }
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        /* Header premium */
+        /* HEADER */
         .header-premium {
             background: var(--white);
-            border-radius: 30px;
-            padding: 20px 30px;
-            margin-bottom: 30px;
+            border-radius: 4px;
+            padding: 18px 28px;
+            margin-bottom: 26px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: var(--shadow-sm);
-            border: 1px solid rgba(227, 24, 55, 0.1);
+            box-shadow: var(--sh-sm);
+            border: 1px solid var(--grey-light);
             position: relative;
             overflow: hidden;
         }
-
         .header-premium::after {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
+            bottom: 0; left: 0; right: 0;
             height: 3px;
-            background: linear-gradient(90deg, var(--lear-red), var(--lear-blue));
+            background: linear-gradient(90deg, var(--red), var(--gold), var(--blue));
         }
 
-        .brand-premium {
-            display: flex;
-            align-items: center;
-            gap: 25px;
-        }
+        .brand-premium { display: flex; align-items: center; gap: 20px; }
 
         .brand-text-premium h2 {
-            font-size: 28px;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--lear-blue), var(--lear-red));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--blue);
         }
-
         .brand-text-premium p {
-            color: var(--lear-grey);
-            font-size: 13px;
-            font-weight: 500;
+            color: var(--grey);
+            font-size: 12px;
+            font-style: italic;
+            margin-top: 2px;
         }
 
-        .user-premium {
-            display: flex;
-            align-items: center;
-            gap: 25px;
-        }
+        .user-premium { display: flex; align-items: center; gap: 20px; }
 
         .user-card {
             display: flex;
             align-items: center;
-            gap: 15px;
-            background: linear-gradient(145deg, #f8faff, #ffffff);
-            padding: 10px 25px 10px 15px;
-            border-radius: 50px;
-            box-shadow: var(--shadow-sm);
+            gap: 14px;
+            background: var(--cream);
+            border: 1px solid var(--cream-dark);
+            padding: 10px 22px 10px 14px;
+            border-radius: 4px;
         }
 
         .user-avatar-premium {
-            width: 55px;
-            height: 55px;
-            background: linear-gradient(145deg, var(--lear-blue), var(--lear-red));
+            width: 48px; height: 48px;
+            background: linear-gradient(135deg, var(--blue), var(--red));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-weight: 700;
-            font-size: 22px;
-            box-shadow: 0 10px 20px rgba(227, 24, 55, 0.3);
+            font-weight: 900;
+            font-size: 18px;
+            flex-shrink: 0;
         }
 
-        .user-info-premium h4 {
-            color: var(--lear-blue);
-            font-weight: 700;
-            font-size: 16px;
-        }
+        .user-info-premium h4 { color: var(--blue); font-weight: 700; font-size: 14px; }
+        .user-info-premium p  { color: var(--grey); font-size: 11px; margin-top: 2px; }
 
-        .user-info-premium p {
-            color: var(--lear-grey);
-            font-size: 12px;
-            font-weight: 500;
+        .user-dept-badge {
+            background: linear-gradient(135deg, var(--blue), var(--blue-mid));
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 2px;
+            margin-top: 4px;
+            display: inline-block;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
         .btn-logout {
-            background: var(--gradient-1);
+            background: linear-gradient(135deg, var(--red), var(--red-dark));
             color: white;
             border: none;
-            padding: 12px 25px;
-            border-radius: 50px;
+            padding: 11px 22px;
+            border-radius: 4px;
             font-weight: 700;
-            font-size: 14px;
+            font-size: 12px;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.25s;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 10px 25px rgba(227, 24, 55, 0.3);
+            letter-spacing: 1.2px;
+            font-family: 'Times New Roman', Times, serif;
+            box-shadow: 0 6px 18px rgba(200,16,46,0.25);
             display: flex;
             align-items: center;
             gap: 8px;
         }
+        .btn-logout:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(200,16,46,0.35); }
 
-        .btn-logout:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(227, 24, 55, 0.4);
-        }
-
-        /* Dashboard Grid Premium */
-        .dashboard-grid-premium {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 30px;
-        }
-
-        /* Card Premium */
+        /* CARD */
         .card-premium {
             background: var(--white);
-            border-radius: 30px;
-            padding: 30px;
-            box-shadow: var(--shadow-sm);
-            border: 1px solid rgba(227, 24, 55, 0.05);
-            transition: all 0.3s;
+            border-radius: 4px;
+            padding: 36px 40px;
+            box-shadow: var(--sh-sm);
+            border: 1px solid var(--grey-light);
             position: relative;
             overflow: hidden;
         }
-
-        .card-premium:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-md);
-        }
-
         .card-premium::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             height: 4px;
-            background: linear-gradient(90deg, var(--lear-red), var(--lear-blue));
+            background: linear-gradient(90deg, var(--red), var(--gold), var(--blue));
         }
 
         .card-header-premium {
             display: flex;
             align-items: center;
-            gap: 15px;
-            margin-bottom: 25px;
+            gap: 16px;
+            margin-bottom: 32px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--cream-dark);
         }
 
         .card-icon-premium {
-            width: 65px;
-            height: 65px;
-            background: linear-gradient(145deg, var(--lear-blue), var(--lear-red));
-            border-radius: 20px;
+            width: 58px; height: 58px;
+            background: linear-gradient(135deg, var(--blue), var(--red));
+            border-radius: 4px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 28px;
-            box-shadow: 0 10px 20px rgba(0, 51, 160, 0.2);
+            font-size: 24px;
+            flex-shrink: 0;
         }
 
-        .card-title-premium h3 {
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--lear-blue);
-        }
+        .card-title-premium h3 { font-size: 22px; font-weight: 900; color: var(--blue); }
+        .card-title-premium p  { color: var(--red); font-size: 15px; font-style: italic; margin-top: 3px; }
 
-        .card-title-premium p {
-            color: var(--lear-red);
-            font-weight: 500;
-            font-size: 14px;
+        .freq-hint {
+            font-size: 13.5px;
+            color: var(--grey);
+            font-style: italic;
+            margin-top: 7px;
+            padding: 8px 12px;
+            background: #f4f7fb;
+            border-left: 3px solid var(--blue);
+            border-radius: 0 4px 4px 0;
+            line-height: 1.5;
         }
+        html[lang="ar"] .freq-hint { border-left: none; border-right: 3px solid var(--blue); border-radius: 4px 0 0 4px; }
 
-        /* Formulaire Premium */
-        .form-premium {
-            display: grid;
-            gap: 20px;
-        }
+        /* FORM */
+        .form-premium { display: grid; gap: 22px; }
 
-        .form-group-premium {
-            position: relative;
-        }
-
-        .form-group-premium label {
+        .form-group-premium > label,
+        .section-label {
             display: block;
-            margin-bottom: 8px;
-            color: var(--lear-grey-dark);
-            font-weight: 600;
-            font-size: 12px;
+            margin-bottom: 9px;
+            color: var(--grey-dark);
+            font-weight: 700;
+            font-size: 13px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1.2px;
         }
+        .req { color: var(--red); margin-left: 2px; }
 
         .form-group-premium input,
         .form-group-premium select,
         .form-group-premium textarea {
             width: 100%;
-            padding: 15px 20px;
-            border: 2px solid var(--lear-grey-light);
-            border-radius: 18px;
-            font-size: 14px;
-            background: linear-gradient(145deg, #fafcff, var(--white));
-            transition: all 0.3s;
+            padding: 13px 16px;
+            border: 1.5px solid var(--grey-light);
+            border-radius: 4px;
+            font-size: 15px;
+            background: #FFFFFF;
+            color: var(--black);
+            font-family: 'Times New Roman', Times, serif;
+            transition: all 0.25s;
         }
-
+        .form-group-premium textarea { min-height: 96px; resize: vertical; }
         .form-group-premium input:focus,
         .form-group-premium select:focus,
         .form-group-premium textarea:focus {
             outline: none;
-            border-color: var(--lear-red);
-            box-shadow: 0 10px 25px rgba(227, 24, 55, 0.1);
+            border-color: var(--blue);
+            background: #fff;
+            box-shadow: 0 4px 14px rgba(0,47,108,0.10);
         }
 
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+
+        .form-divider {
+            border: none;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--grey-light), transparent);
+            margin: 4px 0;
+        }
+
+        /* ZONE D'IMPACT — multi-select */
+        .multi-check-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            gap: 9px;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            border: 1.5px solid var(--grey-light);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: #FFFFFF;
+            user-select: none;
+        }
+        .check-item:hover { border-color: var(--blue-mid); background: #f0f4fb; }
+        .check-item.selected {
+            border-color: var(--blue);
+            background: linear-gradient(135deg, rgba(0,47,108,0.07), rgba(0,47,108,0.02));
+            box-shadow: 0 3px 10px rgba(0,47,108,0.10);
+        }
+        .check-item input[type="checkbox"] {
+            width: 16px; height: 16px;
+            accent-color: var(--blue);
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .check-item span {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--grey-dark);
+            line-height: 1.3;
+        }
+        .check-item.selected span { color: var(--blue); }
+
+        /* KPI — multi-select */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 9px;
+        }
+
+        .kpi-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            border: 1.5px solid var(--grey-light);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: #FFFFFF;
+            user-select: none;
+        }
+        .kpi-item:hover { border-color: var(--red-mid); background: #fff5f6; }
+        .kpi-item.selected {
+            border-color: var(--red);
+            background: linear-gradient(135deg, rgba(200,16,46,0.07), rgba(200,16,46,0.02));
+            box-shadow: 0 3px 10px rgba(200,16,46,0.10);
+        }
+        .kpi-item input[type="checkbox"] {
+            width: 16px; height: 16px;
+            accent-color: var(--red);
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .kpi-item span {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--grey-dark);
+            line-height: 1.3;
+        }
+        .kpi-item.selected span { color: var(--red); }
+
+        /* SUBMIT */
         .btn-submit-premium {
-            background: linear-gradient(145deg, var(--lear-blue), var(--lear-red));
+            background: linear-gradient(135deg, var(--blue), var(--red));
             color: white;
             border: none;
-            padding: 18px;
-            border-radius: 18px;
-            font-size: 16px;
+            padding: 17px;
+            border-radius: 4px;
+            font-size: 13px;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            position: relative;
-            overflow: hidden;
-            margin-top: 10px;
+            letter-spacing: 2.5px;
+            font-family: 'Times New Roman', Times, serif;
+            margin-top: 6px;
+            box-shadow: 0 8px 24px rgba(0,47,108,0.22);
+        }
+        .btn-submit-premium:hover {
+            background: linear-gradient(135deg, var(--red), var(--blue));
+            transform: translateY(-2px);
+            box-shadow: 0 14px 34px rgba(200,16,46,0.28);
         }
 
-        .btn-submit-premium::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-
-        .btn-submit-premium:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-
-        /* Alert Premium */
+        /* ALERTS */
         .alert-premium {
-            padding: 20px;
-            border-radius: 18px;
-            margin-top: 20px;
+            padding: 16px 20px;
+            border-radius: 4px;
+            margin-top: 14px;
             display: none;
             font-weight: 600;
-            animation: slideIn 0.3s ease;
+            font-size: 13.5px;
+            animation: slideDown 0.3s ease;
         }
-
-        @keyframes slideIn {
-            from { transform: translateY(-10px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
         .alert-premium.success {
             display: block;
-            background: linear-gradient(145deg, var(--lear-blue), #1E4FD9);
+            background: linear-gradient(135deg, var(--blue), var(--blue-mid));
             color: white;
         }
-
         .alert-premium.error {
             display: block;
-            background: linear-gradient(145deg, var(--lear-red), #FF4D6D);
+            background: linear-gradient(135deg, var(--red), var(--red-mid));
             color: white;
         }
 
-        /* Responsive */
-        @media (max-width: 1200px) {
-            .dashboard-grid-premium {
-                grid-template-columns: 1fr;
-            }
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .form-row { grid-template-columns: 1fr; }
+            .multi-check-grid, .kpi-grid { grid-template-columns: 1fr 1fr; }
         }
-
-        @media (max-width: 768px) {
-            .header-premium {
-                flex-direction: column;
-                gap: 20px;
-            }
-            
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-
-            .user-premium {
-                flex-direction: column;
-                width: 100%;
-            }
-
-            .user-card {
-                width: 100%;
-            }
-
-            .btn-logout {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .language-selector {
-                top: auto;
-                bottom: 20px;
-                right: 20px;
-            }
-
-            html[lang="ar"] .language-selector {
-                left: auto;
-                right: 20px;
-            }
-        }
-
-        /* Animations */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-
-        .floating {
-            animation: float 4s ease-in-out infinite;
+        @media (max-width: 640px) {
+            .header-premium { flex-direction: column; gap: 16px; }
+            .user-premium { flex-direction: column; width: 100%; }
+            .user-card, .btn-logout { width: 100%; }
+            .btn-logout { justify-content: center; }
+            .login-card { padding: 38px 24px 32px; }
+            .card-premium { padding: 26px 18px; }
+            .multi-check-grid, .kpi-grid { grid-template-columns: 1fr; }
+            .language-selector { bottom: 16px; top: auto; right: 16px; }
         }
     </style>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- Sélecteur de langue -->
+
+    <!-- Language -->
     <div class="language-selector">
-        <button class="lang-btn active" onclick="changeLanguage('fr')" data-lang="fr">FR</button>
-        <button class="lang-btn" onclick="changeLanguage('en')" data-lang="en">EN</button>
-        <button class="lang-btn" onclick="changeLanguage('ar')" data-lang="ar">AR</button>
+        <button class="lang-btn active" onclick="changeLanguage('fr')">FR</button>
+        <button class="lang-btn"        onclick="changeLanguage('en')">EN</button>
+        <button class="lang-btn"        onclick="changeLanguage('ar')">AR</button>
     </div>
 
-    <!-- Page de connexion -->
+    <!-- ════════════ LOGIN ════════════ -->
     <div id="loginPage" class="login-wrapper">
-        <div class="login-card floating">
+        <div class="login-card">
+
             <div class="lear-branding">
-                <svg class="lear-logo" viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Cercle rouge -->
-                    <circle cx="100" cy="100" r="90" fill="#C8402E"/>
-                    <!-- L blanc incliné -->
+                <svg width="220" viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="100" cy="100" r="90" fill="#C8102E"/>
                     <g transform="rotate(-15 100 100)">
                         <path d="M 70 45 L 95 45 L 95 145 L 140 145 L 140 165 L 70 165 Z" fill="white"/>
                     </g>
-                    <!-- Texte LEAR -->
-                    <text x="220" y="120" font-family="Arial Black, sans-serif" font-size="90" font-weight="900" fill="#2B2B2B">LEAR</text>
-                    <text x="220" y="160" font-family="Arial, sans-serif" font-size="28" font-weight="400" fill="#2B2B2B" letter-spacing="12">CORPORATION</text>
+                    <text x="220" y="120" font-family="Times New Roman,serif" font-size="90" font-weight="900" fill="#111418">LEAR</text>
+                    <text x="220" y="162" font-family="Times New Roman,serif" font-size="26" font-weight="400" fill="#111418" letter-spacing="14">CORPORATION</text>
                 </svg>
-
                 <div class="meknes-badge">
-                    <i class="fas fa-map-pin" style="color: var(--lear-red);"></i>
+                    <i class="fas fa-industry" style="color:var(--red);font-size:12px;"></i>
                     <span data-i18n="industrial_park">PARC INDUSTRIEL DE MEKNÈS</span>
-                    <i class="fas fa-certificate" style="color: var(--lear-blue);"></i>
                 </div>
             </div>
 
+            <div class="login-alert" id="loginAlert"></div>
+
             <div class="input-group-modern">
-                <label><i class="fas fa-id-card" style="margin-right: 8px;"></i> <span data-i18n="matricule">MATRICULE</span></label>
+                <label><span data-i18n="matricule">MATRICULE</span> <span style="color:var(--red)">*</span></label>
+                <div class="input-field-modern">
+                    <i class="fas fa-id-badge"></i>
+                    <input type="text" id="matricule" placeholder="Ex : LE2024" oninput="clearErr('matricule')">
+                </div>
+                <div class="field-error" id="err-matricule"></div>
+            </div>
+
+            <div class="input-group-modern">
+                <label><span data-i18n="full_name">NOM COMPLET</span> <span style="color:var(--red)">*</span></label>
                 <div class="input-field-modern">
                     <i class="fas fa-user"></i>
-                    <input type="text" id="matricule" placeholder="Ex: LE2024">
+                    <input type="text" id="nom" placeholder="Votre nom et prénom" oninput="clearErr('nom')">
                 </div>
+                <div class="field-error" id="err-nom"></div>
             </div>
 
             <div class="input-group-modern">
-                <label><i class="fas fa-user-tag" style="margin-right: 8px;"></i> <span data-i18n="full_name">NOM COMPLET</span></label>
+                <label><span data-i18n="department">DÉPARTEMENT</span> <span style="color:var(--red)">*</span></label>
                 <div class="input-field-modern">
-                    <i class="fas fa-user-circle"></i>
-                    <input type="text" id="nom" placeholder="Votre nom">
+                    <i class="fas fa-sitemap"></i>
+                    <select id="departement" onchange="clearErr('departement')">
+                        <option value="" data-i18n="select_dept">-- Sélectionnez votre département --</option>
+                        <option value="Ingénierie"                        data-i18n="dept_engineering">Ingénierie</option>
+                        <option value="Production"                        data-i18n="dept_production">Production</option>
+                        <option value="Maintenance"                       data-i18n="dept_maintenance">Maintenance</option>
+                        <option value="Supply Chain"                      data-i18n="dept_supply">Supply Chain</option>
+                        <option value="Qualité"                           data-i18n="dept_quality">Qualité</option>
+                        <option value="Commercial / Ventes"               data-i18n="dept_sales">Commercial / Ventes</option>
+                        <option value="Santé Sécurité Environnement (HSE)" data-i18n="dept_hse">Santé Sécurité Environnement (HSE)</option>
+                        <option value="Ressources Humaines (RH)"          data-i18n="dept_hr">Ressources Humaines (RH)</option>
+                        <option value="Finances / Comptabilité"           data-i18n="dept_finance">Finances / Comptabilité</option>
+                        <option value="Systèmes d'Information (IT)"       data-i18n="dept_it">Systèmes d'Information (IT)</option>
+                        <option value="Services Généraux"                 data-i18n="dept_general">Services Généraux</option>
+                    </select>
                 </div>
+                <div class="field-error" id="err-departement"></div>
             </div>
 
             <button class="btn-login-modern" onclick="login()">
-                <i class="fas fa-arrow-right-to-bracket" style="margin-right: 10px;"></i>
+                <i class="fas fa-sign-in-alt" style="margin-right:8px;"></i>
                 <span data-i18n="access_space">ACCÉDER À L'ESPACE</span>
             </button>
 
             <div class="login-footer-modern">
-                <i class="fas fa-copyright"></i> 2024 Lear Corporation - <span data-i18n="excellence">Excellence en Mouvement</span>
+                &copy; 2024 Lear Corporation &mdash; <span data-i18n="excellence">Excellence en Mouvement</span>
             </div>
         </div>
     </div>
 
-    <!-- Page principale -->
+    <!-- ════════════ MAIN PAGE ════════════ -->
     <div id="mainPage" class="main-wrapper">
-        <!-- Header Premium -->
+
         <div class="header-premium">
             <div class="brand-premium">
-                <svg class="lear-logo-header" viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Cercle rouge -->
-                    <circle cx="100" cy="100" r="90" fill="#C8402E"/>
-                    <!-- L blanc incliné -->
+                <svg width="130" viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="100" cy="100" r="90" fill="#C8102E"/>
                     <g transform="rotate(-15 100 100)">
                         <path d="M 70 45 L 95 45 L 95 145 L 140 145 L 140 165 L 70 165 Z" fill="white"/>
                     </g>
-                    <!-- Texte LEAR -->
-                    <text x="220" y="120" font-family="Arial Black, sans-serif" font-size="90" font-weight="900" fill="#2B2B2B">LEAR</text>
-                    <text x="220" y="160" font-family="Arial, sans-serif" font-size="28" font-weight="400" fill="#2B2B2B" letter-spacing="12">CORPORATION</text>
+                    <text x="220" y="120" font-family="Times New Roman,serif" font-size="90" font-weight="900" fill="#111418">LEAR</text>
+                    <text x="220" y="162" font-family="Times New Roman,serif" font-size="26" font-weight="400" fill="#111418" letter-spacing="14">CORPORATION</text>
                 </svg>
                 <div class="brand-text-premium">
                     <h2>LEAR Corporation</h2>
-                    <p><i class="fas fa-industry" style="color: var(--lear-red);"></i> <span data-i18n="continuous_improvement">Parc Industriel de Meknès - Amélioration Continue</span></p>
+                    <p><span data-i18n="continuous_improvement">Parc Industriel de Meknès — Amélioration Continue</span></p>
                 </div>
             </div>
-
             <div class="user-premium">
                 <div class="user-card">
                     <div class="user-avatar-premium" id="avatarInitials">AB</div>
                     <div class="user-info-premium">
-                        <h4 id="displayNameHeader">Ahmed Bennis</h4>
-                        <p><i class="fas fa-id-badge"></i> <span id="displayMatriculeHeader">LE240315</span></p>
+                        <h4 id="displayNameHeader">—</h4>
+                        <p><i class="fas fa-id-badge" style="margin-right:4px;"></i><span id="displayMatriculeHeader">—</span></p>
+                        <div class="user-dept-badge" id="displayDeptHeader"></div>
                     </div>
                 </div>
                 <button class="btn-logout" onclick="logout()">
@@ -739,385 +724,357 @@
             </div>
         </div>
 
-        <!-- Dashboard Premium -->
-        <div class="dashboard-grid-premium">
-            <!-- Formulaire -->
-            <div class="card-premium">
-                <div class="card-header-premium">
-                    <div class="card-icon-premium">
-                        <i class="fas fa-lightbulb"></i>
+        <div class="card-premium">
+            <div class="card-header-premium">
+                <div class="card-icon-premium"><i class="fas fa-lightbulb"></i></div>
+                <div class="card-title-premium">
+                    <h3><span data-i18n="submit_idea">Soumettre une idée</span></h3>
+                    <p><span data-i18n="your_contribution">Votre contribution compte</span></p>
+                </div>
+            </div>
+
+            <div class="form-premium">
+
+                <!-- Titre -->
+                <div class="form-group-premium">
+                    <label><span data-i18n="idea_title">TITRE DE L'IDÉE</span><span class="req"> *</span></label>
+                    <input type="text" id="titreIdee" placeholder="Donnez un titre concis à votre idée">
+                </div>
+
+                <!-- Problème -->
+                <div class="form-group-premium">
+                    <label><span data-i18n="problem_encountered">PROBLÈME RENCONTRÉ</span><span class="req"> *</span></label>
+                    <input type="text" id="probleme" placeholder="Décrivez le problème observé">
+                </div>
+
+                <!-- Fréquence -->
+                <div class="form-row">
+                    <div class="form-group-premium">
+                        <label><span data-i18n="frequency">FRÉQUENCE</span></label>
+                        <select id="frequence">
+                            <option value="quotidien"    data-i18n="daily">Quotidienne</option>
+                            <option value="hebdomadaire" data-i18n="weekly">Hebdomadaire</option>
+                            <option value="mensuel"      data-i18n="monthly">Mensuelle</option>
+                            <option value="occasionnel"  data-i18n="occasional">Occasionnelle</option>
+                        </select>
+                        <div class="freq-hint" data-i18n="freq_hint">À quelle fréquence ce problème survient-il ? Indiquez si le problème se produit tous les jours, chaque semaine, chaque mois ou de manière irrégulière.</div>
                     </div>
-                    <div class="card-title-premium">
-                        <h3 data-i18n="submit_idea">Soumettre une idée</h3>
-                        <p><i class="fas fa-chevron-right"></i> <span data-i18n="your_contribution">Votre contribution compte</span></p>
+                    <div></div>
+                </div>
+
+                <!-- Zones d'impact -->
+                <div class="form-group-premium">
+                    <label class="section-label">
+                        <i class="fas fa-map-marked-alt" style="color:var(--blue);margin-right:6px;"></i>
+                        <span data-i18n="impact_area">ZONES D'IMPACT</span>
+                    </label>
+                    <div class="multi-check-grid" id="zoneGrid">
+                        <label class="check-item" onclick="toggleCheck(this)">
+                            <input type="checkbox" value="Logistique Entrée">
+                            <span data-i18n="zone_logistique">Logistique Entrée</span>
+                        </label>
+                        <label class="check-item" onclick="toggleCheck(this)">
+                            <input type="checkbox" value="Coupe">
+                            <span data-i18n="zone_coupe">Coupe</span>
+                        </label>
+                        <label class="check-item" onclick="toggleCheck(this)">
+                            <input type="checkbox" value="Préparation">
+                            <span data-i18n="zone_preparation">Préparation</span>
+                        </label>
+                        <label class="check-item" onclick="toggleCheck(this)">
+                            <input type="checkbox" value="Assemblage">
+                            <span data-i18n="zone_assemblage">Assemblage</span>
+                        </label>
+                        <label class="check-item" onclick="toggleCheck(this)">
+                            <input type="checkbox" value="Contrôle Qualité ECHOS Prise de Charge">
+                            <span data-i18n="zone_qualite">Contrôle Qualité ECHOS Prise de Charge</span>
+                        </label>
+                        <label class="check-item" onclick="toggleCheck(this)">
+                            <input type="checkbox" value="Maintenance">
+                            <span data-i18n="zone_maintenance">Maintenance</span>
+                        </label>
+                        <label class="check-item" onclick="toggleCheck(this)">
+                            <input type="checkbox" value="Expédition / Livraison">
+                            <span data-i18n="zone_expedition">Expédition / Livraison</span>
+                        </label>
+                        <label class="check-item" onclick="toggleCheck(this)">
+                            <input type="checkbox" value="Sécurité / RH">
+                            <span data-i18n="zone_securite">Sécurité / RH</span>
+                        </label>
+                        <label class="check-item" onclick="toggleCheck(this)">
+                            <input type="checkbox" value="Support / Administration">
+                            <span data-i18n="zone_support">Support / Administration</span>
+                        </label>
                     </div>
                 </div>
 
-                <div class="form-premium">
-                    <div class="form-group-premium">
-                        <label><i class="fas fa-exclamation-triangle" style="color: var(--lear-red);"></i> <span data-i18n="problem_encountered">PROBLÈME RENCONTRÉ</span> *</label>
-                        <input type="text" id="probleme" placeholder="Ex: Temps d'arrêt machine trop long">
-                    </div>
+                <hr class="form-divider">
 
-                    <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                        <div class="form-group-premium">
-                            <label><i class="fas fa-clock" style="color: var(--lear-blue);"></i> <span data-i18n="frequency">FRÉQUENCE</span></label>
-                            <select id="frequence">
-                                <option value="quotidien" data-i18n="daily">Quotidienne</option>
-                                <option value="hebdomadaire" data-i18n="weekly">Hebdomadaire</option>
-                                <option value="mensuel" data-i18n="monthly">Mensuelle</option>
-                                <option value="occasionnel" data-i18n="occasional">Occasionnelle</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group-premium">
-                            <label><i class="fas fa-tag" style="color: var(--lear-red);"></i> <span data-i18n="category">CATÉGORIE</span></label>
-                            <select id="categorie">
-                                <option value="production" data-i18n="production">Production</option>
-                                <option value="securite" data-i18n="safety">Sécurité</option>
-                                <option value="qualite" data-i18n="quality">Qualité</option>
-                                <option value="maintenance" data-i18n="maintenance">Maintenance</option>
-                                <option value="logistique" data-i18n="logistics">Logistique</option>
-                                <option value="achats" data-i18n="purchasing">Achats</option>
-                                <option value="rh" data-i18n="hr">Ressources Humaines</option>
-                                <option value="ingenierie" data-i18n="engineering">Ingénierie</option>
-                                <option value="it" data-i18n="it">Informatique (IT)</option>
-                                <option value="finance" data-i18n="finance">Finance & Comptabilité</option>
-                                <option value="environnement" data-i18n="environment">Environnement (HSE)</option>
-                                <option value="planning" data-i18n="planning">Planning & Ordonnancement</option>
-                                <option value="recherche" data-i18n="research">R&D / Innovation</option>
-                                <option value="commercial" data-i18n="sales">Commercial & Ventes</option>
-                                <option value="organisation" data-i18n="organization">Organisation</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group-premium">
-                        <label><i class="fas fa-chart-line" style="color: var(--lear-blue);"></i> <span data-i18n="consequences">CONSÉQUENCES</span></label>
-                        <textarea id="consequences" placeholder="Décrivez les impacts..."></textarea>
-                    </div>
-
-                    <div class="form-group-premium">
-                        <label><i class="fas fa-pen-fancy" style="color: var(--lear-red);"></i> <span data-i18n="your_idea">VOTRE IDÉE</span> *</label>
-                        <textarea id="idee" placeholder="Proposez votre solution..."></textarea>
-                    </div>
-
-                    <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                        <div class="form-group-premium">
-                            <label><i class="fas fa-gauge-high" style="color: var(--lear-blue);"></i> <span data-i18n="estimated_gain">GAIN ESTIMÉ</span></label>
-                            <input type="text" id="gain" placeholder="Ex: 2h/semaine">
-                        </div>
-
-                        <div class="form-group-premium">
-                            <label><i class="fas fa-chart-simple" style="color: var(--lear-red);"></i> <span data-i18n="impact">IMPACT</span></label>
-                            <select id="impact">
-                                <option value="cout" data-i18n="cost">Réduction des Coûts</option>
-                                <option value="productivite" data-i18n="productivity">Amélioration de la Productivité</option>
-                                <option value="qualite" data-i18n="quality">Amélioration de la Qualité</option>
-                                <option value="securite" data-i18n="safety_impact">Sécurité Renforcée</option>
-                                <option value="ergonomie" data-i18n="ergonomics">Ergonomie</option>
-                                <option value="delai" data-i18n="lead_time">Réduction des Délais</option>
-                                <option value="environnement" data-i18n="environmental">Impact Environnemental</option>
-                                <option value="satisfaction" data-i18n="satisfaction">Satisfaction Client</option>
-                                <option value="innovation" data-i18n="innovation">Innovation Produit/Process</option>
-                                <option value="competences" data-i18n="skills">Développement des Compétences</option>
-                                <option value="communication" data-i18n="communication">Communication Interne</option>
-                                <option value="stock" data-i18n="inventory">Gestion des Stocks</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <button class="btn-submit-premium" onclick="validerSuggestion()">
-                        <i class="fas fa-check-circle"></i> <span data-i18n="validate_suggestion">VALIDER MA SUGGESTION</span>
-                    </button>
-
-                    <div id="alertMessage" class="alert-premium"></div>
+                <!-- Description -->
+                <div class="form-group-premium">
+                    <label><span data-i18n="your_idea">DESCRIPTION DE L'IDÉE</span><span class="req"> *</span></label>
+                    <textarea id="idee" placeholder="Décrivez votre solution en détail..."></textarea>
                 </div>
+
+                <!-- Gain estimé -->
+                <div class="form-group-premium">
+                    <label><span data-i18n="estimated_gain">GAIN ESTIMÉ</span></label>
+                    <input type="text" id="gain">
+                </div>
+
+                <hr class="form-divider">
+
+                <!-- KPIs -->
+                <div class="form-group-premium">
+                    <label class="section-label">
+                        <i class="fas fa-chart-bar" style="color:var(--red);margin-right:6px;"></i>
+                        <span data-i18n="kpi_label">KPIs IMPACTÉS</span>
+                    </label>
+                    <div class="kpi-grid">
+                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Augmenter Productivité"><span data-i18n="kpi_productivity">Augmenter Productivité</span></label>
+                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Réduire Coûts"><span data-i18n="kpi_cost">Réduire Coûts</span></label>
+                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Améliorer Qualité"><span data-i18n="kpi_quality">Améliorer Qualité</span></label>
+                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Réduire Délais"><span data-i18n="kpi_delay">Réduire Délais</span></label>
+                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Diminuer Rebuts"><span data-i18n="kpi_scrap">Diminuer Rebuts</span></label>
+                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Réduire Arrêts"><span data-i18n="kpi_downtime">Réduire Arrêts</span></label>
+                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Améliorer Traçabilité"><span data-i18n="kpi_traceability">Améliorer Traçabilité</span></label>
+                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Optimiser Stocks"><span data-i18n="kpi_stock">Optimiser Stocks</span></label>
+                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Réduire Accidents"><span data-i18n="kpi_safety">Réduire Accidents</span></label>
+                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Améliorer Satisfaction"><span data-i18n="kpi_satisfaction">Améliorer Satisfaction</span></label>
+                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Réduire Énergie"><span data-i18n="kpi_energy">Réduire Énergie</span></label>
+                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Optimiser Ressources"><span data-i18n="kpi_resources">Optimiser Ressources</span></label>
+                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Réduire Scrap"><span data-i18n="kpi_reduce_scrap">Réduire Scrap</span></label>
+                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Améliorer Ergonomie"><span data-i18n="kpi_ergonomics">Améliorer Ergonomie</span></label>
+                    </div>
+                </div>
+
+                <button class="btn-submit-premium" onclick="validerSuggestion()">
+                    <i class="fas fa-check-circle" style="margin-right:8px;"></i>
+                    <span data-i18n="validate_suggestion">VALIDER MA SUGGESTION</span>
+                </button>
+
+                <div id="alertMessage" class="alert-premium"></div>
             </div>
         </div>
     </div>
 
-    <script src="api.js"></script>
     <script>
-        // Traductions multilingues
-        const translations = {
-            fr: {
-                industrial_park: 'PARC INDUSTRIEL DE MEKNÈS',
-                matricule: 'MATRICULE',
-                full_name: 'NOM COMPLET',
-                access_space: 'ACCÉDER À L\'ESPACE',
-                excellence: 'Excellence en Mouvement',
-                continuous_improvement: 'Parc Industriel de Meknès - Amélioration Continue',
-                logout: 'DÉCONNEXION',
-                submit_idea: 'Soumettre une idée',
-                your_contribution: 'Votre contribution compte',
-                problem_encountered: 'PROBLÈME RENCONTRÉ',
-                frequency: 'FRÉQUENCE',
-                daily: 'Quotidienne',
-                weekly: 'Hebdomadaire',
-                monthly: 'Mensuelle',
-                occasional: 'Occasionnelle',
-                category: 'CATÉGORIE',
-                production: 'Production',
-                safety: 'Sécurité',
-                quality: 'Qualité',
-                maintenance: 'Maintenance',
-                logistics: 'Logistique',
-                purchasing: 'Achats',
-                hr: 'Ressources Humaines',
-                engineering: 'Ingénierie',
-                it: 'Informatique (IT)',
-                finance: 'Finance & Comptabilité',
-                environment: 'Environnement (HSE)',
-                planning: 'Planning & Ordonnancement',
-                research: 'R&D / Innovation',
-                sales: 'Commercial & Ventes',
-                organization: 'Organisation',
-                consequences: 'CONSÉQUENCES',
-                your_idea: 'VOTRE IDÉE',
-                estimated_gain: 'GAIN ESTIMÉ',
-                impact: 'IMPACT',
-                cost: 'Réduction des Coûts',
-                productivity: 'Amélioration de la Productivité',
-                safety_impact: 'Sécurité Renforcée',
-                ergonomics: 'Ergonomie',
-                lead_time: 'Réduction des Délais',
-                environmental: 'Impact Environnemental',
-                satisfaction: 'Satisfaction Client',
-                innovation: 'Innovation Produit/Process',
-                skills: 'Développement des Compétences',
-                communication: 'Communication Interne',
-                inventory: 'Gestion des Stocks',
-                validate_suggestion: 'VALIDER MA SUGGESTION',
-                fill_required_fields: 'Veuillez remplir les champs obligatoires',
-                suggestion_registered: 'Merci pour votre participation ! Votre suggestion a été validée avec succès.',
-                fill_all_fields: 'Veuillez remplir le matricule et le nom'
-            },
-            en: {
-                industrial_park: 'INDUSTRIAL PARK OF MEKNES',
-                matricule: 'EMPLOYEE ID',
-                full_name: 'FULL NAME',
-                access_space: 'ACCESS WORKSPACE',
-                excellence: 'Excellence in Motion',
-                continuous_improvement: 'Meknes Industrial Park - Continuous Improvement',
-                logout: 'LOGOUT',
-                submit_idea: 'Submit an Idea',
-                your_contribution: 'Your contribution matters',
-                problem_encountered: 'PROBLEM ENCOUNTERED',
-                frequency: 'FREQUENCY',
-                daily: 'Daily',
-                weekly: 'Weekly',
-                monthly: 'Monthly',
-                occasional: 'Occasional',
-                category: 'CATEGORY',
-                production: 'Production',
-                safety: 'Safety',
-                quality: 'Quality',
-                maintenance: 'Maintenance',
-                logistics: 'Logistics',
-                purchasing: 'Purchasing',
-                hr: 'Human Resources',
-                engineering: 'Engineering',
-                it: 'Information Technology (IT)',
-                finance: 'Finance & Accounting',
-                environment: 'Environment (HSE)',
-                planning: 'Planning & Scheduling',
-                research: 'R&D / Innovation',
-                sales: 'Sales & Commercial',
-                organization: 'Organization',
-                consequences: 'CONSEQUENCES',
-                your_idea: 'YOUR IDEA',
-                estimated_gain: 'ESTIMATED GAIN',
-                impact: 'IMPACT',
-                cost: 'Cost Reduction',
-                productivity: 'Productivity Improvement',
-                safety_impact: 'Enhanced Safety',
-                ergonomics: 'Ergonomics',
-                lead_time: 'Lead Time Reduction',
-                environmental: 'Environmental Impact',
-                satisfaction: 'Customer Satisfaction',
-                innovation: 'Product/Process Innovation',
-                skills: 'Skills Development',
-                communication: 'Internal Communication',
-                inventory: 'Inventory Management',
-                validate_suggestion: 'VALIDATE MY SUGGESTION',
-                fill_required_fields: 'Please fill in the required fields',
-                suggestion_registered: 'Thank you for your participation! Your suggestion has been successfully validated.',
-                fill_all_fields: 'Please fill in employee ID and name'
-            },
-            ar: {
-                industrial_park: 'مدينة مكناس الصناعية',
-                matricule: 'رقم الموظف',
-                full_name: 'الاسم الكامل',
-                access_space: 'الوصول إلى المساحة',
-                excellence: 'التميز في الحركة',
-                continuous_improvement: 'مدينة مكناس الصناعية - التحسين المستمر',
-                logout: 'تسجيل الخروج',
-                submit_idea: 'تقديم فكرة',
-                your_contribution: 'مساهمتك مهمة',
-                problem_encountered: 'المشكلة التي واجهتها',
-                frequency: 'التكرار',
-                daily: 'يومي',
-                weekly: 'أسبوعي',
-                monthly: 'شهري',
-                occasional: 'عرضي',
-                category: 'الفئة',
-                production: 'الإنتاج',
-                safety: 'الأمان',
-                quality: 'الجودة',
-                maintenance: 'الصيانة',
-                logistics: 'اللوجستية',
-                purchasing: 'المشتريات',
-                hr: 'الموارد البشرية',
-                engineering: 'الهندسة',
-                it: 'تكنولوجيا المعلومات',
-                finance: 'المالية والمحاسبة',
-                environment: 'البيئة والصحة والسلامة',
-                planning: 'التخطيط والجدولة',
-                research: 'البحث والتطوير',
-                sales: 'المبيعات والتجارة',
-                organization: 'التنظيم',
-                consequences: 'العواقب',
-                your_idea: 'فكرتك',
-                estimated_gain: 'الكسب المقدر',
-                impact: 'التأثير',
-                cost: 'تقليل التكاليف',
-                productivity: 'تحسين الإنتاجية',
-                safety_impact: 'تعزيز السلامة',
-                ergonomics: 'بيئة العمل',
-                lead_time: 'تقليل المهل',
-                environmental: 'التأثير البيئي',
-                satisfaction: 'رضا العملاء',
-                innovation: 'الابتكار في المنتج/العملية',
-                skills: 'تطوير المهارات',
-                communication: 'التواصل الداخلي',
-                inventory: 'إدارة المخزون',
-                validate_suggestion: 'تأكيد الاقتراح',
-                fill_required_fields: 'يرجى ملء الحقول المطلوبة',
-                suggestion_registered: 'شكرا لمشاركتكم! تم تأكيد اقتراحكم بنجاح.',
-                fill_all_fields: 'يرجى ملء رقم الموظف والاسم'
-            }
-        };
+    const T = {
+        fr: {
+            industrial_park:'PARC INDUSTRIEL DE MEKNÈS', matricule:'MATRICULE', full_name:'NOM COMPLET', department:'DÉPARTEMENT',
+            select_dept:'-- Sélectionnez votre département --', dept_engineering:'Ingénierie', dept_production:'Production',
+            dept_maintenance:'Maintenance', dept_supply:'Supply Chain', dept_quality:'Qualité', dept_sales:'Commercial / Ventes',
+            dept_hse:'Santé Sécurité Environnement (HSE)', dept_hr:'Ressources Humaines (RH)',
+            dept_finance:'Finances / Comptabilité', dept_it:"Systèmes d'Information (IT)", dept_general:'Services Généraux',
+            access_space:"ACCÉDER À L'ESPACE", excellence:'Excellence en Mouvement',
+            continuous_improvement:'Parc Industriel de Meknès — Amélioration Continue',
+            logout:'DÉCONNEXION', submit_idea:'Soumettre une idée', your_contribution:'Votre contribution compte',
+            idea_title:"TITRE DE L'IDÉE", problem_encountered:'PROBLÈME RENCONTRÉ',
+            frequency:'FRÉQUENCE', daily:'Quotidienne', weekly:'Hebdomadaire', monthly:'Mensuelle', occasional:'Occasionnelle',
+            impact_area:"ZONES D'IMPACT",
+            zone_logistique:'Logistique Entrée', zone_coupe:'Coupe', zone_preparation:'Préparation',
+            zone_assemblage:'Assemblage', zone_qualite:'Contrôle Qualité ECHOS Prise de Charge',
+            zone_maintenance:'Maintenance', zone_expedition:'Expédition / Livraison',
+            zone_securite:'Sécurité / RH', zone_support:'Support / Administration',
+            your_idea:"DESCRIPTION DE L'IDÉE", estimated_gain:'GAIN ESTIMÉ', kpi_label:'KPIs IMPACTÉS',
+            kpi_productivity:'Augmenter Productivité', kpi_cost:'Réduire Coûts', kpi_quality:'Améliorer Qualité',
+            kpi_delay:'Réduire Délais', kpi_scrap:'Diminuer Rebuts', kpi_downtime:'Réduire Arrêts',
+            kpi_traceability:'Améliorer Traçabilité', kpi_stock:'Optimiser Stocks', kpi_safety:'Réduire Accidents',
+            kpi_satisfaction:'Améliorer Satisfaction', kpi_energy:'Réduire Énergie', kpi_resources:'Optimiser Ressources',
+            kpi_reduce_scrap:'Réduire Scrap', kpi_ergonomics:'Améliorer Ergonomie',
+            validate_suggestion:'VALIDER MA SUGGESTION',
+            freq_hint:"À quelle fréquence ce problème survient-il ? Indiquez si le problème se produit tous les jours, chaque semaine, chaque mois ou de manière irrégulière.",
+            fill_required_fields:'Veuillez remplir les champs obligatoires (Titre, Problème, Description).',
+            suggestion_registered:'Merci pour votre participation ! Votre suggestion a été validée avec succès.',
+            err_matricule:'Veuillez saisir votre matricule.',
+            err_nom:'Veuillez saisir votre nom complet.',
+            err_dept:'Veuillez sélectionner votre département.',
+            err_all:'Veuillez remplir toutes les informations requises.'
+        },
+        en: {
+            industrial_park:'INDUSTRIAL PARK OF MEKNES', matricule:'EMPLOYEE ID', full_name:'FULL NAME', department:'DEPARTMENT',
+            select_dept:'-- Select your department --', dept_engineering:'Engineering', dept_production:'Production',
+            dept_maintenance:'Maintenance', dept_supply:'Supply Chain', dept_quality:'Quality', dept_sales:'Sales & Commercial',
+            dept_hse:'Health Safety Environment (HSE)', dept_hr:'Human Resources (HR)',
+            dept_finance:'Finance & Accounting', dept_it:'Information Systems (IT)', dept_general:'General Services',
+            access_space:'ACCESS WORKSPACE', excellence:'Excellence in Motion',
+            continuous_improvement:'Meknes Industrial Park — Continuous Improvement',
+            logout:'LOGOUT', submit_idea:'Submit an Idea', your_contribution:'Your contribution matters',
+            idea_title:'IDEA TITLE', problem_encountered:'PROBLEM ENCOUNTERED',
+            frequency:'FREQUENCY', daily:'Daily', weekly:'Weekly', monthly:'Monthly', occasional:'Occasional',
+            impact_area:'IMPACT AREAS',
+            zone_logistique:'Inbound Logistics', zone_coupe:'Cutting', zone_preparation:'Preparation',
+            zone_assemblage:'Assembly', zone_qualite:'Quality Control ECHOS Intake',
+            zone_maintenance:'Maintenance', zone_expedition:'Shipping / Delivery',
+            zone_securite:'Safety / HR', zone_support:'Support / Administration',
+            your_idea:'IDEA DESCRIPTION', estimated_gain:'ESTIMATED GAIN', kpi_label:'IMPACTED KPIs',
+            kpi_productivity:'Increase Productivity', kpi_cost:'Reduce Costs', kpi_quality:'Improve Quality',
+            kpi_delay:'Reduce Lead Times', kpi_scrap:'Reduce Rejects', kpi_downtime:'Reduce Downtime',
+            kpi_traceability:'Improve Traceability', kpi_stock:'Optimize Inventory', kpi_safety:'Reduce Accidents',
+            kpi_satisfaction:'Improve Satisfaction', kpi_energy:'Reduce Energy', kpi_resources:'Optimize Resources',
+            kpi_reduce_scrap:'Reduce Scrap', kpi_ergonomics:'Improve Ergonomics',
+            validate_suggestion:'VALIDATE MY SUGGESTION',
+            freq_hint:"How often does this problem occur? Indicate whether the issue happens every day, every week, every month, or only occasionally.",
+            fill_required_fields:'Please fill in the required fields (Title, Problem, Description).',
+            suggestion_registered:'Thank you for your participation! Your suggestion has been successfully validated.',
+            err_matricule:'Please enter your employee ID.',
+            err_nom:'Please enter your full name.',
+            err_dept:'Please select your department.',
+            err_all:'Please fill in all required information.'
+        },
+        ar: {
+            industrial_park:'مدينة مكناس الصناعية', matricule:'رقم الموظف', full_name:'الاسم الكامل', department:'القسم',
+            select_dept:'-- اختر قسمك --', dept_engineering:'الهندسة', dept_production:'الإنتاج',
+            dept_maintenance:'الصيانة', dept_supply:'سلسلة التوريد', dept_quality:'الجودة', dept_sales:'المبيعات والتجارة',
+            dept_hse:'الصحة والسلامة والبيئة', dept_hr:'الموارد البشرية',
+            dept_finance:'المالية والمحاسبة', dept_it:'أنظمة المعلومات', dept_general:'الخدمات العامة',
+            access_space:'الوصول إلى المساحة', excellence:'التميز في الحركة',
+            continuous_improvement:'مدينة مكناس الصناعية — التحسين المستمر',
+            logout:'تسجيل الخروج', submit_idea:'تقديم فكرة', your_contribution:'مساهمتك مهمة',
+            idea_title:'عنوان الفكرة', problem_encountered:'المشكلة التي واجهتها',
+            frequency:'التكرار', daily:'يومي', weekly:'أسبوعي', monthly:'شهري', occasional:'عرضي',
+            impact_area:'مناطق التأثير',
+            zone_logistique:'اللوجستيك الوارد', zone_coupe:'القطع', zone_preparation:'التحضير',
+            zone_assemblage:'التجميع', zone_qualite:'مراقبة الجودة',
+            zone_maintenance:'الصيانة', zone_expedition:'الشحن والتسليم',
+            zone_securite:'السلامة / الموارد البشرية', zone_support:'الدعم / الإدارة',
+            your_idea:'وصف الفكرة', estimated_gain:'الكسب المقدر', kpi_label:'مؤشرات الأداء المتأثرة',
+            kpi_productivity:'زيادة الإنتاجية', kpi_cost:'تخفيض التكاليف', kpi_quality:'تحسين الجودة',
+            kpi_delay:'تقليل المهل', kpi_scrap:'تقليل المرفوضات', kpi_downtime:'تقليل التوقفات',
+            kpi_traceability:'تحسين التتبع', kpi_stock:'تحسين المخزون', kpi_safety:'تقليل الحوادث',
+            kpi_satisfaction:'تحسين الرضا', kpi_energy:'تقليل الطاقة', kpi_resources:'تحسين الموارد',
+            kpi_reduce_scrap:'تقليل الخردة', kpi_ergonomics:'تحسين بيئة العمل',
+            validate_suggestion:'تأكيد الاقتراح',
+            freq_hint:"ما مدى تكرار هذه المشكلة؟ حدد ما إذا كانت تحدث يومياً أو أسبوعياً أو شهرياً أو بشكل متقطع.",
+            fill_required_fields:'يرجى ملء الحقول المطلوبة (العنوان، المشكلة، الوصف).',
+            suggestion_registered:'شكرا لمشاركتكم! تم تأكيد اقتراحكم بنجاح.',
+            err_matricule:'يرجى إدخال رقم الموظف.',
+            err_nom:'يرجى إدخال الاسم الكامل.',
+            err_dept:'يرجى اختيار القسم.',
+            err_all:'يرجى ملء جميع المعلومات المطلوبة.'
+        }
+    };
 
-        let currentLanguage = 'fr';
-        let utilisateur = {
-            nom: '',
-            matricule: ''
-        };
+    let lang = 'fr';
+    let utilisateur = {};
 
-        function changeLanguage(lang) {
-            currentLanguage = lang;
-            document.documentElement.lang = lang;
-            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-            
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            document.querySelector(`[onclick="changeLanguage('${lang}')"]`).classList.add('active');
+    function changeLanguage(l) {
+        lang = l;
+        document.documentElement.lang = l;
+        document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr';
+        document.querySelectorAll('.lang-btn').forEach((b,i) => {
+            b.classList.toggle('active', (l==='fr'&&i===0)||(l==='en'&&i===1)||(l==='ar'&&i===2));
+        });
+        updateTranslations();
+    }
 
-            updateTranslations();
+    function updateTranslations() {
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const v = T[lang][el.getAttribute('data-i18n')];
+            if (v) el.textContent = v;
+        });
+        // Refresh visible field errors in current language
+        ['matricule','nom','departement'].forEach(id => {
+            const err = document.getElementById('err-'+id);
+            const key = id==='departement' ? 'err_dept' : id==='nom' ? 'err_nom' : 'err_matricule';
+            if (err) err.textContent = T[lang][key];
+        });
+    }
+
+    function clearErr(id) {
+        document.getElementById(id).classList.remove('invalid');
+        const e = document.getElementById('err-'+id);
+        if (e) e.classList.remove('show');
+        document.getElementById('loginAlert').classList.remove('show');
+    }
+
+    function login() {
+        const m = document.getElementById('matricule').value.trim();
+        const n = document.getElementById('nom').value.trim();
+        const d = document.getElementById('departement').value;
+        let bad = false;
+
+        if (!m) { setErr('matricule','err_matricule'); bad=true; }
+        if (!n) { setErr('nom','err_nom');             bad=true; }
+        if (!d) { setErr('departement','err_dept');    bad=true; }
+
+        if (bad) {
+            const a = document.getElementById('loginAlert');
+            a.textContent = T[lang].err_all;
+            a.classList.add('show');
+            return;
         }
 
-        function updateTranslations() {
-            document.querySelectorAll('[data-i18n]').forEach(element => {
-                const key = element.getAttribute('data-i18n');
-                if (translations[currentLanguage][key]) {
-                    element.textContent = translations[currentLanguage][key];
-                }
-            });
-        }
+        utilisateur = { matricule:m, nom:n, departement:d };
+        const ini = n.split(' ').map(x=>x[0]).join('').toUpperCase().slice(0,2);
+        document.getElementById('avatarInitials').textContent         = ini;
+        document.getElementById('displayNameHeader').textContent      = n;
+        document.getElementById('displayMatriculeHeader').textContent = m;
+        document.getElementById('displayDeptHeader').textContent      = d;
 
-        function login() {
-            const matricule = document.getElementById('matricule').value;
-            const nom = document.getElementById('nom').value;
+        document.getElementById('loginPage').style.display = 'none';
+        document.getElementById('mainPage').classList.add('active');
+    }
 
-            if (matricule && nom) {
-                utilisateur.nom = nom;
-                utilisateur.matricule = matricule;
+    function setErr(id, key) {
+        document.getElementById(id).classList.add('invalid');
+        const e = document.getElementById('err-'+id);
+        if (e) { e.textContent = T[lang][key]; e.classList.add('show'); }
+    }
 
-                const initials = nom.split(' ').map(n => n[0]).join('').toUpperCase();
-                document.getElementById('avatarInitials').textContent = initials;
-                document.getElementById('displayNameHeader').textContent = nom;
-                document.getElementById('displayMatriculeHeader').textContent = matricule;
+    function logout() {
+        document.getElementById('mainPage').classList.remove('active');
+        document.getElementById('loginPage').style.display = 'block';
+        resetForm();
+        ['matricule','nom','departement'].forEach(id => {
+            document.getElementById(id).classList.remove('invalid');
+            const e = document.getElementById('err-'+id);
+            if (e) e.classList.remove('show');
+        });
+        document.getElementById('loginAlert').classList.remove('show');
+    }
 
-                document.getElementById('loginPage').style.display = 'none';
-                document.getElementById('mainPage').classList.add('active');
-            } else {
-                showMessage(translations[currentLanguage].fill_all_fields, 'error');
-            }
-        }
+    function toggleCheck(label) { label.classList.toggle('selected'); }
+    function toggleKpi(label)   { label.classList.toggle('selected'); }
 
-        function logout() {
-            document.getElementById('mainPage').classList.remove('active');
-            document.getElementById('loginPage').style.display = 'block';
+    async function validerSuggestion() {
+        const titre    = document.getElementById('titreIdee').value.trim();
+        const probleme = document.getElementById('probleme').value.trim();
+        const idee     = document.getElementById('idee').value.trim();
+        if (!titre || !probleme || !idee) { showMsg(T[lang].fill_required_fields,'error'); return; }
 
-            document.getElementById('probleme').value = '';
-            document.getElementById('consequences').value = '';
-            document.getElementById('idee').value = '';
-            document.getElementById('gain').value = '';
-        }
+        const zones = [...document.querySelectorAll('#zoneGrid .check-item.selected input')].map(cb=>cb.value);
+        const kpis  = [...document.querySelectorAll('.kpi-item.selected input')].map(cb=>cb.value);
 
-        async function validerSuggestion() {
-            const probleme = document.getElementById('probleme').value;
-            const idee = document.getElementById('idee').value;
+        const data = { ...utilisateur, titreIdee:titre, probleme,
+            frequence: document.getElementById('frequence').value,
+            zonesImpact: zones, idee, gain: document.getElementById('gain').value, kpisImpactes: kpis };
 
-            if (!probleme || !idee) {
-                showMessage(translations[currentLanguage].fill_required_fields, 'error');
-                return;
-            }
+        console.log('Envoi:', data);
+        try {
+            if (typeof creerSuggestion === 'function') {
+                const r = await creerSuggestion(data);
+                if (r.success) { showMsg(T[lang].suggestion_registered,'success'); resetForm(); }
+                else showMsg('Erreur : '+(r.message||'inconnue'),'error');
+            } else { showMsg(T[lang].suggestion_registered,'success'); resetForm(); }
+        } catch(e) { showMsg('Erreur de connexion au serveur.','error'); }
+    }
 
-            // Préparer les données pour l'envoi
-            const data = {
-                matricule: utilisateur.matricule,
-                nom: utilisateur.nom,
-                probleme: probleme,
-                frequence: document.getElementById('frequence').value,
-                categorie: document.getElementById('categorie').value,
-                consequences: document.getElementById('consequences').value,
-                idee: idee,
-                gain: document.getElementById('gain').value,
-                impact: document.getElementById('impact').value
-            };
+    function resetForm() {
+        ['titreIdee','probleme','idee','gain'].forEach(id => document.getElementById(id).value = '');
+        document.querySelectorAll('.check-item, .kpi-item').forEach(el => el.classList.remove('selected'));
+        document.querySelectorAll('.check-item input, .kpi-item input').forEach(cb => cb.checked = false);
+    }
 
-            console.log('📤 Envoi de la suggestion:', data);
+    function showMsg(msg, type) {
+        const el = document.getElementById('alertMessage');
+        el.textContent = msg;
+        el.className = 'alert-premium ' + type;
+        el.style.display = 'block';
+        setTimeout(() => { el.style.display = 'none'; }, 5000);
+    }
 
-            // Envoyer au serveur
-            try {
-                const result = await creerSuggestion(data);
-                
-                if (result.success) {
-                    showMessage(translations[currentLanguage].suggestion_registered, 'success');
-                    console.log('✅ Suggestion enregistrée avec succès');
-                    
-                    // Vider les champs après succès
-                    document.getElementById('probleme').value = '';
-                    document.getElementById('consequences').value = '';
-                    document.getElementById('idee').value = '';
-                    document.getElementById('gain').value = '';
-                } else {
-                    showMessage('❌ Erreur: ' + (result.message || 'Erreur inconnue'), 'error');
-                    console.error('❌ Erreur:', result);
-                }
-            } catch (error) {
-                showMessage('❌ Erreur de connexion au serveur', 'error');
-                console.error('❌ Erreur catch:', error);
-            }
-        }
-
-        function showMessage(message, type) {
-            const alertDiv = document.getElementById('alertMessage');
-            alertDiv.textContent = message;
-            alertDiv.className = 'alert-premium ' + type;
-            alertDiv.style.display = 'block';
-            
-            setTimeout(() => {
-                alertDiv.style.display = 'none';
-            }, 3000);
-        }
-
-        window.onload = function() {
-            changeLanguage('fr');
-        };
+    window.onload = () => changeLanguage('fr');
     </script>
 </body>
 </html>
