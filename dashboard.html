@@ -5,491 +5,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Admin - Lear Corporation</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background: #f0f2f5;
-            min-height: 100vh;
-        }
-
-        /* Header Moderne */
-        .top-bar {
-            background: linear-gradient(135deg, #E31837 0%, #B3122B 100%);
-            color: white;
-            padding: 0;
-            box-shadow: 0 4px 20px rgba(227, 24, 55, 0.3);
-        }
-
-        .header-content {
-            max-width: 1800px;
-            margin: 0 auto;
-            padding: 20px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo-section {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .logo-icon {
-            width: 50px;
-            height: 50px;
-            background: white;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #E31837;
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        .logo-text h1 {
-            font-size: 24px;
-            font-weight: 700;
-        }
-
-        .logo-text p {
-            font-size: 12px;
-            opacity: 0.9;
-        }
-
-        .user-section {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .user-info {
-            text-align: right;
-        }
-
-        .user-info .name {
-            font-weight: 600;
-            font-size: 14px;
-        }
-
-        .user-info .role {
-            font-size: 12px;
-            opacity: 0.8;
-        }
-
-        .btn-logout {
-            background: rgba(255, 255, 255, 0.2);
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .btn-logout:hover {
-            background: white;
-            color: #E31837;
-        }
-
-        /* Container Principal */
-        .main-container {
-            max-width: 1800px;
-            margin: 30px auto;
-            padding: 0 30px;
-        }
-
-        /* Section Navigation */
-        .quick-nav {
-            background: white;
-            border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 30px;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .nav-btn {
-            flex: 1;
-            min-width: 200px;
-            padding: 15px 25px;
-            border: none;
-            border-radius: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            font-size: 14px;
-        }
-
-        .nav-btn.excel {
-            background: linear-gradient(135deg, #2ecc71, #27ae60);
-            color: white;
-        }
-
-        .nav-btn.excel:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(46, 204, 113, 0.4);
-        }
-
-        .nav-btn.refresh {
-            background: linear-gradient(135deg, #0033A0, #00227A);
-            color: white;
-        }
-
-        .nav-btn.refresh:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 51, 160, 0.4);
-        }
-
-        .nav-btn.qr {
-            background: linear-gradient(135deg, #9b59b6, #8e44ad);
-            color: white;
-        }
-
-        .nav-btn.qr:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(155, 89, 182, 0.4);
-        }
-
-        .nav-btn.list {
-            background: linear-gradient(135deg, #3498db, #2980b9);
-            color: white;
-        }
-
-        .nav-btn.list:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.4);
-        }
-
-        /* Cards de Statistiques */
-        .stats-section {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-bottom: 30px;
-        }
-
-        .stat-card {
-            background: white;
-            border-radius: 16px;
-            padding: 25px;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-        }
-
-        .stat-card.blue::before { background: linear-gradient(90deg, #3498db, #2980b9); }
-        .stat-card.red::before { background: linear-gradient(90deg, #E31837, #B3122B); }
-        .stat-card.green::before { background: linear-gradient(90deg, #2ecc71, #27ae60); }
-        .stat-card.orange::before { background: linear-gradient(90deg, #f39c12, #e67e22); }
-        .stat-card.purple::before { background: linear-gradient(90deg, #9b59b6, #8e44ad); }
-        .stat-card.teal::before { background: linear-gradient(90deg, #1abc9c, #16a085); }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-        }
-
-        .stat-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 15px;
-        }
-
-        .stat-title {
-            color: #666;
-            font-size: 13px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .stat-icon {
-            width: 45px;
-            height: 45px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            color: white;
-        }
-
-        .stat-icon.blue { background: linear-gradient(135deg, #3498db, #2980b9); }
-        .stat-icon.red { background: linear-gradient(135deg, #E31837, #B3122B); }
-        .stat-icon.green { background: linear-gradient(135deg, #2ecc71, #27ae60); }
-        .stat-icon.orange { background: linear-gradient(135deg, #f39c12, #e67e22); }
-        .stat-icon.purple { background: linear-gradient(135deg, #9b59b6, #8e44ad); }
-        .stat-icon.teal { background: linear-gradient(135deg, #1abc9c, #16a085); }
-
-        .stat-value {
-            font-size: 36px;
-            font-weight: 700;
-            color: #2c3e50;
-            margin-bottom: 5px;
-        }
-
-        .stat-change {
-            font-size: 13px;
-            font-weight: 600;
-        }
-
-        .stat-change.up {
-            color: #2ecc71;
-        }
-
-        .stat-change.down {
-            color: #e74c3c;
-        }
-
-        /* Section Graphiques */
-        .charts-section {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-            gap: 25px;
-            margin-bottom: 30px;
-        }
-
-        .chart-card {
-            background: white;
-            border-radius: 16px;
-            padding: 25px;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-        }
-
-        .chart-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #f0f2f5;
-        }
-
-        .chart-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: #2c3e50;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .chart-body {
-            height: 350px;
-            position: relative;
-        }
-
-        /* Tableau des Suggestions */
-        .table-section {
-            background: white;
-            border-radius: 16px;
-            padding: 25px;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-        }
-
-        .table-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #f0f2f5;
-        }
-
-        .table-title {
-            font-size: 20px;
-            font-weight: 700;
-            color: #2c3e50;
-        }
-
-        .search-box {
-            position: relative;
-        }
-
-        .search-box input {
-            padding: 10px 40px 10px 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            width: 300px;
-            transition: all 0.3s;
-        }
-
-        .search-box input:focus {
-            outline: none;
-            border-color: #E31837;
-        }
-
-        .search-box i {
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #999;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th {
-            background: #f8f9fa;
-            color: #2c3e50;
-            padding: 15px;
-            text-align: left;
-            font-weight: 600;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        td {
-            padding: 15px;
-            border-bottom: 1px solid #f0f2f5;
-            font-size: 14px;
-            color: #555;
-        }
-
-        tr:hover {
-            background: #f8f9fa;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
-        .badge-production { background: #e3f2fd; color: #1976d2; }
-        .badge-securite { background: #ffebee; color: #c62828; }
-        .badge-qualite { background: #e8f5e9; color: #2e7d32; }
-        .badge-maintenance { background: #fff3e0; color: #ef6c00; }
-        .badge-logistique { background: #f3e5f5; color: #7b1fa2; }
-        .badge-achats { background: #e0f2f1; color: #00695c; }
-        .badge-rh { background: #eceff1; color: #455a64; }
-        .badge-ingenierie { background: #e0f7fa; color: #00838f; }
-        .badge-it { background: #e8eaf6; color: #3949ab; }
-        .badge-finance { background: #f1f8e9; color: #558b2f; }
-        .badge-environnement { background: #e8f5e9; color: #388e3c; }
-        .badge-planning { background: #fff8e1; color: #f57c00; }
-        .badge-recherche { background: #ede7f6; color: #5e35b1; }
-        .badge-commercial { background: #fce4ec; color: #c2185b; }
-        .badge-organisation { background: #f5f5f5; color: #616161; }
-
-        .action-btn {
-            padding: 8px 16px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 12px;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-
-        .action-btn.view {
-            background: #3498db;
-            color: white;
-        }
-
-        .action-btn.view:hover {
-            background: #2980b9;
-        }
-
-        .loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-        }
-
-        .loading-overlay.hidden {
-            display: none;
-        }
-
-        .spinner {
-            width: 60px;
-            height: 60px;
-            border: 5px solid #f0f2f5;
-            border-top: 5px solid #E31837;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .loading-text {
-            margin-top: 20px;
-            font-size: 16px;
-            color: #666;
-            font-weight: 600;
-        }
-
-        @media (max-width: 768px) {
-            .charts-section {
-                grid-template-columns: 1fr;
-            }
-            .search-box input {
-                width: 100%;
-            }
-        }
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; }
+        body { background:#f0f2f5; min-height:100vh; }
+        .top-bar { background:linear-gradient(135deg,#E31837 0%,#B3122B 100%); color:white; box-shadow:0 4px 20px rgba(227,24,55,0.3); }
+        .header-content { max-width:1800px; margin:0 auto; padding:20px 30px; display:flex; justify-content:space-between; align-items:center; }
+        .logo-section { display:flex; align-items:center; gap:15px; }
+        .logo-icon { width:50px; height:50px; background:white; border-radius:12px; display:flex; align-items:center; justify-content:center; color:#E31837; font-size:24px; font-weight:bold; }
+        .logo-text h1 { font-size:24px; font-weight:700; }
+        .logo-text p  { font-size:12px; opacity:0.9; }
+        .user-section { display:flex; align-items:center; gap:20px; }
+        .user-info { text-align:right; }
+        .user-info .name { font-weight:600; font-size:14px; }
+        .user-info .role { font-size:12px; opacity:0.8; }
+        .btn-logout { background:rgba(255,255,255,0.2); border:2px solid rgba(255,255,255,0.5); color:white; padding:10px 20px; border-radius:8px; cursor:pointer; font-weight:600; transition:all 0.3s; display:flex; align-items:center; gap:8px; }
+        .btn-logout:hover { background:white; color:#E31837; }
+        .main-container { max-width:1800px; margin:30px auto; padding:0 30px; }
+        .quick-nav { background:white; border-radius:16px; padding:20px; margin-bottom:30px; box-shadow:0 2px 12px rgba(0,0,0,0.08); display:flex; gap:15px; flex-wrap:wrap; }
+        .nav-btn { flex:1; min-width:180px; padding:15px 25px; border:none; border-radius:12px; font-weight:600; cursor:pointer; transition:all 0.3s; display:flex; align-items:center; justify-content:center; gap:10px; font-size:14px; }
+        .nav-btn.excel   { background:linear-gradient(135deg,#2ecc71,#27ae60); color:white; }
+        .nav-btn.refresh { background:linear-gradient(135deg,#0033A0,#00227A); color:white; }
+        .nav-btn.qr      { background:linear-gradient(135deg,#9b59b6,#8e44ad); color:white; }
+        .nav-btn.list    { background:linear-gradient(135deg,#3498db,#2980b9); color:white; }
+        .nav-btn:hover   { transform:translateY(-3px); box-shadow:0 8px 20px rgba(0,0,0,0.2); }
+        .stats-section { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:25px; margin-bottom:30px; }
+        .stat-card { background:white; border-radius:16px; padding:25px; box-shadow:0 2px 12px rgba(0,0,0,0.08); transition:all 0.3s; position:relative; overflow:hidden; }
+        .stat-card::before { content:''; position:absolute; top:0; left:0; width:100%; height:4px; }
+        .stat-card.blue::before   { background:linear-gradient(90deg,#3498db,#2980b9); }
+        .stat-card.red::before    { background:linear-gradient(90deg,#E31837,#B3122B); }
+        .stat-card.green::before  { background:linear-gradient(90deg,#2ecc71,#27ae60); }
+        .stat-card.orange::before { background:linear-gradient(90deg,#f39c12,#e67e22); }
+        .stat-card.purple::before { background:linear-gradient(90deg,#9b59b6,#8e44ad); }
+        .stat-card.teal::before   { background:linear-gradient(90deg,#1abc9c,#16a085); }
+        .stat-card:hover { transform:translateY(-5px); box-shadow:0 8px 25px rgba(0,0,0,0.12); }
+        .stat-header { display:flex; justify-content:space-between; align-items:flex-start; }
+        .stat-title  { color:#666; font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px; }
+        .stat-value  { font-size:36px; font-weight:700; color:#2c3e50; margin-bottom:5px; }
+        .stat-change { font-size:13px; font-weight:600; color:#666; }
+        .stat-change.up { color:#2ecc71; }
+        .stat-icon { width:45px; height:45px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:20px; color:white; }
+        .stat-icon.blue   { background:linear-gradient(135deg,#3498db,#2980b9); }
+        .stat-icon.red    { background:linear-gradient(135deg,#E31837,#B3122B); }
+        .stat-icon.green  { background:linear-gradient(135deg,#2ecc71,#27ae60); }
+        .stat-icon.orange { background:linear-gradient(135deg,#f39c12,#e67e22); }
+        .stat-icon.purple { background:linear-gradient(135deg,#9b59b6,#8e44ad); }
+        .stat-icon.teal   { background:linear-gradient(135deg,#1abc9c,#16a085); }
+        .charts-section { display:grid; grid-template-columns:repeat(auto-fit,minmax(480px,1fr)); gap:25px; margin-bottom:30px; }
+        .chart-card { background:white; border-radius:16px; padding:25px; box-shadow:0 2px 12px rgba(0,0,0,0.08); }
+        .chart-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; padding-bottom:15px; border-bottom:2px solid #f0f2f5; }
+        .chart-title { font-size:18px; font-weight:700; color:#2c3e50; display:flex; align-items:center; gap:10px; }
+        .chart-body  { height:320px; position:relative; }
+        .table-section { background:white; border-radius:16px; padding:25px; box-shadow:0 2px 12px rgba(0,0,0,0.08); margin-bottom:30px; }
+        .table-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; padding-bottom:15px; border-bottom:2px solid #f0f2f5; }
+        .table-title { font-size:20px; font-weight:700; color:#2c3e50; }
+        .search-box { position:relative; }
+        .search-box input { padding:10px 40px 10px 15px; border:2px solid #e0e0e0; border-radius:8px; width:300px; transition:all 0.3s; }
+        .search-box input:focus { outline:none; border-color:#E31837; }
+        .search-box i { position:absolute; right:15px; top:50%; transform:translateY(-50%); color:#999; }
+        table { width:100%; border-collapse:collapse; }
+        th { background:#f8f9fa; color:#2c3e50; padding:15px; text-align:left; font-weight:600; font-size:13px; text-transform:uppercase; letter-spacing:0.5px; }
+        td { padding:13px 15px; border-bottom:1px solid #f0f2f5; font-size:14px; color:#555; }
+        tr:hover { background:#f8f9fa; }
+        .badge { display:inline-block; padding:5px 10px; border-radius:20px; font-size:11px; font-weight:700; background:#e3f2fd; color:#1976d2; }
+        .tag { display:inline-block; padding:3px 8px; border-radius:12px; font-size:10px; font-weight:600; background:#f0f4fa; color:#0033A0; margin:2px; }
+        .action-btn { padding:8px 16px; border:none; border-radius:6px; cursor:pointer; font-size:12px; font-weight:600; transition:all 0.3s; }
+        .action-btn.view { background:#3498db; color:white; }
+        .action-btn.view:hover { background:#2980b9; }
+        .loading-overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.95); display:flex; flex-direction:column; align-items:center; justify-content:center; z-index:9999; }
+        .loading-overlay.hidden { display:none; }
+        .spinner { width:60px; height:60px; border:5px solid #f0f2f5; border-top:5px solid #E31837; border-radius:50%; animation:spin 1s linear infinite; }
+        @keyframes spin { 0%{transform:rotate(0deg)} 100%{transform:rotate(360deg)} }
+        .loading-text { margin-top:20px; font-size:16px; color:#666; font-weight:600; }
+        @media(max-width:768px) { .charts-section{grid-template-columns:1fr;} .search-box input{width:100%;} }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <script>
-        if (sessionStorage.getItem('adminAuthenticated') !== 'true') {
-            window.location.href = 'login-admin.html';
-        }
+        if (sessionStorage.getItem('adminAuthenticated') !== 'true') window.location.href = 'login-admin.html';
     </script>
 
-    <!-- Loading Overlay -->
     <div id="loadingOverlay" class="loading-overlay">
         <div class="spinner"></div>
         <div class="loading-text">Chargement des données...</div>
     </div>
 
-    <!-- Header -->
     <div class="top-bar">
         <div class="header-content">
             <div class="logo-section">
@@ -504,201 +103,52 @@
                     <div class="name" id="adminName">Administrateur</div>
                     <div class="role">Super Admin</div>
                 </div>
-                <button class="btn-logout" onclick="logout()">
-                    <i class="fas fa-sign-out-alt"></i>
-                    Déconnexion
-                </button>
+                <button class="btn-logout" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Déconnexion</button>
             </div>
         </div>
     </div>
 
-    <!-- Main Container -->
     <div class="main-container">
-        <!-- Quick Navigation -->
         <div class="quick-nav">
-            <button class="nav-btn excel" onclick="exportToExcel()">
-                <i class="fas fa-file-excel"></i>
-                Exporter Excel
-            </button>
-            <button class="nav-btn refresh" onclick="chargerDonnees()">
-                <i class="fas fa-sync"></i>
-                Actualiser
-            </button>
-            <button class="nav-btn qr" onclick="window.location.href='admin.html'">
-                <i class="fas fa-qrcode"></i>
-                QR Code
-            </button>
-            <button class="nav-btn list" onclick="window.location.href='liste.html'">
-                <i class="fas fa-list"></i>
-                Liste Complète
-            </button>
+            <button class="nav-btn excel"   onclick="exportToExcel()"><i class="fas fa-file-excel"></i> Exporter Excel</button>
+            <button class="nav-btn refresh" onclick="chargerDonnees()"><i class="fas fa-sync"></i> Actualiser</button>
+            <button class="nav-btn qr"      onclick="window.location.href='admin.html'"><i class="fas fa-qrcode"></i> QR Code</button>
+            <button class="nav-btn list"    onclick="window.location.href='liste.html'"><i class="fas fa-list"></i> Liste Complète</button>
         </div>
 
-        <!-- Statistics Cards -->
         <div class="stats-section">
-            <div class="stat-card blue">
-                <div class="stat-header">
-                    <div>
-                        <div class="stat-title">Total Suggestions</div>
-                        <div class="stat-value" id="totalSuggestions">0</div>
-                        <div class="stat-change up" id="totalChange">
-                            <i class="fas fa-arrow-up"></i> +0 ce mois
-                        </div>
-                    </div>
-                    <div class="stat-icon blue">
-                        <i class="fas fa-lightbulb"></i>
-                    </div>
-                </div>
-            </div>
-
-            <div class="stat-card red">
-                <div class="stat-header">
-                    <div>
-                        <div class="stat-title">Cette Semaine</div>
-                        <div class="stat-value" id="thisWeek">0</div>
-                        <div class="stat-change up" id="weekChange">
-                            <i class="fas fa-arrow-up"></i> +0% vs semaine dernière
-                        </div>
-                    </div>
-                    <div class="stat-icon red">
-                        <i class="fas fa-fire"></i>
-                    </div>
-                </div>
-            </div>
-
-            <div class="stat-card green">
-                <div class="stat-header">
-                    <div>
-                        <div class="stat-title">Employés Actifs</div>
-                        <div class="stat-value" id="uniqueUsers">0</div>
-                        <div class="stat-change up" id="usersChange">
-                            <i class="fas fa-arrow-up"></i> Participants uniques
-                        </div>
-                    </div>
-                    <div class="stat-icon green">
-                        <i class="fas fa-users"></i>
-                    </div>
-                </div>
-            </div>
-
-            <div class="stat-card orange">
-                <div class="stat-header">
-                    <div>
-                        <div class="stat-title">Catégorie Leader</div>
-                        <div class="stat-value" id="topCategory" style="font-size: 24px;">-</div>
-                        <div class="stat-change" id="topCategoryCount">0 suggestions</div>
-                    </div>
-                    <div class="stat-icon orange">
-                        <i class="fas fa-trophy"></i>
-                    </div>
-                </div>
-            </div>
-
-            <div class="stat-card purple">
-                <div class="stat-header">
-                    <div>
-                        <div class="stat-title">Moyenne/Jour</div>
-                        <div class="stat-value" id="avgPerDay">0</div>
-                        <div class="stat-change">Sur les 30 derniers jours</div>
-                    </div>
-                    <div class="stat-icon purple">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                </div>
-            </div>
-
-            <div class="stat-card teal">
-                <div class="stat-header">
-                    <div>
-                        <div class="stat-title">Top Employé</div>
-                        <div class="stat-value" id="topEmployee" style="font-size: 20px;">-</div>
-                        <div class="stat-change" id="topEmployeeCount">0 suggestions</div>
-                    </div>
-                    <div class="stat-icon teal">
-                        <i class="fas fa-star"></i>
-                    </div>
-                </div>
-            </div>
+            <div class="stat-card blue"><div class="stat-header"><div><div class="stat-title">Total Suggestions</div><div class="stat-value" id="totalSuggestions">0</div><div class="stat-change up" id="totalChange"><i class="fas fa-arrow-up"></i> +0 ce mois</div></div><div class="stat-icon blue"><i class="fas fa-lightbulb"></i></div></div></div>
+            <div class="stat-card red"><div class="stat-header"><div><div class="stat-title">Cette Semaine</div><div class="stat-value" id="thisWeek">0</div><div class="stat-change up"><i class="fas fa-calendar-week"></i> 7 derniers jours</div></div><div class="stat-icon red"><i class="fas fa-fire"></i></div></div></div>
+            <div class="stat-card green"><div class="stat-header"><div><div class="stat-title">Employés Actifs</div><div class="stat-value" id="uniqueUsers">0</div><div class="stat-change up"><i class="fas fa-arrow-up"></i> Participants uniques</div></div><div class="stat-icon green"><i class="fas fa-users"></i></div></div></div>
+            <div class="stat-card orange"><div class="stat-header"><div><div class="stat-title">Département Leader</div><div class="stat-value" id="topDept" style="font-size:18px;">-</div><div class="stat-change" id="topDeptCount">0 suggestions</div></div><div class="stat-icon orange"><i class="fas fa-trophy"></i></div></div></div>
+            <div class="stat-card purple"><div class="stat-header"><div><div class="stat-title">Moyenne / Jour</div><div class="stat-value" id="avgPerDay">0</div><div class="stat-change">30 derniers jours</div></div><div class="stat-icon purple"><i class="fas fa-chart-line"></i></div></div></div>
+            <div class="stat-card teal"><div class="stat-header"><div><div class="stat-title">Top Employé</div><div class="stat-value" id="topEmployee" style="font-size:18px;">-</div><div class="stat-change" id="topEmployeeCount">0 suggestions</div></div><div class="stat-icon teal"><i class="fas fa-star"></i></div></div></div>
         </div>
 
-        <!-- Charts Section -->
         <div class="charts-section">
-            <div class="chart-card">
-                <div class="chart-header">
-                    <div class="chart-title">
-                        <i class="fas fa-chart-pie"></i>
-                        Répartition par Catégorie
-                    </div>
-                </div>
-                <div class="chart-body">
-                    <canvas id="categoryChart"></canvas>
-                </div>
-            </div>
-
-            <div class="chart-card">
-                <div class="chart-header">
-                    <div class="chart-title">
-                        <i class="fas fa-chart-line"></i>
-                        Évolution sur 6 Mois
-                    </div>
-                </div>
-                <div class="chart-body">
-                    <canvas id="timeChart"></canvas>
-                </div>
-            </div>
-
-            <div class="chart-card">
-                <div class="chart-header">
-                    <div class="chart-title">
-                        <i class="fas fa-chart-bar"></i>
-                        Fréquence des Problèmes
-                    </div>
-                </div>
-                <div class="chart-body">
-                    <canvas id="frequencyChart"></canvas>
-                </div>
-            </div>
-
-            <div class="chart-card">
-                <div class="chart-header">
-                    <div class="chart-title">
-                        <i class="fas fa-bullseye"></i>
-                        Types d'Impact
-                    </div>
-                </div>
-                <div class="chart-body">
-                    <canvas id="impactChart"></canvas>
-                </div>
-            </div>
+            <div class="chart-card"><div class="chart-header"><div class="chart-title"><i class="fas fa-chart-pie"></i> Répartition par Département</div></div><div class="chart-body"><canvas id="deptChart"></canvas></div></div>
+            <div class="chart-card"><div class="chart-header"><div class="chart-title"><i class="fas fa-chart-line"></i> Évolution sur 6 Mois</div></div><div class="chart-body"><canvas id="timeChart"></canvas></div></div>
+            <div class="chart-card"><div class="chart-header"><div class="chart-title"><i class="fas fa-chart-bar"></i> Fréquence des Problèmes</div></div><div class="chart-body"><canvas id="frequencyChart"></canvas></div></div>
+            <div class="chart-card"><div class="chart-header"><div class="chart-title"><i class="fas fa-bullseye"></i> KPIs les plus impactés</div></div><div class="chart-body"><canvas id="kpiChart"></canvas></div></div>
         </div>
 
-        <!-- Table Section -->
         <div class="table-section">
             <div class="table-header">
-                <div class="table-title">
-                    <i class="fas fa-table"></i> Dernières Suggestions
-                </div>
+                <div class="table-title"><i class="fas fa-table"></i> Dernières Suggestions</div>
                 <div class="search-box">
                     <input type="text" id="searchInput" placeholder="Rechercher..." onkeyup="filterTable()">
                     <i class="fas fa-search"></i>
                 </div>
             </div>
-            <div style="overflow-x: auto;">
-                <table id="suggestionsTable">
+            <div style="overflow-x:auto;">
+                <table>
                     <thead>
                         <tr>
-                            <th>Date</th>
-                            <th>Matricule</th>
-                            <th>Employé</th>
-                            <th>Problème</th>
-                            <th>Catégorie</th>
-                            <th>Fréquence</th>
-                            <th>Impact</th>
-                            <th>Actions</th>
+                            <th>Date</th><th>Matricule</th><th>Employé</th><th>Département</th>
+                            <th>Titre</th><th>Problème</th><th>Zones d'Impact</th><th>KPIs</th><th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody id="tableBody">
-                    </tbody>
+                    <tbody id="tableBody"></tbody>
                 </table>
             </div>
         </div>
@@ -707,345 +157,98 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <script src="api.js"></script>
-    
     <script>
         document.getElementById('adminName').textContent = sessionStorage.getItem('adminUsername') || 'Administrateur';
-
-        let suggestions = [];
-        let charts = {};
+        let suggestions = [], charts = {};
+        const COLORS = ['#E31837','#0033A0','#2ecc71','#f39c12','#9b59b6','#1abc9c','#3498db','#e67e22','#34495e','#16a085','#8e44ad','#c0392b'];
 
         async function chargerDonnees() {
             document.getElementById('loadingOverlay').classList.remove('hidden');
-
             const result = await obtenirSuggestions();
-
-            if (result.success) {
-                suggestions = result.suggestions;
-                updateAllStats();
-                updateAllCharts();
-                updateTable();
-            } else {
-                alert('Erreur lors du chargement des données');
-            }
-
+            if (result.success) { suggestions = result.suggestions; updateAllStats(); updateAllCharts(); updateTable(); }
+            else alert('Erreur lors du chargement des données');
             document.getElementById('loadingOverlay').classList.add('hidden');
         }
 
         function updateAllStats() {
-            // Total
             document.getElementById('totalSuggestions').textContent = suggestions.length;
-
-            // Cette semaine
-            const oneWeekAgo = new Date();
-            oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
-            const thisWeek = suggestions.filter(s => new Date(s.dateCreation) > oneWeekAgo).length;
-            document.getElementById('thisWeek').textContent = thisWeek;
-
-            // Ce mois
-            const oneMonthAgo = new Date();
-            oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
-            const thisMonth = suggestions.filter(s => new Date(s.dateCreation) > oneMonthAgo).length;
-            document.getElementById('totalChange').innerHTML = `<i class="fas fa-arrow-up"></i> +${thisMonth} ce mois`;
-
-            // Employés uniques
-            const uniqueUsers = new Set(suggestions.map(s => s.matricule)).size;
-            document.getElementById('uniqueUsers').textContent = uniqueUsers;
-
-            // Catégorie top
-            const categories = suggestions.reduce((acc, s) => {
-                acc[s.categorie] = (acc[s.categorie] || 0) + 1;
-                return acc;
-            }, {});
-            const topCat = Object.entries(categories).sort((a, b) => b[1] - a[1])[0];
-            if (topCat) {
-                document.getElementById('topCategory').textContent = topCat[0];
-                document.getElementById('topCategoryCount').textContent = `${topCat[1]} suggestions`;
-            }
-
-            // Moyenne par jour
-            const thirtyDaysAgo = new Date();
-            thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-            const last30Days = suggestions.filter(s => new Date(s.dateCreation) > thirtyDaysAgo).length;
-            document.getElementById('avgPerDay').textContent = (last30Days / 30).toFixed(1);
-
-            // Top employé
-            const employees = suggestions.reduce((acc, s) => {
-                const key = `${s.nom} (${s.matricule})`;
-                acc[key] = (acc[key] || 0) + 1;
-                return acc;
-            }, {});
-            const topEmp = Object.entries(employees).sort((a, b) => b[1] - a[1])[0];
-            if (topEmp) {
-                document.getElementById('topEmployee').textContent = topEmp[0].split('(')[0].trim();
-                document.getElementById('topEmployeeCount').textContent = `${topEmp[1]} suggestions`;
-            }
+            const oneWeekAgo = new Date(); oneWeekAgo.setDate(oneWeekAgo.getDate()-7);
+            document.getElementById('thisWeek').textContent = suggestions.filter(s=>new Date(s.dateCreation)>oneWeekAgo).length;
+            const oneMonthAgo = new Date(); oneMonthAgo.setMonth(oneMonthAgo.getMonth()-1);
+            const thisMonth = suggestions.filter(s=>new Date(s.dateCreation)>oneMonthAgo).length;
+            document.getElementById('totalChange').innerHTML = '<i class="fas fa-arrow-up"></i> +'+thisMonth+' ce mois';
+            document.getElementById('uniqueUsers').textContent = new Set(suggestions.map(s=>s.matricule)).size;
+            const depts = suggestions.reduce((acc,s)=>{ const k=s.departement||'N/A'; acc[k]=(acc[k]||0)+1; return acc; },{});
+            const topDept = Object.entries(depts).sort((a,b)=>b[1]-a[1])[0];
+            if (topDept) { document.getElementById('topDept').textContent=topDept[0]; document.getElementById('topDeptCount').textContent=topDept[1]+' suggestions'; }
+            const thirtyDaysAgo = new Date(); thirtyDaysAgo.setDate(thirtyDaysAgo.getDate()-30);
+            document.getElementById('avgPerDay').textContent = (suggestions.filter(s=>new Date(s.dateCreation)>thirtyDaysAgo).length/30).toFixed(1);
+            const emps = suggestions.reduce((acc,s)=>{ const k=s.nom+' ('+s.matricule+')'; acc[k]=(acc[k]||0)+1; return acc; },{});
+            const topEmp = Object.entries(emps).sort((a,b)=>b[1]-a[1])[0];
+            if (topEmp) { document.getElementById('topEmployee').textContent=topEmp[0].split('(')[0].trim(); document.getElementById('topEmployeeCount').textContent=topEmp[1]+' suggestions'; }
         }
 
-        function updateAllCharts() {
-            createCategoryChart();
-            createTimeChart();
-            createFrequencyChart();
-            createImpactChart();
-        }
+        function updateAllCharts() { createDeptChart(); createTimeChart(); createFrequencyChart(); createKpiChart(); }
 
-        function createCategoryChart() {
-            const ctx = document.getElementById('categoryChart');
-            if (charts.category) charts.category.destroy();
-
-            const categories = suggestions.reduce((acc, s) => {
-                acc[s.categorie] = (acc[s.categorie] || 0) + 1;
-                return acc;
-            }, {});
-
-            charts.category = new Chart(ctx, {
-                type: 'doughnut',
-                data: {
-                    labels: Object.keys(categories),
-                    datasets: [{
-                        data: Object.values(categories),
-                        backgroundColor: [
-                            '#3498db', '#e74c3c', '#2ecc71', '#f39c12',
-                            '#9b59b6', '#1abc9c', '#34495e', '#16a085',
-                            '#2c3e50', '#27ae60', '#e67e22', '#8e44ad'
-                        ],
-                        borderWidth: 2,
-                        borderColor: '#fff'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            position: 'right',
-                            labels: {
-                                padding: 15,
-                                font: { size: 12 }
-                            }
-                        }
-                    }
-                }
-            });
+        function createDeptChart() {
+            const ctx = document.getElementById('deptChart');
+            if (charts.dept) charts.dept.destroy();
+            const depts = suggestions.reduce((acc,s)=>{ const k=s.departement||'N/A'; acc[k]=(acc[k]||0)+1; return acc; },{});
+            charts.dept = new Chart(ctx, { type:'doughnut', data:{ labels:Object.keys(depts), datasets:[{data:Object.values(depts),backgroundColor:COLORS,borderWidth:2,borderColor:'#fff'}] }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{padding:12,font:{size:11}}}}} });
         }
 
         function createTimeChart() {
             const ctx = document.getElementById('timeChart');
             if (charts.time) charts.time.destroy();
-
-            const months = {};
-            const last6Months = [];
-            for (let i = 5; i >= 0; i--) {
-                const d = new Date();
-                d.setMonth(d.getMonth() - i);
-                const key = d.toLocaleDateString('fr-FR', { month: 'short', year: 'numeric' });
-                last6Months.push(key);
-                months[key] = 0;
-            }
-
-            suggestions.forEach(s => {
-                const month = new Date(s.dateCreation).toLocaleDateString('fr-FR', { month: 'short', year: 'numeric' });
-                if (months.hasOwnProperty(month)) {
-                    months[month]++;
-                }
-            });
-
-            charts.time = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: last6Months,
-                    datasets: [{
-                        label: 'Suggestions',
-                        data: last6Months.map(m => months[m] || 0),
-                        borderColor: '#E31837',
-                        backgroundColor: 'rgba(227, 24, 55, 0.1)',
-                        tension: 0.4,
-                        fill: true,
-                        pointRadius: 5,
-                        pointHoverRadius: 7,
-                        pointBackgroundColor: '#E31837'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: false }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: { stepSize: 1 }
-                        }
-                    }
-                }
-            });
+            const months={}, last6=[];
+            for(let i=5;i>=0;i--){ const d=new Date(); d.setMonth(d.getMonth()-i); const key=d.toLocaleDateString('fr-FR',{month:'short',year:'numeric'}); last6.push(key); months[key]=0; }
+            suggestions.forEach(s=>{ const m=new Date(s.dateCreation).toLocaleDateString('fr-FR',{month:'short',year:'numeric'}); if(months.hasOwnProperty(m)) months[m]++; });
+            charts.time = new Chart(ctx, { type:'line', data:{ labels:last6, datasets:[{label:'Suggestions',data:last6.map(m=>months[m]||0),borderColor:'#E31837',backgroundColor:'rgba(227,24,55,0.1)',tension:0.4,fill:true,pointRadius:5,pointBackgroundColor:'#E31837'}] }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}}}} });
         }
 
         function createFrequencyChart() {
             const ctx = document.getElementById('frequencyChart');
-            if (charts.frequency) charts.frequency.destroy();
-
-            const frequencies = suggestions.reduce((acc, s) => {
-                acc[s.frequence] = (acc[s.frequence] || 0) + 1;
-                return acc;
-            }, {});
-
-            charts.frequency = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: Object.keys(frequencies),
-                    datasets: [{
-                        label: 'Nombre',
-                        data: Object.values(frequencies),
-                        backgroundColor: '#0033A0',
-                        borderRadius: 8
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: false }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: { stepSize: 1 }
-                        }
-                    }
-                }
-            });
+            if (charts.freq) charts.freq.destroy();
+            const freqs = suggestions.reduce((acc,s)=>{ const k=s.frequence||'N/A'; acc[k]=(acc[k]||0)+1; return acc; },{});
+            charts.freq = new Chart(ctx, { type:'bar', data:{ labels:Object.keys(freqs), datasets:[{label:'Nombre',data:Object.values(freqs),backgroundColor:'#0033A0',borderRadius:8}] }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}}}} });
         }
 
-        function createImpactChart() {
-            const ctx = document.getElementById('impactChart');
-            if (charts.impact) charts.impact.destroy();
-
-            const impacts = suggestions.reduce((acc, s) => {
-                acc[s.impact] = (acc[s.impact] || 0) + 1;
-                return acc;
-            }, {});
-
-            charts.impact = new Chart(ctx, {
-                type: 'polarArea',
-                data: {
-                    labels: Object.keys(impacts).map(k => k.length > 20 ? k.substring(0, 20) + '...' : k),
-                    datasets: [{
-                        data: Object.values(impacts),
-                        backgroundColor: [
-                            'rgba(227, 24, 55, 0.7)',
-                            'rgba(0, 51, 160, 0.7)',
-                            'rgba(46, 204, 113, 0.7)',
-                            'rgba(243, 156, 18, 0.7)',
-                            'rgba(155, 89, 182, 0.7)',
-                            'rgba(52, 152, 219, 0.7)'
-                        ]
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            position: 'right',
-                            labels: {
-                                padding: 15,
-                                font: { size: 11 }
-                            }
-                        }
-                    }
-                }
-            });
+        function createKpiChart() {
+            const ctx = document.getElementById('kpiChart');
+            if (charts.kpi) charts.kpi.destroy();
+            const kpiCount={};
+            suggestions.forEach(s=>{ (s.kpisImpactes||[]).forEach(k=>{ kpiCount[k]=(kpiCount[k]||0)+1; }); });
+            const sorted = Object.entries(kpiCount).sort((a,b)=>b[1]-a[1]).slice(0,10);
+            charts.kpi = new Chart(ctx, { type:'bar', data:{ labels:sorted.map(e=>e[0]), datasets:[{label:'Occurrences',data:sorted.map(e=>e[1]),backgroundColor:COLORS,borderRadius:6}] }, options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,ticks:{stepSize:1}}}} });
         }
 
         function updateTable() {
             const tbody = document.getElementById('tableBody');
             tbody.innerHTML = '';
-
-            suggestions.slice(0, 20).forEach(s => {
-                const date = new Date(s.dateCreation).toLocaleDateString('fr-FR', {
-                    day: '2-digit',
-                    month: 'short',
-                    year: 'numeric'
-                });
-                
-                const row = `
-                    <tr>
-                        <td>${date}</td>
-                        <td><strong>${s.matricule}</strong></td>
-                        <td>${s.nom}</td>
-                        <td>${s.probleme.substring(0, 50)}${s.probleme.length > 50 ? '...' : ''}</td>
-                        <td><span class="badge badge-${s.categorie}">${s.categorie}</span></td>
-                        <td>${s.frequence}</td>
-                        <td>${s.impact.substring(0, 20)}${s.impact.length > 20 ? '...' : ''}</td>
-                        <td>
-                            <button class="action-btn view" onclick="window.location.href='liste.html'">
-                                <i class="fas fa-eye"></i> Voir
-                            </button>
-                        </td>
-                    </tr>
-                `;
-                tbody.innerHTML += row;
+            suggestions.slice(0,20).forEach(s => {
+                const date = new Date(s.dateCreation).toLocaleDateString('fr-FR',{day:'2-digit',month:'short',year:'numeric'});
+                const zones = (s.zonesImpact||[]).map(z=>'<span class="tag">'+z+'</span>').join('')||'-';
+                const kpis  = (s.kpisImpactes||[]).map(k=>'<span class="tag">'+k+'</span>').join('')||'-';
+                tbody.innerHTML += '<tr><td>'+date+'</td><td><strong>'+s.matricule+'</strong></td><td>'+s.nom+'</td><td><span class="badge">'+(s.departement||'-')+'</span></td><td>'+(s.titreIdee||'-').substring(0,35)+'</td><td>'+(s.probleme||'-').substring(0,40)+((s.probleme||'').length>40?'...':'')+'</td><td style="max-width:150px">'+zones+'</td><td style="max-width:150px">'+kpis+'</td><td><button class="action-btn view" onclick="window.location.href=\'liste.html\'"><i class="fas fa-eye"></i> Voir</button></td></tr>';
             });
         }
 
         function filterTable() {
             const input = document.getElementById('searchInput').value.toLowerCase();
-            const rows = document.querySelectorAll('#tableBody tr');
-            
-            rows.forEach(row => {
-                const text = row.textContent.toLowerCase();
-                row.style.display = text.includes(input) ? '' : 'none';
-            });
+            document.querySelectorAll('#tableBody tr').forEach(row => { row.style.display = row.textContent.toLowerCase().includes(input)?'':'none'; });
         }
 
         function exportToExcel() {
-            if (suggestions.length === 0) {
-                alert('❌ Aucune donnée à exporter');
-                return;
-            }
-
-            const data = suggestions.map((s, index) => ({
-                'N°': index + 1,
-                'Date': new Date(s.dateCreation).toLocaleDateString('fr-FR'),
-                'Heure': new Date(s.dateCreation).toLocaleTimeString('fr-FR'),
-                'Matricule': s.matricule,
-                'Nom': s.nom,
-                'Problème': s.probleme,
-                'Fréquence': s.frequence,
-                'Catégorie': s.categorie,
-                'Conséquences': s.consequences || '',
-                'Idée de Solution': s.idee,
-                'Gain Estimé': s.gain || '',
-                'Impact': s.impact
-            }));
-
+            if (!suggestions.length) { alert('Aucune donnée à exporter'); return; }
+            const data = suggestions.map(function(s,i) {
+                return { 'N°':i+1, 'Date':new Date(s.dateCreation).toLocaleDateString('fr-FR'), 'Heure':new Date(s.dateCreation).toLocaleTimeString('fr-FR'), 'Matricule':s.matricule, 'Nom':s.nom, 'Département':s.departement||'', 'Titre Idée':s.titreIdee||'', 'Problème':s.probleme, 'Fréquence':s.frequence, "Zones d'Impact":(s.zonesImpact||[]).join(', '), 'Description Idée':s.idee, 'Gain Estimé':s.gain||'', 'KPIs Impactés':(s.kpisImpactes||[]).join(', ') };
+            });
             const ws = XLSX.utils.json_to_sheet(data);
-            
-            // Largeur des colonnes
-            ws['!cols'] = [
-                {wch: 5},  // N°
-                {wch: 12}, // Date
-                {wch: 10}, // Heure
-                {wch: 12}, // Matricule
-                {wch: 20}, // Nom
-                {wch: 40}, // Problème
-                {wch: 15}, // Fréquence
-                {wch: 15}, // Catégorie
-                {wch: 40}, // Conséquences
-                {wch: 40}, // Idée
-                {wch: 15}, // Gain
-                {wch: 25}  // Impact
-            ];
-
+            ws['!cols'] = [{wch:5},{wch:12},{wch:10},{wch:12},{wch:22},{wch:20},{wch:20},{wch:40},{wch:15},{wch:40},{wch:40},{wch:15},{wch:40}];
             const wb = XLSX.utils.book_new();
             XLSX.utils.book_append_sheet(wb, ws, 'Suggestions');
-
-            const fileName = `Suggestions_Lear_${new Date().toISOString().split('T')[0]}.xlsx`;
-            XLSX.writeFile(wb, fileName);
-
-            alert(`✅ Export réussi ! ${suggestions.length} suggestions exportées`);
-            console.log('✅ Export Excel:', fileName);
+            XLSX.writeFile(wb, 'Suggestions_Lear_'+new Date().toISOString().split('T')[0]+'.xlsx');
+            alert('Export réussi ! '+suggestions.length+' suggestions exportées');
         }
 
         function logout() {
