@@ -54,6 +54,7 @@
         .chart-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; padding-bottom:15px; border-bottom:2px solid #f0f2f5; }
         .chart-title { font-size:18px; font-weight:700; color:#2c3e50; display:flex; align-items:center; gap:10px; }
         .chart-body  { height:320px; position:relative; }
+        .chart-body-tall { height:500px; position:relative; }
         .table-section { background:white; border-radius:16px; padding:25px; box-shadow:0 2px 12px rgba(0,0,0,0.08); margin-bottom:30px; }
         .table-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; padding-bottom:15px; border-bottom:2px solid #f0f2f5; }
         .table-title { font-size:20px; font-weight:700; color:#2c3e50; }
@@ -75,6 +76,9 @@
         .spinner { width:60px; height:60px; border:5px solid #f0f2f5; border-top:5px solid #E31837; border-radius:50%; animation:spin 1s linear infinite; }
         @keyframes spin { 0%{transform:rotate(0deg)} 100%{transform:rotate(360deg)} }
         .loading-text { margin-top:20px; font-size:16px; color:#666; font-weight:600; }
+        .kpi-legend { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+        .kpi-legend-item { display:flex; align-items:center; gap:5px; font-size:11px; color:#555; }
+        .kpi-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
         @media(max-width:768px) { .charts-section{grid-template-columns:1fr;} .search-box input{width:100%;} }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -126,10 +130,22 @@
         </div>
 
         <div class="charts-section">
-            <div class="chart-card"><div class="chart-header"><div class="chart-title"><i class="fas fa-chart-pie"></i> Répartition par Département</div></div><div class="chart-body"><canvas id="deptChart"></canvas></div></div>
-            <div class="chart-card"><div class="chart-header"><div class="chart-title"><i class="fas fa-chart-line"></i> Évolution sur 6 Mois</div></div><div class="chart-body"><canvas id="timeChart"></canvas></div></div>
-            <div class="chart-card"><div class="chart-header"><div class="chart-title"><i class="fas fa-chart-bar"></i> Fréquence des Problèmes</div></div><div class="chart-body"><canvas id="frequencyChart"></canvas></div></div>
-            <div class="chart-card"><div class="chart-header"><div class="chart-title"><i class="fas fa-bullseye"></i> KPIs les plus impactés</div></div><div class="chart-body"><canvas id="kpiChart"></canvas></div></div>
+            <div class="chart-card">
+                <div class="chart-header"><div class="chart-title"><i class="fas fa-chart-pie"></i> Répartition par Département</div></div>
+                <div class="chart-body"><canvas id="deptChart"></canvas></div>
+            </div>
+            <div class="chart-card">
+                <div class="chart-header"><div class="chart-title"><i class="fas fa-chart-line"></i> Évolution sur 6 Mois</div></div>
+                <div class="chart-body"><canvas id="timeChart"></canvas></div>
+            </div>
+            <div class="chart-card">
+                <div class="chart-header"><div class="chart-title"><i class="fas fa-chart-bar"></i> Fréquence des Problèmes</div></div>
+                <div class="chart-body"><canvas id="frequencyChart"></canvas></div>
+            </div>
+            <div class="chart-card">
+                <div class="chart-header"><div class="chart-title"><i class="fas fa-bullseye"></i> KPIs les plus impactés</div></div>
+                <div class="chart-body-tall"><canvas id="kpiChart"></canvas></div>
+            </div>
         </div>
 
         <div class="table-section">
@@ -160,13 +176,36 @@
     <script>
         document.getElementById('adminName').textContent = sessionStorage.getItem('adminUsername') || 'Administrateur';
         let suggestions = [], charts = {};
-        const COLORS = ['#E31837','#0033A0','#2ecc71','#f39c12','#9b59b6','#1abc9c','#3498db','#e67e22','#34495e','#16a085','#8e44ad','#c0392b'];
+        const COLORS = ['#E31837','#0033A0','#2ecc71','#f39c12','#9b59b6','#1abc9c','#3498db','#e67e22','#34495e','#16a085','#8e44ad','#c0392b','#d35400','#27ae60'];
+
+        const ALL_KPIS = [
+            'Augmenter Productivité',
+            'Réduire Coûts',
+            'Améliorer Qualité',
+            'Réduire Délais',
+            'Diminuer Rebuts',
+            'Réduire Arrêts',
+            'Améliorer Traçabilité',
+            'Optimiser Stocks',
+            'Réduire Accidents',
+            'Améliorer Satisfaction',
+            'Réduire Énergie',
+            'Optimiser Ressources',
+            'Réduire Scrap',
+            'Améliorer Ergonomie'
+        ];
 
         async function chargerDonnees() {
             document.getElementById('loadingOverlay').classList.remove('hidden');
             const result = await obtenirSuggestions();
-            if (result.success) { suggestions = result.suggestions; updateAllStats(); updateAllCharts(); updateTable(); }
-            else alert('Erreur lors du chargement des données');
+            if (result.success) {
+                suggestions = result.suggestions;
+                updateAllStats();
+                updateAllCharts();
+                updateTable();
+            } else {
+                alert('Erreur lors du chargement des données');
+            }
             document.getElementById('loadingOverlay').classList.add('hidden');
         }
 
@@ -194,7 +233,11 @@
             const ctx = document.getElementById('deptChart');
             if (charts.dept) charts.dept.destroy();
             const depts = suggestions.reduce((acc,s)=>{ const k=s.departement||'N/A'; acc[k]=(acc[k]||0)+1; return acc; },{});
-            charts.dept = new Chart(ctx, { type:'doughnut', data:{ labels:Object.keys(depts), datasets:[{data:Object.values(depts),backgroundColor:COLORS,borderWidth:2,borderColor:'#fff'}] }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{padding:12,font:{size:11}}}}} });
+            charts.dept = new Chart(ctx, {
+                type:'doughnut',
+                data:{ labels:Object.keys(depts), datasets:[{data:Object.values(depts),backgroundColor:COLORS,borderWidth:2,borderColor:'#fff'}] },
+                options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{padding:12,font:{size:11}}}}}
+            });
         }
 
         function createTimeChart() {
@@ -203,23 +246,85 @@
             const months={}, last6=[];
             for(let i=5;i>=0;i--){ const d=new Date(); d.setMonth(d.getMonth()-i); const key=d.toLocaleDateString('fr-FR',{month:'short',year:'numeric'}); last6.push(key); months[key]=0; }
             suggestions.forEach(s=>{ const m=new Date(s.dateCreation).toLocaleDateString('fr-FR',{month:'short',year:'numeric'}); if(months.hasOwnProperty(m)) months[m]++; });
-            charts.time = new Chart(ctx, { type:'line', data:{ labels:last6, datasets:[{label:'Suggestions',data:last6.map(m=>months[m]||0),borderColor:'#E31837',backgroundColor:'rgba(227,24,55,0.1)',tension:0.4,fill:true,pointRadius:5,pointBackgroundColor:'#E31837'}] }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}}}} });
+            charts.time = new Chart(ctx, {
+                type:'line',
+                data:{ labels:last6, datasets:[{label:'Suggestions',data:last6.map(m=>months[m]||0),borderColor:'#E31837',backgroundColor:'rgba(227,24,55,0.1)',tension:0.4,fill:true,pointRadius:5,pointBackgroundColor:'#E31837'}] },
+                options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}}}}
+            });
         }
 
         function createFrequencyChart() {
             const ctx = document.getElementById('frequencyChart');
             if (charts.freq) charts.freq.destroy();
             const freqs = suggestions.reduce((acc,s)=>{ const k=s.frequence||'N/A'; acc[k]=(acc[k]||0)+1; return acc; },{});
-            charts.freq = new Chart(ctx, { type:'bar', data:{ labels:Object.keys(freqs), datasets:[{label:'Nombre',data:Object.values(freqs),backgroundColor:'#0033A0',borderRadius:8}] }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}}}} });
+            charts.freq = new Chart(ctx, {
+                type:'bar',
+                data:{ labels:Object.keys(freqs), datasets:[{label:'Nombre',data:Object.values(freqs),backgroundColor:'#0033A0',borderRadius:8}] },
+                options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}}}}
+            });
         }
 
         function createKpiChart() {
             const ctx = document.getElementById('kpiChart');
             if (charts.kpi) charts.kpi.destroy();
-            const kpiCount={};
-            suggestions.forEach(s=>{ (s.kpisImpactes||[]).forEach(k=>{ kpiCount[k]=(kpiCount[k]||0)+1; }); });
-            const sorted = Object.entries(kpiCount).sort((a,b)=>b[1]-a[1]).slice(0,10);
-            charts.kpi = new Chart(ctx, { type:'bar', data:{ labels:sorted.map(e=>e[0]), datasets:[{label:'Occurrences',data:sorted.map(e=>e[1]),backgroundColor:COLORS,borderRadius:6}] }, options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,ticks:{stepSize:1}}}} });
+
+            // Compter les KPIs depuis les suggestions
+            const kpiCount = {};
+            ALL_KPIS.forEach(k => { kpiCount[k] = 0; });
+            suggestions.forEach(s => {
+                (s.kpisImpactes||[]).forEach(k => {
+                    if (kpiCount.hasOwnProperty(k)) kpiCount[k]++;
+                    else kpiCount[k] = 1;
+                });
+            });
+
+            // Trier par occurrences décroissantes
+            const sorted = Object.entries(kpiCount).sort((a,b) => b[1]-a[1]);
+            const labels = sorted.map(e => e[0]);
+            const values = sorted.map(e => e[1]);
+            const total = values.reduce((a,b) => a+b, 0);
+            const maxVal = Math.max(...values, 1);
+
+            charts.kpi = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Occurrences',
+                        data: values,
+                        backgroundColor: labels.map((_, i) => COLORS[i % COLORS.length]),
+                        borderRadius: 6,
+                        borderSkipped: false
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const pct = total > 0 ? ((context.raw / total) * 100).toFixed(1) : 0;
+                                    return context.raw + ' occurrence(s) — ' + pct + '% du total';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            ticks: { stepSize: 1 },
+                            max: maxVal + 1,
+                            title: { display: true, text: "Nombre d'occurrences", font: { size: 12 } }
+                        },
+                        y: {
+                            ticks: { font: { size: 11 } }
+                        }
+                    }
+                }
+            });
         }
 
         function updateTable() {
@@ -241,7 +346,21 @@
         function exportToExcel() {
             if (!suggestions.length) { alert('Aucune donnée à exporter'); return; }
             const data = suggestions.map(function(s,i) {
-                return { 'N°':i+1, 'Date':new Date(s.dateCreation).toLocaleDateString('fr-FR'), 'Heure':new Date(s.dateCreation).toLocaleTimeString('fr-FR'), 'Matricule':s.matricule, 'Nom':s.nom, 'Département':s.departement||'', 'Titre Idée':s.titreIdee||'', 'Problème':s.probleme, 'Fréquence':s.frequence, "Zones d'Impact":(s.zonesImpact||[]).join(', '), 'Description Idée':s.idee, 'Gain Estimé':s.gain||'', 'KPIs Impactés':(s.kpisImpactes||[]).join(', ') };
+                return {
+                    'N°':i+1,
+                    'Date':new Date(s.dateCreation).toLocaleDateString('fr-FR'),
+                    'Heure':new Date(s.dateCreation).toLocaleTimeString('fr-FR'),
+                    'Matricule':s.matricule,
+                    'Nom':s.nom,
+                    'Département':s.departement||'',
+                    'Titre Idée':s.titreIdee||'',
+                    'Problème':s.probleme,
+                    'Fréquence':s.frequence,
+                    "Zones d'Impact":(s.zonesImpact||[]).join(', '),
+                    'Description Idée':s.idee,
+                    'Gain Estimé':s.gain||'',
+                    'KPIs Impactés':(s.kpisImpactes||[]).join(', ')
+                };
             });
             const ws = XLSX.utils.json_to_sheet(data);
             ws['!cols'] = [{wch:5},{wch:12},{wch:10},{wch:12},{wch:22},{wch:20},{wch:20},{wch:40},{wch:15},{wch:40},{wch:40},{wch:15},{wch:40}];
