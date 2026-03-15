@@ -7,10 +7,10 @@
     <style>
         * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; }
         body { background:#f0f2f5; min-height:100vh; }
-        .top-bar { background:linear-gradient(135deg,#E31837 0%,#B3122B 100%); color:white; box-shadow:0 4px 20px rgba(227,24,55,0.3); }
+        .top-bar { background:linear-gradient(135deg,#C8102E 0%,#96001E 100%); color:white; box-shadow:0 4px 20px rgba(200,16,46,0.3); }
         .header-content { max-width:1800px; margin:0 auto; padding:20px 30px; display:flex; justify-content:space-between; align-items:center; }
         .logo-section { display:flex; align-items:center; gap:15px; }
-        .logo-icon { width:50px; height:50px; background:white; border-radius:12px; display:flex; align-items:center; justify-content:center; color:#E31837; font-size:24px; font-weight:bold; }
+        .logo-icon { width:50px; height:50px; background:white; border-radius:12px; display:flex; align-items:center; justify-content:center; color:#C8102E; font-size:24px; font-weight:bold; }
         .logo-text h1 { font-size:24px; font-weight:700; }
         .logo-text p  { font-size:12px; opacity:0.9; }
         .user-section { display:flex; align-items:center; gap:20px; }
@@ -18,12 +18,12 @@
         .user-info .name { font-weight:600; font-size:14px; }
         .user-info .role { font-size:12px; opacity:0.8; }
         .btn-logout { background:rgba(255,255,255,0.2); border:2px solid rgba(255,255,255,0.5); color:white; padding:10px 20px; border-radius:8px; cursor:pointer; font-weight:600; transition:all 0.3s; display:flex; align-items:center; gap:8px; }
-        .btn-logout:hover { background:white; color:#E31837; }
+        .btn-logout:hover { background:white; color:#C8102E; }
         .main-container { max-width:1800px; margin:30px auto; padding:0 30px; }
         .quick-nav { background:white; border-radius:16px; padding:20px; margin-bottom:30px; box-shadow:0 2px 12px rgba(0,0,0,0.08); display:flex; gap:15px; flex-wrap:wrap; }
         .nav-btn { flex:1; min-width:180px; padding:15px 25px; border:none; border-radius:12px; font-weight:600; cursor:pointer; transition:all 0.3s; display:flex; align-items:center; justify-content:center; gap:10px; font-size:14px; }
         .nav-btn.excel   { background:linear-gradient(135deg,#2ecc71,#27ae60); color:white; }
-        .nav-btn.refresh { background:linear-gradient(135deg,#0033A0,#00227A); color:white; }
+        .nav-btn.refresh { background:linear-gradient(135deg,#002F6C,#001E50); color:white; }
         .nav-btn.qr      { background:linear-gradient(135deg,#9b59b6,#8e44ad); color:white; }
         .nav-btn.list    { background:linear-gradient(135deg,#3498db,#2980b9); color:white; }
         .nav-btn:hover   { transform:translateY(-3px); box-shadow:0 8px 20px rgba(0,0,0,0.2); }
@@ -31,11 +31,12 @@
         .stat-card { background:white; border-radius:16px; padding:25px; box-shadow:0 2px 12px rgba(0,0,0,0.08); transition:all 0.3s; position:relative; overflow:hidden; }
         .stat-card::before { content:''; position:absolute; top:0; left:0; width:100%; height:4px; }
         .stat-card.blue::before   { background:linear-gradient(90deg,#3498db,#2980b9); }
-        .stat-card.red::before    { background:linear-gradient(90deg,#E31837,#B3122B); }
+        .stat-card.red::before    { background:linear-gradient(90deg,#C8102E,#96001E); }
         .stat-card.green::before  { background:linear-gradient(90deg,#2ecc71,#27ae60); }
         .stat-card.orange::before { background:linear-gradient(90deg,#f39c12,#e67e22); }
         .stat-card.purple::before { background:linear-gradient(90deg,#9b59b6,#8e44ad); }
         .stat-card.teal::before   { background:linear-gradient(90deg,#1abc9c,#16a085); }
+        .stat-card.navy::before   { background:linear-gradient(90deg,#002F6C,#1A4A8A); }
         .stat-card:hover { transform:translateY(-5px); box-shadow:0 8px 25px rgba(0,0,0,0.12); }
         .stat-header { display:flex; justify-content:space-between; align-items:flex-start; }
         .stat-title  { color:#666; font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px; }
@@ -44,41 +45,44 @@
         .stat-change.up { color:#2ecc71; }
         .stat-icon { width:45px; height:45px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:20px; color:white; }
         .stat-icon.blue   { background:linear-gradient(135deg,#3498db,#2980b9); }
-        .stat-icon.red    { background:linear-gradient(135deg,#E31837,#B3122B); }
+        .stat-icon.red    { background:linear-gradient(135deg,#C8102E,#96001E); }
         .stat-icon.green  { background:linear-gradient(135deg,#2ecc71,#27ae60); }
         .stat-icon.orange { background:linear-gradient(135deg,#f39c12,#e67e22); }
         .stat-icon.purple { background:linear-gradient(135deg,#9b59b6,#8e44ad); }
         .stat-icon.teal   { background:linear-gradient(135deg,#1abc9c,#16a085); }
+        .stat-icon.navy   { background:linear-gradient(135deg,#002F6C,#1A4A8A); }
         .charts-section { display:grid; grid-template-columns:repeat(auto-fit,minmax(480px,1fr)); gap:25px; margin-bottom:30px; }
         .chart-card { background:white; border-radius:16px; padding:25px; box-shadow:0 2px 12px rgba(0,0,0,0.08); }
+        .chart-card.full-width { grid-column: 1 / -1; }
         .chart-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; padding-bottom:15px; border-bottom:2px solid #f0f2f5; }
         .chart-title { font-size:18px; font-weight:700; color:#2c3e50; display:flex; align-items:center; gap:10px; }
         .chart-body  { height:320px; position:relative; }
-        .chart-body-tall { height:500px; position:relative; }
+        .chart-body-tall { height:520px; position:relative; }
         .table-section { background:white; border-radius:16px; padding:25px; box-shadow:0 2px 12px rgba(0,0,0,0.08); margin-bottom:30px; }
-        .table-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; padding-bottom:15px; border-bottom:2px solid #f0f2f5; }
+        .table-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; padding-bottom:15px; border-bottom:2px solid #f0f2f5; flex-wrap:wrap; gap:10px; }
         .table-title { font-size:20px; font-weight:700; color:#2c3e50; }
         .search-box { position:relative; }
         .search-box input { padding:10px 40px 10px 15px; border:2px solid #e0e0e0; border-radius:8px; width:300px; transition:all 0.3s; }
-        .search-box input:focus { outline:none; border-color:#E31837; }
+        .search-box input:focus { outline:none; border-color:#C8102E; }
         .search-box i { position:absolute; right:15px; top:50%; transform:translateY(-50%); color:#999; }
         table { width:100%; border-collapse:collapse; }
-        th { background:#f8f9fa; color:#2c3e50; padding:15px; text-align:left; font-weight:600; font-size:13px; text-transform:uppercase; letter-spacing:0.5px; }
-        td { padding:13px 15px; border-bottom:1px solid #f0f2f5; font-size:14px; color:#555; }
+        th { background:#f8f9fa; color:#2c3e50; padding:12px 15px; text-align:left; font-weight:600; font-size:12px; text-transform:uppercase; letter-spacing:0.5px; }
+        td { padding:12px 15px; border-bottom:1px solid #f0f2f5; font-size:13px; color:#555; vertical-align:top; }
         tr:hover { background:#f8f9fa; }
-        .badge { display:inline-block; padding:5px 10px; border-radius:20px; font-size:11px; font-weight:700; background:#e3f2fd; color:#1976d2; }
-        .tag { display:inline-block; padding:3px 8px; border-radius:12px; font-size:10px; font-weight:600; background:#f0f4fa; color:#0033A0; margin:2px; }
+        .badge { display:inline-block; padding:4px 10px; border-radius:20px; font-size:11px; font-weight:700; background:#e3f2fd; color:#1976d2; }
+        .badge-dept { background:#fff3e0; color:#e65100; }
+        .tag { display:inline-block; padding:3px 8px; border-radius:12px; font-size:10px; font-weight:600; background:#f0f4fa; color:#002F6C; margin:2px; }
+        .tag-kpi { background:#fde8ec; color:#C8102E; }
         .action-btn { padding:8px 16px; border:none; border-radius:6px; cursor:pointer; font-size:12px; font-weight:600; transition:all 0.3s; }
         .action-btn.view { background:#3498db; color:white; }
         .action-btn.view:hover { background:#2980b9; }
         .loading-overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.95); display:flex; flex-direction:column; align-items:center; justify-content:center; z-index:9999; }
         .loading-overlay.hidden { display:none; }
-        .spinner { width:60px; height:60px; border:5px solid #f0f2f5; border-top:5px solid #E31837; border-radius:50%; animation:spin 1s linear infinite; }
+        .spinner { width:60px; height:60px; border:5px solid #f0f2f5; border-top:5px solid #C8102E; border-radius:50%; animation:spin 1s linear infinite; }
         @keyframes spin { 0%{transform:rotate(0deg)} 100%{transform:rotate(360deg)} }
         .loading-text { margin-top:20px; font-size:16px; color:#666; font-weight:600; }
-        .kpi-legend { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
-        .kpi-legend-item { display:flex; align-items:center; gap:5px; font-size:11px; color:#555; }
-        .kpi-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+        .section-title { font-size:22px; font-weight:700; color:#2c3e50; margin:30px 0 15px; display:flex; align-items:center; gap:10px; }
+        .section-title i { color:#C8102E; }
         @media(max-width:768px) { .charts-section{grid-template-columns:1fr;} .search-box input{width:100%;} }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -99,7 +103,7 @@
                 <div class="logo-icon">L</div>
                 <div class="logo-text">
                     <h1>Dashboard Admin</h1>
-                    <p>Système de Suggestions - Lear Corporation</p>
+                    <p>Système de Suggestions - Lear Corporation Meknès</p>
                 </div>
             </div>
             <div class="user-section">
@@ -113,6 +117,7 @@
     </div>
 
     <div class="main-container">
+
         <div class="quick-nav">
             <button class="nav-btn excel"   onclick="exportToExcel()"><i class="fas fa-file-excel"></i> Exporter Excel</button>
             <button class="nav-btn refresh" onclick="chargerDonnees()"><i class="fas fa-sync"></i> Actualiser</button>
@@ -120,37 +125,52 @@
             <button class="nav-btn list"    onclick="window.location.href='liste.html'"><i class="fas fa-list"></i> Liste Complète</button>
         </div>
 
+        <div class="section-title"><i class="fas fa-chart-pie"></i> Vue d'ensemble</div>
         <div class="stats-section">
             <div class="stat-card blue"><div class="stat-header"><div><div class="stat-title">Total Suggestions</div><div class="stat-value" id="totalSuggestions">0</div><div class="stat-change up" id="totalChange"><i class="fas fa-arrow-up"></i> +0 ce mois</div></div><div class="stat-icon blue"><i class="fas fa-lightbulb"></i></div></div></div>
             <div class="stat-card red"><div class="stat-header"><div><div class="stat-title">Cette Semaine</div><div class="stat-value" id="thisWeek">0</div><div class="stat-change up"><i class="fas fa-calendar-week"></i> 7 derniers jours</div></div><div class="stat-icon red"><i class="fas fa-fire"></i></div></div></div>
             <div class="stat-card green"><div class="stat-header"><div><div class="stat-title">Employés Actifs</div><div class="stat-value" id="uniqueUsers">0</div><div class="stat-change up"><i class="fas fa-arrow-up"></i> Participants uniques</div></div><div class="stat-icon green"><i class="fas fa-users"></i></div></div></div>
-            <div class="stat-card orange"><div class="stat-header"><div><div class="stat-title">Département Leader</div><div class="stat-value" id="topDept" style="font-size:18px;">-</div><div class="stat-change" id="topDeptCount">0 suggestions</div></div><div class="stat-icon orange"><i class="fas fa-trophy"></i></div></div></div>
+            <div class="stat-card orange"><div class="stat-header"><div><div class="stat-title">Département Leader</div><div class="stat-value" id="topDept" style="font-size:16px;">-</div><div class="stat-change" id="topDeptCount">0 suggestions</div></div><div class="stat-icon orange"><i class="fas fa-trophy"></i></div></div></div>
             <div class="stat-card purple"><div class="stat-header"><div><div class="stat-title">Moyenne / Jour</div><div class="stat-value" id="avgPerDay">0</div><div class="stat-change">30 derniers jours</div></div><div class="stat-icon purple"><i class="fas fa-chart-line"></i></div></div></div>
-            <div class="stat-card teal"><div class="stat-header"><div><div class="stat-title">Top Employé</div><div class="stat-value" id="topEmployee" style="font-size:18px;">-</div><div class="stat-change" id="topEmployeeCount">0 suggestions</div></div><div class="stat-icon teal"><i class="fas fa-star"></i></div></div></div>
+            <div class="stat-card teal"><div class="stat-header"><div><div class="stat-title">Top Employé</div><div class="stat-value" id="topEmployee" style="font-size:16px;">-</div><div class="stat-change" id="topEmployeeCount">0 suggestions</div></div><div class="stat-icon teal"><i class="fas fa-star"></i></div></div></div>
+            <div class="stat-card navy"><div class="stat-header"><div><div class="stat-title">KPI le plus ciblé</div><div class="stat-value" id="topKpi" style="font-size:14px;">-</div><div class="stat-change" id="topKpiCount">0 occurrences</div></div><div class="stat-icon navy"><i class="fas fa-bullseye"></i></div></div></div>
+            <div class="stat-card red"><div class="stat-header"><div><div class="stat-title">Zone la plus impactée</div><div class="stat-value" id="topZone" style="font-size:14px;">-</div><div class="stat-change" id="topZoneCount">0 occurrences</div></div><div class="stat-icon red"><i class="fas fa-map-marker-alt"></i></div></div></div>
         </div>
 
+        <div class="section-title"><i class="fas fa-chart-bar"></i> Analyses</div>
         <div class="charts-section">
             <div class="chart-card">
-                <div class="chart-header"><div class="chart-title"><i class="fas fa-chart-pie"></i> Répartition par Département</div></div>
+                <div class="chart-header"><div class="chart-title"><i class="fas fa-building" style="color:#C8102E"></i> Répartition par Département</div></div>
                 <div class="chart-body"><canvas id="deptChart"></canvas></div>
             </div>
             <div class="chart-card">
-                <div class="chart-header"><div class="chart-title"><i class="fas fa-chart-line"></i> Évolution sur 6 Mois</div></div>
+                <div class="chart-header"><div class="chart-title"><i class="fas fa-chart-line" style="color:#002F6C"></i> Évolution sur 6 Mois</div></div>
                 <div class="chart-body"><canvas id="timeChart"></canvas></div>
             </div>
             <div class="chart-card">
-                <div class="chart-header"><div class="chart-title"><i class="fas fa-chart-bar"></i> Fréquence des Problèmes</div></div>
+                <div class="chart-header"><div class="chart-title"><i class="fas fa-clock" style="color:#f39c12"></i> Fréquence des Problèmes</div></div>
                 <div class="chart-body"><canvas id="frequencyChart"></canvas></div>
             </div>
             <div class="chart-card">
-                <div class="chart-header"><div class="chart-title"><i class="fas fa-bullseye"></i> KPIs les plus impactés</div></div>
+                <div class="chart-header"><div class="chart-title"><i class="fas fa-map-marked-alt" style="color:#2ecc71"></i> Zones d'Impact les plus citées</div></div>
+                <div class="chart-body"><canvas id="zoneChart"></canvas></div>
+            </div>
+        </div>
+
+        <div class="charts-section">
+            <div class="chart-card full-width">
+                <div class="chart-header">
+                    <div class="chart-title"><i class="fas fa-bullseye" style="color:#C8102E"></i> KPIs Impactés — Analyse complète</div>
+                    <span style="font-size:12px;color:#999;" id="kpiSubtitle"></span>
+                </div>
                 <div class="chart-body-tall"><canvas id="kpiChart"></canvas></div>
             </div>
         </div>
 
+        <div class="section-title"><i class="fas fa-table"></i> Dernières Suggestions</div>
         <div class="table-section">
             <div class="table-header">
-                <div class="table-title"><i class="fas fa-table"></i> Dernières Suggestions</div>
+                <div class="table-title">20 dernières suggestions</div>
                 <div class="search-box">
                     <input type="text" id="searchInput" placeholder="Rechercher..." onkeyup="filterTable()">
                     <i class="fas fa-search"></i>
@@ -161,7 +181,8 @@
                     <thead>
                         <tr>
                             <th>Date</th><th>Matricule</th><th>Employé</th><th>Département</th>
-                            <th>Titre</th><th>Problème</th><th>Zones d'Impact</th><th>KPIs</th><th>Actions</th>
+                            <th>Titre Idée</th><th>Problème</th><th>Fréquence</th>
+                            <th>Zones d'Impact</th><th>KPIs Ciblés</th><th>Gain</th><th>Actions</th>
                         </tr>
                     </thead>
                     <tbody id="tableBody"></tbody>
@@ -176,23 +197,21 @@
     <script>
         document.getElementById('adminName').textContent = sessionStorage.getItem('adminUsername') || 'Administrateur';
         let suggestions = [], charts = {};
-        const COLORS = ['#E31837','#0033A0','#2ecc71','#f39c12','#9b59b6','#1abc9c','#3498db','#e67e22','#34495e','#16a085','#8e44ad','#c0392b','#d35400','#27ae60'];
+
+        const COLORS = ['#C8102E','#002F6C','#2ecc71','#f39c12','#9b59b6','#1abc9c','#3498db','#e67e22','#B8982A','#16a085','#8e44ad','#c0392b','#d35400','#27ae60'];
 
         const ALL_KPIS = [
-            'Augmenter Productivité',
-            'Réduire Coûts',
-            'Améliorer Qualité',
-            'Réduire Délais',
-            'Diminuer Rebuts',
-            'Réduire Arrêts',
-            'Améliorer Traçabilité',
-            'Optimiser Stocks',
-            'Réduire Accidents',
-            'Améliorer Satisfaction',
-            'Réduire Énergie',
-            'Optimiser Ressources',
-            'Réduire Scrap',
-            'Améliorer Ergonomie'
+            'Augmenter Productivité','Réduire Coûts','Améliorer Qualité',
+            'Réduire Délais','Diminuer Rebuts','Réduire Arrêts',
+            'Améliorer Traçabilité','Optimiser Stocks','Réduire Accidents',
+            'Améliorer Satisfaction','Réduire Énergie','Optimiser Ressources',
+            'Réduire Scrap','Améliorer Ergonomie'
+        ];
+
+        const ALL_ZONES = [
+            'Logistique Entrée','Coupe','Préparation','Assemblage',
+            'Contrôle Qualité ECHOS Prise de Charge','Maintenance',
+            'Expédition / Livraison','Sécurité / RH','Support / Administration'
         ];
 
         async function chargerDonnees() {
@@ -225,19 +244,24 @@
             const emps = suggestions.reduce((acc,s)=>{ const k=s.nom+' ('+s.matricule+')'; acc[k]=(acc[k]||0)+1; return acc; },{});
             const topEmp = Object.entries(emps).sort((a,b)=>b[1]-a[1])[0];
             if (topEmp) { document.getElementById('topEmployee').textContent=topEmp[0].split('(')[0].trim(); document.getElementById('topEmployeeCount').textContent=topEmp[1]+' suggestions'; }
+            const kpiCount = {};
+            suggestions.forEach(s=>{ (s.kpisImpactes||[]).forEach(k=>{ kpiCount[k]=(kpiCount[k]||0)+1; }); });
+            const topKpi = Object.entries(kpiCount).sort((a,b)=>b[1]-a[1])[0];
+            if (topKpi) { document.getElementById('topKpi').textContent=topKpi[0]; document.getElementById('topKpiCount').textContent=topKpi[1]+' occurrences'; }
+            const zoneCount = {};
+            suggestions.forEach(s=>{ (s.zonesImpact||[]).forEach(z=>{ zoneCount[z]=(zoneCount[z]||0)+1; }); });
+            const topZone = Object.entries(zoneCount).sort((a,b)=>b[1]-a[1])[0];
+            if (topZone) { document.getElementById('topZone').textContent=topZone[0]; document.getElementById('topZoneCount').textContent=topZone[1]+' occurrences'; }
         }
 
-        function updateAllCharts() { createDeptChart(); createTimeChart(); createFrequencyChart(); createKpiChart(); }
+        function updateAllCharts() { createDeptChart(); createTimeChart(); createFrequencyChart(); createZoneChart(); createKpiChart(); }
 
         function createDeptChart() {
             const ctx = document.getElementById('deptChart');
             if (charts.dept) charts.dept.destroy();
-            const depts = suggestions.reduce((acc,s)=>{ const k=s.departement||'N/A'; acc[k]=(acc[k]||0)+1; return acc; },{});
-            charts.dept = new Chart(ctx, {
-                type:'doughnut',
-                data:{ labels:Object.keys(depts), datasets:[{data:Object.values(depts),backgroundColor:COLORS,borderWidth:2,borderColor:'#fff'}] },
-                options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{padding:12,font:{size:11}}}}}
-            });
+            const depts = suggestions.reduce((acc,s)=>{ const k=s.departement||'Non défini'; acc[k]=(acc[k]||0)+1; return acc; },{});
+            const sorted = Object.entries(depts).sort((a,b)=>b[1]-a[1]);
+            charts.dept = new Chart(ctx, { type:'doughnut', data:{ labels:sorted.map(e=>e[0]), datasets:[{data:sorted.map(e=>e[1]),backgroundColor:COLORS,borderWidth:2,borderColor:'#fff'}] }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{padding:10,font:{size:11}}}}} });
         }
 
         function createTimeChart() {
@@ -246,95 +270,65 @@
             const months={}, last6=[];
             for(let i=5;i>=0;i--){ const d=new Date(); d.setMonth(d.getMonth()-i); const key=d.toLocaleDateString('fr-FR',{month:'short',year:'numeric'}); last6.push(key); months[key]=0; }
             suggestions.forEach(s=>{ const m=new Date(s.dateCreation).toLocaleDateString('fr-FR',{month:'short',year:'numeric'}); if(months.hasOwnProperty(m)) months[m]++; });
-            charts.time = new Chart(ctx, {
-                type:'line',
-                data:{ labels:last6, datasets:[{label:'Suggestions',data:last6.map(m=>months[m]||0),borderColor:'#E31837',backgroundColor:'rgba(227,24,55,0.1)',tension:0.4,fill:true,pointRadius:5,pointBackgroundColor:'#E31837'}] },
-                options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}}}}
-            });
+            charts.time = new Chart(ctx, { type:'line', data:{ labels:last6, datasets:[{label:'Suggestions',data:last6.map(m=>months[m]||0),borderColor:'#C8102E',backgroundColor:'rgba(200,16,46,0.1)',tension:0.4,fill:true,pointRadius:6,pointBackgroundColor:'#C8102E',pointHoverRadius:8}] }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}}}} });
         }
 
         function createFrequencyChart() {
             const ctx = document.getElementById('frequencyChart');
             if (charts.freq) charts.freq.destroy();
-            const freqs = suggestions.reduce((acc,s)=>{ const k=s.frequence||'N/A'; acc[k]=(acc[k]||0)+1; return acc; },{});
-            charts.freq = new Chart(ctx, {
-                type:'bar',
-                data:{ labels:Object.keys(freqs), datasets:[{label:'Nombre',data:Object.values(freqs),backgroundColor:'#0033A0',borderRadius:8}] },
-                options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}}}}
-            });
+            const freqMap = {'quotidien':'Quotidienne','hebdomadaire':'Hebdomadaire','mensuel':'Mensuelle','occasionnel':'Occasionnelle'};
+            const freqs = suggestions.reduce((acc,s)=>{ const k=freqMap[s.frequence]||s.frequence||'N/A'; acc[k]=(acc[k]||0)+1; return acc; },{});
+            const sorted = Object.entries(freqs).sort((a,b)=>b[1]-a[1]);
+            charts.freq = new Chart(ctx, { type:'bar', data:{ labels:sorted.map(e=>e[0]), datasets:[{label:'Nombre',data:sorted.map(e=>e[1]),backgroundColor:['#C8102E','#002F6C','#f39c12','#2ecc71'],borderRadius:8}] }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}}}} });
+        }
+
+        function createZoneChart() {
+            const ctx = document.getElementById('zoneChart');
+            if (charts.zone) charts.zone.destroy();
+            const zoneCount = {};
+            ALL_ZONES.forEach(z=>{ zoneCount[z]=0; });
+            suggestions.forEach(s=>{ (s.zonesImpact||[]).forEach(z=>{ zoneCount[z]=(zoneCount[z]||0)+1; }); });
+            const sorted = Object.entries(zoneCount).sort((a,b)=>b[1]-a[1]);
+            const total = sorted.reduce((s,e)=>s+e[1],0);
+            charts.zone = new Chart(ctx, { type:'bar', data:{ labels:sorted.map(e=>e[0].length>25?e[0].substring(0,25)+'...':e[0]), datasets:[{label:'Occurrences',data:sorted.map(e=>e[1]),backgroundColor:sorted.map((_,i)=>COLORS[i%COLORS.length]),borderRadius:6}] }, options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){const pct=total>0?((c.raw/total)*100).toFixed(1):0;return c.raw+' fois — '+pct+'%';}}}},scales:{x:{beginAtZero:true,ticks:{stepSize:1}}}} });
         }
 
         function createKpiChart() {
             const ctx = document.getElementById('kpiChart');
             if (charts.kpi) charts.kpi.destroy();
-
-            // Compter les KPIs depuis les suggestions
             const kpiCount = {};
-            ALL_KPIS.forEach(k => { kpiCount[k] = 0; });
-            suggestions.forEach(s => {
-                (s.kpisImpactes||[]).forEach(k => {
-                    if (kpiCount.hasOwnProperty(k)) kpiCount[k]++;
-                    else kpiCount[k] = 1;
-                });
-            });
-
-            // Trier par occurrences décroissantes
-            const sorted = Object.entries(kpiCount).sort((a,b) => b[1]-a[1]);
-            const labels = sorted.map(e => e[0]);
-            const values = sorted.map(e => e[1]);
-            const total = values.reduce((a,b) => a+b, 0);
-            const maxVal = Math.max(...values, 1);
-
-            charts.kpi = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Occurrences',
-                        data: values,
-                        backgroundColor: labels.map((_, i) => COLORS[i % COLORS.length]),
-                        borderRadius: 6,
-                        borderSkipped: false
-                    }]
-                },
-                options: {
-                    indexAxis: 'y',
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: false },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    const pct = total > 0 ? ((context.raw / total) * 100).toFixed(1) : 0;
-                                    return context.raw + ' occurrence(s) — ' + pct + '% du total';
-                                }
-                            }
-                        }
-                    },
-                    scales: {
-                        x: {
-                            beginAtZero: true,
-                            ticks: { stepSize: 1 },
-                            max: maxVal + 1,
-                            title: { display: true, text: "Nombre d'occurrences", font: { size: 12 } }
-                        },
-                        y: {
-                            ticks: { font: { size: 11 } }
-                        }
-                    }
-                }
-            });
+            ALL_KPIS.forEach(k=>{ kpiCount[k]=0; });
+            suggestions.forEach(s=>{ (s.kpisImpactes||[]).forEach(k=>{ kpiCount[k]=(kpiCount[k]||0)+1; }); });
+            const sorted = Object.entries(kpiCount).sort((a,b)=>b[1]-a[1]);
+            const labels = sorted.map(e=>e[0]);
+            const values = sorted.map(e=>e[1]);
+            const total = values.reduce((a,b)=>a+b,0);
+            const maxVal = Math.max(...values,1);
+            document.getElementById('kpiSubtitle').textContent = total > 0 ? total+' sélections au total' : 'Aucune donnée KPI encore';
+            charts.kpi = new Chart(ctx, { type:'bar', data:{ labels:labels, datasets:[{label:'Occurrences',data:values,backgroundColor:labels.map((_,i)=>COLORS[i%COLORS.length]),borderRadius:6,borderSkipped:false}] }, options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){const pct=total>0?((c.raw/total)*100).toFixed(1):0;return c.raw+' occurrence(s) — '+pct+'% du total';}}}},scales:{x:{beginAtZero:true,ticks:{stepSize:1},max:maxVal+1,title:{display:true,text:"Nombre d'occurrences",font:{size:12}}},y:{ticks:{font:{size:12},color:'#333'}}}} });
         }
 
         function updateTable() {
             const tbody = document.getElementById('tableBody');
             tbody.innerHTML = '';
+            const freqMap = {'quotidien':'Quotidienne','hebdomadaire':'Hebdomadaire','mensuel':'Mensuelle','occasionnel':'Occasionnelle'};
             suggestions.slice(0,20).forEach(s => {
                 const date = new Date(s.dateCreation).toLocaleDateString('fr-FR',{day:'2-digit',month:'short',year:'numeric'});
-                const zones = (s.zonesImpact||[]).map(z=>'<span class="tag">'+z+'</span>').join('')||'-';
-                const kpis  = (s.kpisImpactes||[]).map(k=>'<span class="tag">'+k+'</span>').join('')||'-';
-                tbody.innerHTML += '<tr><td>'+date+'</td><td><strong>'+s.matricule+'</strong></td><td>'+s.nom+'</td><td><span class="badge">'+(s.departement||'-')+'</span></td><td>'+(s.titreIdee||'-').substring(0,35)+'</td><td>'+(s.probleme||'-').substring(0,40)+((s.probleme||'').length>40?'...':'')+'</td><td style="max-width:150px">'+zones+'</td><td style="max-width:150px">'+kpis+'</td><td><button class="action-btn view" onclick="window.location.href=\'liste.html\'"><i class="fas fa-eye"></i> Voir</button></td></tr>';
+                const zones = (s.zonesImpact||[]).map(z=>'<span class="tag">'+z+'</span>').join('')||'<span style="color:#aaa">—</span>';
+                const kpis  = (s.kpisImpactes||[]).map(k=>'<span class="tag tag-kpi">'+k+'</span>').join('')||'<span style="color:#aaa">—</span>';
+                tbody.innerHTML += '<tr>'+
+                    '<td>'+date+'</td>'+
+                    '<td><strong>'+s.matricule+'</strong></td>'+
+                    '<td>'+s.nom+'</td>'+
+                    '<td><span class="badge badge-dept">'+(s.departement||'—')+'</span></td>'+
+                    '<td><strong>'+(s.titreIdee||'—').substring(0,35)+'</strong></td>'+
+                    '<td>'+(s.probleme||'—').substring(0,40)+((s.probleme||'').length>40?'...':'')+'</td>'+
+                    '<td>'+(freqMap[s.frequence]||s.frequence||'—')+'</td>'+
+                    '<td style="max-width:160px">'+zones+'</td>'+
+                    '<td style="max-width:160px">'+kpis+'</td>'+
+                    '<td>'+(s.gain||'—')+'</td>'+
+                    '<td><button class="action-btn view" onclick="window.location.href=\'liste.html\'"><i class="fas fa-eye"></i> Voir</button></td>'+
+                '</tr>';
             });
         }
 
@@ -345,25 +339,12 @@
 
         function exportToExcel() {
             if (!suggestions.length) { alert('Aucune donnée à exporter'); return; }
+            const freqMap = {'quotidien':'Quotidienne','hebdomadaire':'Hebdomadaire','mensuel':'Mensuelle','occasionnel':'Occasionnelle'};
             const data = suggestions.map(function(s,i) {
-                return {
-                    'N°':i+1,
-                    'Date':new Date(s.dateCreation).toLocaleDateString('fr-FR'),
-                    'Heure':new Date(s.dateCreation).toLocaleTimeString('fr-FR'),
-                    'Matricule':s.matricule,
-                    'Nom':s.nom,
-                    'Département':s.departement||'',
-                    'Titre Idée':s.titreIdee||'',
-                    'Problème':s.probleme,
-                    'Fréquence':s.frequence,
-                    "Zones d'Impact":(s.zonesImpact||[]).join(', '),
-                    'Description Idée':s.idee,
-                    'Gain Estimé':s.gain||'',
-                    'KPIs Impactés':(s.kpisImpactes||[]).join(', ')
-                };
+                return { 'N°':i+1, 'Date':new Date(s.dateCreation).toLocaleDateString('fr-FR'), 'Heure':new Date(s.dateCreation).toLocaleTimeString('fr-FR'), 'Matricule':s.matricule, 'Nom':s.nom, 'Département':s.departement||'', 'Titre Idée':s.titreIdee||'', 'Problème':s.probleme||'', 'Fréquence':freqMap[s.frequence]||s.frequence||'', "Zones d'Impact":(s.zonesImpact||[]).join(' | '), 'Description Idée':s.idee||'', 'Gain Estimé':s.gain||'', 'KPIs Impactés':(s.kpisImpactes||[]).join(' | ') };
             });
             const ws = XLSX.utils.json_to_sheet(data);
-            ws['!cols'] = [{wch:5},{wch:12},{wch:10},{wch:12},{wch:22},{wch:20},{wch:20},{wch:40},{wch:15},{wch:40},{wch:40},{wch:15},{wch:40}];
+            ws['!cols'] = [{wch:5},{wch:12},{wch:10},{wch:12},{wch:25},{wch:22},{wch:20},{wch:45},{wch:18},{wch:50},{wch:45},{wch:15},{wch:50}];
             const wb = XLSX.utils.book_new();
             XLSX.utils.book_append_sheet(wb, ws, 'Suggestions');
             XLSX.writeFile(wb, 'Suggestions_Lear_'+new Date().toISOString().split('T')[0]+'.xlsx');
