@@ -46,7 +46,7 @@
         }
 
         body {
-            background: #FFFFFF;
+            background: linear-gradient(to right, #fde8ec 0%, #ffffff 15%, #ffffff 85%, #fde8ec 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -256,11 +256,10 @@
             display: none;
             width: 100%;
             max-width: 1380px;
-            background: #FFFFFF;
+            background: transparent;
             min-height: 100vh;
             border-radius: 6px;
             padding: 28px;
-            box-shadow: var(--sh-lg);
         }
         .main-wrapper.active { display: block; animation: fadeScale 0.45s ease; }
         @keyframes fadeScale {
@@ -392,7 +391,7 @@
             background: #fff; box-shadow: 0 4px 14px rgba(0,47,108,0.10);
         }
 
-        /* ✅ FIX CHECKBOX VISIBILITÉ */
+        /* FIX CHECKBOX VISIBILITÉ */
         input[type="checkbox"] {
             -webkit-appearance: auto !important;
             appearance: auto !important;
