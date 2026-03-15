@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Lear Corporation - Excellence & Innovation</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -11,6 +11,15 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Times New Roman', Times, serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
+
+        html {
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+            font-size: 16px;
         }
 
         html[lang="ar"] { direction: rtl; text-align: right; }
@@ -43,6 +52,7 @@
             align-items: center;
             justify-content: center;
             padding: 20px;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .language-selector {
@@ -92,6 +102,8 @@
             overflow: hidden;
             border: 1px solid rgba(200,16,46,0.08);
             animation: float 5s ease-in-out infinite;
+            transform: translateZ(0);
+            backface-visibility: hidden;
         }
         .login-card::before {
             content: '';
@@ -107,8 +119,8 @@
             100% { background-position: 300% 50%; }
         }
         @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50%       { transform: translateY(-8px); }
+            0%, 100% { transform: translateY(0) translateZ(0); }
+            50%       { transform: translateY(-8px) translateZ(0); }
         }
 
         .lear-branding { text-align: center; margin-bottom: 36px; }
@@ -166,6 +178,8 @@
             color: var(--black);
             font-family: 'Times New Roman', Times, serif;
             transition: all 0.25s;
+            -webkit-appearance: none;
+            appearance: none;
         }
         html[lang="ar"] .input-field-modern input,
         html[lang="ar"] .input-field-modern select { padding: 14px 46px 14px 16px; }
@@ -221,6 +235,7 @@
             font-family: 'Times New Roman', Times, serif;
             margin-top: 6px;
             box-shadow: 0 8px 24px rgba(0,47,108,0.28);
+            -webkit-appearance: none;
         }
         .btn-login-modern:hover {
             background: linear-gradient(135deg, var(--red), var(--red-dark));
@@ -366,8 +381,10 @@
             border: 1.5px solid var(--grey-light); border-radius: 4px;
             font-size: 15px; background: #FFFFFF; color: var(--black);
             font-family: 'Times New Roman', Times, serif; transition: all 0.25s;
+            -webkit-appearance: none;
+            appearance: none;
         }
-        .form-group-premium textarea { min-height: 96px; resize: vertical; }
+        .form-group-premium textarea { min-height: 96px; resize: vertical; -webkit-appearance: none; }
         .form-group-premium input:focus,
         .form-group-premium select:focus,
         .form-group-premium textarea:focus {
@@ -429,9 +446,10 @@
             background: linear-gradient(135deg, var(--blue), var(--red));
             color: white; border: none; padding: 17px; border-radius: 4px;
             font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.3s;
-            text-transform: uppercase; letter-spacing: 2.5px;
+            text-transform: uppercase; letter-spacing: 2.5px; width: 100%;
             font-family: 'Times New Roman', Times, serif; margin-top: 6px;
             box-shadow: 0 8px 24px rgba(0,47,108,0.22);
+            -webkit-appearance: none;
         }
         .btn-submit-premium:hover {
             background: linear-gradient(135deg, var(--red), var(--blue));
@@ -514,17 +532,17 @@
                     <i class="fas fa-sitemap"></i>
                     <select id="departement" onchange="clearErr('departement')">
                         <option value="" data-i18n="select_dept">-- Sélectionnez votre département --</option>
-                        <option value="Ingénierie">Ingénierie</option>
-                        <option value="Production">Production</option>
-                        <option value="Maintenance">Maintenance</option>
-                        <option value="Supply Chain">Supply Chain</option>
-                        <option value="Qualité">Qualité</option>
-                        <option value="Commercial / Ventes">Commercial / Ventes</option>
-                        <option value="Santé Sécurité Environnement (HSE)">Santé Sécurité Environnement (HSE)</option>
-                        <option value="Ressources Humaines (RH)">Ressources Humaines (RH)</option>
-                        <option value="Finances / Comptabilité">Finances / Comptabilité</option>
-                        <option value="Systèmes d'Information (IT)">Systèmes d'Information (IT)</option>
-                        <option value="Services Généraux">Services Généraux</option>
+                        <option value="Ingénierie" data-i18n="dept_engineering">Ingénierie</option>
+                        <option value="Production" data-i18n="dept_production">Production</option>
+                        <option value="Maintenance" data-i18n="dept_maintenance">Maintenance</option>
+                        <option value="Supply Chain" data-i18n="dept_supply">Supply Chain</option>
+                        <option value="Qualité" data-i18n="dept_quality">Qualité</option>
+                        <option value="Commercial / Ventes" data-i18n="dept_sales">Commercial / Ventes</option>
+                        <option value="Santé Sécurité Environnement (HSE)" data-i18n="dept_hse">Santé Sécurité Environnement (HSE)</option>
+                        <option value="Ressources Humaines (RH)" data-i18n="dept_hr">Ressources Humaines (RH)</option>
+                        <option value="Finances / Comptabilité" data-i18n="dept_finance">Finances / Comptabilité</option>
+                        <option value="Systèmes d'Information (IT)" data-i18n="dept_it">Systèmes d'Information (IT)</option>
+                        <option value="Services Généraux" data-i18n="dept_general">Services Généraux</option>
                     </select>
                 </div>
                 <div class="field-error" id="err-departement"></div>
@@ -598,10 +616,10 @@
                     <div class="form-group-premium">
                         <label><span data-i18n="frequency">FRÉQUENCE</span></label>
                         <select id="frequence">
-                            <option value="quotidien"    data-i18n="daily">Quotidienne</option>
+                            <option value="quotidien" data-i18n="daily">Quotidienne</option>
                             <option value="hebdomadaire" data-i18n="weekly">Hebdomadaire</option>
-                            <option value="mensuel"      data-i18n="monthly">Mensuelle</option>
-                            <option value="occasionnel"  data-i18n="occasional">Occasionnelle</option>
+                            <option value="mensuel" data-i18n="monthly">Mensuelle</option>
+                            <option value="occasionnel" data-i18n="occasional">Occasionnelle</option>
                         </select>
                         <div class="freq-hint" data-i18n="freq_hint">À quelle fréquence ce problème survient-il ? Indiquez si le problème se produit tous les jours, chaque semaine, chaque mois ou de manière irrégulière.</div>
                     </div>
@@ -614,15 +632,15 @@
                         <span data-i18n="impact_area">ZONES D'IMPACT</span>
                     </label>
                     <div class="multi-check-grid" id="zoneGrid">
-                        <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" value="Logistique Entrée"><span>Logistique Entrée</span></label>
-                        <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" value="Coupe"><span>Coupe</span></label>
-                        <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" value="Préparation"><span>Préparation</span></label>
-                        <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" value="Assemblage"><span>Assemblage</span></label>
-                        <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" value="Contrôle Qualité ECHOS Prise de Charge"><span>Contrôle Qualité ECHOS Prise de Charge</span></label>
-                        <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" value="Maintenance"><span>Maintenance</span></label>
-                        <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" value="Expédition / Livraison"><span>Expédition / Livraison</span></label>
-                        <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" value="Sécurité / RH"><span>Sécurité / RH</span></label>
-                        <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" value="Support / Administration"><span>Support / Administration</span></label>
+                        <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" value="Logistique Entrée"><span data-i18n="zone_logistique">Logistique Entrée</span></label>
+                        <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" value="Coupe"><span data-i18n="zone_coupe">Coupe</span></label>
+                        <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" value="Préparation"><span data-i18n="zone_preparation">Préparation</span></label>
+                        <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" value="Assemblage"><span data-i18n="zone_assemblage">Assemblage</span></label>
+                        <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" value="Contrôle Qualité ECHOS Prise de Charge"><span data-i18n="zone_qualite">Contrôle Qualité ECHOS Prise de Charge</span></label>
+                        <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" value="Maintenance"><span data-i18n="zone_maintenance">Maintenance</span></label>
+                        <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" value="Expédition / Livraison"><span data-i18n="zone_expedition">Expédition / Livraison</span></label>
+                        <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" value="Sécurité / RH"><span data-i18n="zone_securite">Sécurité / RH</span></label>
+                        <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" value="Support / Administration"><span data-i18n="zone_support">Support / Administration</span></label>
                     </div>
                 </div>
 
@@ -646,20 +664,20 @@
                         <span data-i18n="kpi_label">KPIs IMPACTÉS</span>
                     </label>
                     <div class="kpi-grid">
-                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Augmenter Productivité"><span>Augmenter Productivité</span></label>
-                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Réduire Coûts"><span>Réduire Coûts</span></label>
-                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Améliorer Qualité"><span>Améliorer Qualité</span></label>
-                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Réduire Délais"><span>Réduire Délais</span></label>
-                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Diminuer Rebuts"><span>Diminuer Rebuts</span></label>
-                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Réduire Arrêts"><span>Réduire Arrêts</span></label>
-                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Améliorer Traçabilité"><span>Améliorer Traçabilité</span></label>
-                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Optimiser Stocks"><span>Optimiser Stocks</span></label>
-                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Réduire Accidents"><span>Réduire Accidents</span></label>
-                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Améliorer Satisfaction"><span>Améliorer Satisfaction</span></label>
-                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Réduire Énergie"><span>Réduire Énergie</span></label>
-                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Optimiser Ressources"><span>Optimiser Ressources</span></label>
-                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Réduire Scrap"><span>Réduire Scrap</span></label>
-                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Améliorer Ergonomie"><span>Améliorer Ergonomie</span></label>
+                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Augmenter Productivité"><span data-i18n="kpi_productivity">Augmenter Productivité</span></label>
+                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Réduire Coûts"><span data-i18n="kpi_cost">Réduire Coûts</span></label>
+                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Améliorer Qualité"><span data-i18n="kpi_quality">Améliorer Qualité</span></label>
+                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Réduire Délais"><span data-i18n="kpi_delay">Réduire Délais</span></label>
+                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Diminuer Rebuts"><span data-i18n="kpi_scrap">Diminuer Rebuts</span></label>
+                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Réduire Arrêts"><span data-i18n="kpi_downtime">Réduire Arrêts</span></label>
+                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Améliorer Traçabilité"><span data-i18n="kpi_traceability">Améliorer Traçabilité</span></label>
+                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Optimiser Stocks"><span data-i18n="kpi_stock">Optimiser Stocks</span></label>
+                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Réduire Accidents"><span data-i18n="kpi_safety">Réduire Accidents</span></label>
+                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Améliorer Satisfaction"><span data-i18n="kpi_satisfaction">Améliorer Satisfaction</span></label>
+                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Réduire Énergie"><span data-i18n="kpi_energy">Réduire Énergie</span></label>
+                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Optimiser Ressources"><span data-i18n="kpi_resources">Optimiser Ressources</span></label>
+                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Réduire Scrap"><span data-i18n="kpi_reduce_scrap">Réduire Scrap</span></label>
+                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Améliorer Ergonomie"><span data-i18n="kpi_ergonomics">Améliorer Ergonomie</span></label>
                     </div>
                 </div>
 
@@ -678,8 +696,9 @@
     const T = {
         fr: {
             industrial_park:'PARC INDUSTRIEL DE MEKNÈS', matricule:'MATRICULE', full_name:'NOM COMPLET', department:'DÉPARTEMENT',
-            select_dept:'-- Sélectionnez votre département --', dept_engineering:'Ingénierie', dept_production:'Production',
-            dept_maintenance:'Maintenance', dept_supply:'Supply Chain', dept_quality:'Qualité', dept_sales:'Commercial / Ventes',
+            select_dept:'-- Sélectionnez votre département --',
+            dept_engineering:'Ingénierie', dept_production:'Production', dept_maintenance:'Maintenance',
+            dept_supply:'Supply Chain', dept_quality:'Qualité', dept_sales:'Commercial / Ventes',
             dept_hse:'Santé Sécurité Environnement (HSE)', dept_hr:'Ressources Humaines (RH)',
             dept_finance:'Finances / Comptabilité', dept_it:"Systèmes d'Information (IT)", dept_general:'Services Généraux',
             access_space:"ACCÉDER À L'ESPACE", excellence:'Excellence en Mouvement',
@@ -687,7 +706,17 @@
             logout:'DÉCONNEXION', submit_idea:'Soumettre une idée', your_contribution:'Votre contribution compte',
             idea_title:"TITRE DE L'IDÉE", problem_encountered:'PROBLÈME RENCONTRÉ',
             frequency:'FRÉQUENCE', daily:'Quotidienne', weekly:'Hebdomadaire', monthly:'Mensuelle', occasional:'Occasionnelle',
-            impact_area:"ZONES D'IMPACT", your_idea:"DESCRIPTION DE L'IDÉE", estimated_gain:'GAIN ESTIMÉ', kpi_label:'KPIs IMPACTÉS',
+            impact_area:"ZONES D'IMPACT",
+            zone_logistique:'Logistique Entrée', zone_coupe:'Coupe', zone_preparation:'Préparation',
+            zone_assemblage:'Assemblage', zone_qualite:'Contrôle Qualité ECHOS Prise de Charge',
+            zone_maintenance:'Maintenance', zone_expedition:'Expédition / Livraison',
+            zone_securite:'Sécurité / RH', zone_support:'Support / Administration',
+            your_idea:"DESCRIPTION DE L'IDÉE", estimated_gain:'GAIN ESTIMÉ', kpi_label:'KPIs IMPACTÉS',
+            kpi_productivity:'Augmenter Productivité', kpi_cost:'Réduire Coûts', kpi_quality:'Améliorer Qualité',
+            kpi_delay:'Réduire Délais', kpi_scrap:'Diminuer Rebuts', kpi_downtime:'Réduire Arrêts',
+            kpi_traceability:'Améliorer Traçabilité', kpi_stock:'Optimiser Stocks', kpi_safety:'Réduire Accidents',
+            kpi_satisfaction:'Améliorer Satisfaction', kpi_energy:'Réduire Énergie', kpi_resources:'Optimiser Ressources',
+            kpi_reduce_scrap:'Réduire Scrap', kpi_ergonomics:'Améliorer Ergonomie',
             validate_suggestion:'VALIDER MA SUGGESTION',
             freq_hint:"À quelle fréquence ce problème survient-il ? Indiquez si le problème se produit tous les jours, chaque semaine, chaque mois ou de manière irrégulière.",
             fill_required_fields:'Veuillez remplir les champs obligatoires (Titre, Problème, Description).',
@@ -697,8 +726,9 @@
         },
         en: {
             industrial_park:'INDUSTRIAL PARK OF MEKNES', matricule:'EMPLOYEE ID', full_name:'FULL NAME', department:'DEPARTMENT',
-            select_dept:'-- Select your department --', dept_engineering:'Engineering', dept_production:'Production',
-            dept_maintenance:'Maintenance', dept_supply:'Supply Chain', dept_quality:'Quality', dept_sales:'Sales & Commercial',
+            select_dept:'-- Select your department --',
+            dept_engineering:'Engineering', dept_production:'Production', dept_maintenance:'Maintenance',
+            dept_supply:'Supply Chain', dept_quality:'Quality', dept_sales:'Sales & Commercial',
             dept_hse:'Health Safety Environment (HSE)', dept_hr:'Human Resources (HR)',
             dept_finance:'Finance & Accounting', dept_it:'Information Systems (IT)', dept_general:'General Services',
             access_space:'ACCESS WORKSPACE', excellence:'Excellence in Motion',
@@ -706,7 +736,17 @@
             logout:'LOGOUT', submit_idea:'Submit an Idea', your_contribution:'Your contribution matters',
             idea_title:'IDEA TITLE', problem_encountered:'PROBLEM ENCOUNTERED',
             frequency:'FREQUENCY', daily:'Daily', weekly:'Weekly', monthly:'Monthly', occasional:'Occasional',
-            impact_area:'IMPACT AREAS', your_idea:'IDEA DESCRIPTION', estimated_gain:'ESTIMATED GAIN', kpi_label:'IMPACTED KPIs',
+            impact_area:'IMPACT AREAS',
+            zone_logistique:'Inbound Logistics', zone_coupe:'Cutting', zone_preparation:'Preparation',
+            zone_assemblage:'Assembly', zone_qualite:'Quality Control ECHOS Intake',
+            zone_maintenance:'Maintenance', zone_expedition:'Shipping / Delivery',
+            zone_securite:'Safety / HR', zone_support:'Support / Administration',
+            your_idea:'IDEA DESCRIPTION', estimated_gain:'ESTIMATED GAIN', kpi_label:'IMPACTED KPIs',
+            kpi_productivity:'Increase Productivity', kpi_cost:'Reduce Costs', kpi_quality:'Improve Quality',
+            kpi_delay:'Reduce Lead Times', kpi_scrap:'Reduce Rejects', kpi_downtime:'Reduce Downtime',
+            kpi_traceability:'Improve Traceability', kpi_stock:'Optimize Inventory', kpi_safety:'Reduce Accidents',
+            kpi_satisfaction:'Improve Satisfaction', kpi_energy:'Reduce Energy', kpi_resources:'Optimize Resources',
+            kpi_reduce_scrap:'Reduce Scrap', kpi_ergonomics:'Improve Ergonomics',
             validate_suggestion:'VALIDATE MY SUGGESTION',
             freq_hint:"How often does this problem occur? Indicate whether the issue happens every day, every week, every month, or only occasionally.",
             fill_required_fields:'Please fill in the required fields (Title, Problem, Description).',
@@ -716,8 +756,9 @@
         },
         ar: {
             industrial_park:'مدينة مكناس الصناعية', matricule:'رقم الموظف', full_name:'الاسم الكامل', department:'القسم',
-            select_dept:'-- اختر قسمك --', dept_engineering:'الهندسة', dept_production:'الإنتاج',
-            dept_maintenance:'الصيانة', dept_supply:'سلسلة التوريد', dept_quality:'الجودة', dept_sales:'المبيعات والتجارة',
+            select_dept:'-- اختر قسمك --',
+            dept_engineering:'الهندسة', dept_production:'الإنتاج', dept_maintenance:'الصيانة',
+            dept_supply:'سلسلة التوريد', dept_quality:'الجودة', dept_sales:'المبيعات والتجارة',
             dept_hse:'الصحة والسلامة والبيئة', dept_hr:'الموارد البشرية',
             dept_finance:'المالية والمحاسبة', dept_it:'أنظمة المعلومات', dept_general:'الخدمات العامة',
             access_space:'الوصول إلى المساحة', excellence:'التميز في الحركة',
@@ -725,7 +766,17 @@
             logout:'تسجيل الخروج', submit_idea:'تقديم فكرة', your_contribution:'مساهمتك مهمة',
             idea_title:'عنوان الفكرة', problem_encountered:'المشكلة التي واجهتها',
             frequency:'التكرار', daily:'يومي', weekly:'أسبوعي', monthly:'شهري', occasional:'عرضي',
-            impact_area:'مناطق التأثير', your_idea:'وصف الفكرة', estimated_gain:'الكسب المقدر', kpi_label:'مؤشرات الأداء المتأثرة',
+            impact_area:'مناطق التأثير',
+            zone_logistique:'اللوجستيك الوارد', zone_coupe:'القطع', zone_preparation:'التحضير',
+            zone_assemblage:'التجميع', zone_qualite:'مراقبة الجودة',
+            zone_maintenance:'الصيانة', zone_expedition:'الشحن والتسليم',
+            zone_securite:'السلامة / الموارد البشرية', zone_support:'الدعم / الإدارة',
+            your_idea:'وصف الفكرة', estimated_gain:'الكسب المقدر', kpi_label:'مؤشرات الأداء المتأثرة',
+            kpi_productivity:'زيادة الإنتاجية', kpi_cost:'تخفيض التكاليف', kpi_quality:'تحسين الجودة',
+            kpi_delay:'تقليل المهل', kpi_scrap:'تقليل المرفوضات', kpi_downtime:'تقليل التوقفات',
+            kpi_traceability:'تحسين التتبع', kpi_stock:'تحسين المخزون', kpi_safety:'تقليل الحوادث',
+            kpi_satisfaction:'تحسين الرضا', kpi_energy:'تقليل الطاقة', kpi_resources:'تحسين الموارد',
+            kpi_reduce_scrap:'تقليل الخردة', kpi_ergonomics:'تحسين بيئة العمل',
             validate_suggestion:'تأكيد الاقتراح',
             freq_hint:"ما مدى تكرار هذه المشكلة؟ حدد ما إذا كانت تحدث يومياً أو أسبوعياً أو شهرياً أو بشكل متقطع.",
             fill_required_fields:'يرجى ملء الحقول المطلوبة (العنوان، المشكلة، الوصف).',
