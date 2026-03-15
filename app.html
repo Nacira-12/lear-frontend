@@ -632,15 +632,15 @@
                         <span data-i18n="impact_area">ZONES D'IMPACT</span>
                     </label>
                     <div class="multi-check-grid" id="zoneGrid">
-                        <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" value="Logistique Entrée"><span data-i18n="zone_logistique">Logistique Entrée</span></label>
-                        <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" value="Coupe"><span data-i18n="zone_coupe">Coupe</span></label>
-                        <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" value="Préparation"><span data-i18n="zone_preparation">Préparation</span></label>
-                        <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" value="Assemblage"><span data-i18n="zone_assemblage">Assemblage</span></label>
-                        <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" value="Contrôle Qualité ECHOS Prise de Charge"><span data-i18n="zone_qualite">Contrôle Qualité ECHOS Prise de Charge</span></label>
-                        <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" value="Maintenance"><span data-i18n="zone_maintenance">Maintenance</span></label>
-                        <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" value="Expédition / Livraison"><span data-i18n="zone_expedition">Expédition / Livraison</span></label>
-                        <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" value="Sécurité / RH"><span data-i18n="zone_securite">Sécurité / RH</span></label>
-                        <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox" value="Support / Administration"><span data-i18n="zone_support">Support / Administration</span></label>
+                        <label class="check-item"><input type="checkbox" value="Logistique Entrée" onchange="toggleCheck(this.closest('.check-item'))"><span data-i18n="zone_logistique">Logistique Entrée</span></label>
+                        <label class="check-item"><input type="checkbox" value="Coupe" onchange="toggleCheck(this.closest('.check-item'))"><span data-i18n="zone_coupe">Coupe</span></label>
+                        <label class="check-item"><input type="checkbox" value="Préparation" onchange="toggleCheck(this.closest('.check-item'))"><span data-i18n="zone_preparation">Préparation</span></label>
+                        <label class="check-item"><input type="checkbox" value="Assemblage" onchange="toggleCheck(this.closest('.check-item'))"><span data-i18n="zone_assemblage">Assemblage</span></label>
+                        <label class="check-item"><input type="checkbox" value="Contrôle Qualité ECHOS Prise de Charge" onchange="toggleCheck(this.closest('.check-item'))"><span data-i18n="zone_qualite">Contrôle Qualité ECHOS Prise de Charge</span></label>
+                        <label class="check-item"><input type="checkbox" value="Maintenance" onchange="toggleCheck(this.closest('.check-item'))"><span data-i18n="zone_maintenance">Maintenance</span></label>
+                        <label class="check-item"><input type="checkbox" value="Expédition / Livraison" onchange="toggleCheck(this.closest('.check-item'))"><span data-i18n="zone_expedition">Expédition / Livraison</span></label>
+                        <label class="check-item"><input type="checkbox" value="Sécurité / RH" onchange="toggleCheck(this.closest('.check-item'))"><span data-i18n="zone_securite">Sécurité / RH</span></label>
+                        <label class="check-item"><input type="checkbox" value="Support / Administration" onchange="toggleCheck(this.closest('.check-item'))"><span data-i18n="zone_support">Support / Administration</span></label>
                     </div>
                 </div>
 
@@ -664,20 +664,20 @@
                         <span data-i18n="kpi_label">KPIs IMPACTÉS</span>
                     </label>
                     <div class="kpi-grid">
-                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Augmenter Productivité"><span data-i18n="kpi_productivity">Augmenter Productivité</span></label>
-                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Réduire Coûts"><span data-i18n="kpi_cost">Réduire Coûts</span></label>
-                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Améliorer Qualité"><span data-i18n="kpi_quality">Améliorer Qualité</span></label>
-                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Réduire Délais"><span data-i18n="kpi_delay">Réduire Délais</span></label>
-                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Diminuer Rebuts"><span data-i18n="kpi_scrap">Diminuer Rebuts</span></label>
-                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Réduire Arrêts"><span data-i18n="kpi_downtime">Réduire Arrêts</span></label>
-                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Améliorer Traçabilité"><span data-i18n="kpi_traceability">Améliorer Traçabilité</span></label>
-                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Optimiser Stocks"><span data-i18n="kpi_stock">Optimiser Stocks</span></label>
-                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Réduire Accidents"><span data-i18n="kpi_safety">Réduire Accidents</span></label>
-                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Améliorer Satisfaction"><span data-i18n="kpi_satisfaction">Améliorer Satisfaction</span></label>
-                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Réduire Énergie"><span data-i18n="kpi_energy">Réduire Énergie</span></label>
-                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Optimiser Ressources"><span data-i18n="kpi_resources">Optimiser Ressources</span></label>
-                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Réduire Scrap"><span data-i18n="kpi_reduce_scrap">Réduire Scrap</span></label>
-                        <label class="kpi-item" onclick="toggleKpi(this)"><input type="checkbox" value="Améliorer Ergonomie"><span data-i18n="kpi_ergonomics">Améliorer Ergonomie</span></label>
+                        <label class="kpi-item"><input type="checkbox" value="Augmenter Productivité" onchange="toggleKpi(this.closest('.kpi-item'))"><span data-i18n="kpi_productivity">Augmenter Productivité</span></label>
+                        <label class="kpi-item"><input type="checkbox" value="Réduire Coûts" onchange="toggleKpi(this.closest('.kpi-item'))"><span data-i18n="kpi_cost">Réduire Coûts</span></label>
+                        <label class="kpi-item"><input type="checkbox" value="Améliorer Qualité" onchange="toggleKpi(this.closest('.kpi-item'))"><span data-i18n="kpi_quality">Améliorer Qualité</span></label>
+                        <label class="kpi-item"><input type="checkbox" value="Réduire Délais" onchange="toggleKpi(this.closest('.kpi-item'))"><span data-i18n="kpi_delay">Réduire Délais</span></label>
+                        <label class="kpi-item"><input type="checkbox" value="Diminuer Rebuts" onchange="toggleKpi(this.closest('.kpi-item'))"><span data-i18n="kpi_scrap">Diminuer Rebuts</span></label>
+                        <label class="kpi-item"><input type="checkbox" value="Réduire Arrêts" onchange="toggleKpi(this.closest('.kpi-item'))"><span data-i18n="kpi_downtime">Réduire Arrêts</span></label>
+                        <label class="kpi-item"><input type="checkbox" value="Améliorer Traçabilité" onchange="toggleKpi(this.closest('.kpi-item'))"><span data-i18n="kpi_traceability">Améliorer Traçabilité</span></label>
+                        <label class="kpi-item"><input type="checkbox" value="Optimiser Stocks" onchange="toggleKpi(this.closest('.kpi-item'))"><span data-i18n="kpi_stock">Optimiser Stocks</span></label>
+                        <label class="kpi-item"><input type="checkbox" value="Réduire Accidents" onchange="toggleKpi(this.closest('.kpi-item'))"><span data-i18n="kpi_safety">Réduire Accidents</span></label>
+                        <label class="kpi-item"><input type="checkbox" value="Améliorer Satisfaction" onchange="toggleKpi(this.closest('.kpi-item'))"><span data-i18n="kpi_satisfaction">Améliorer Satisfaction</span></label>
+                        <label class="kpi-item"><input type="checkbox" value="Réduire Énergie" onchange="toggleKpi(this.closest('.kpi-item'))"><span data-i18n="kpi_energy">Réduire Énergie</span></label>
+                        <label class="kpi-item"><input type="checkbox" value="Optimiser Ressources" onchange="toggleKpi(this.closest('.kpi-item'))"><span data-i18n="kpi_resources">Optimiser Ressources</span></label>
+                        <label class="kpi-item"><input type="checkbox" value="Réduire Scrap" onchange="toggleKpi(this.closest('.kpi-item'))"><span data-i18n="kpi_reduce_scrap">Réduire Scrap</span></label>
+                        <label class="kpi-item"><input type="checkbox" value="Améliorer Ergonomie" onchange="toggleKpi(this.closest('.kpi-item'))"><span data-i18n="kpi_ergonomics">Améliorer Ergonomie</span></label>
                     </div>
                 </div>
 
@@ -860,8 +860,15 @@
         document.getElementById('loginAlert').classList.remove('show');
     }
 
-    function toggleCheck(label) { label.classList.toggle('selected'); }
-    function toggleKpi(label)   { label.classList.toggle('selected'); }
+    function toggleCheck(label) {
+        const cb = label.querySelector('input[type="checkbox"]');
+        label.classList.toggle('selected', cb.checked);
+    }
+
+    function toggleKpi(label) {
+        const cb = label.querySelector('input[type="checkbox"]');
+        label.classList.toggle('selected', cb.checked);
+    }
 
     async function validerSuggestion() {
         const titre    = document.getElementById('titreIdee').value.trim();
