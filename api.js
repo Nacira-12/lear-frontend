@@ -38,12 +38,21 @@ async function genererQRCode() {
   }
 }
 
-// Fonction pour récupérer toutes les suggestions
+// Fonction pour récupérer toutes les suggestions - CORRIGÉE
 async function obtenirSuggestions() {
   try {
     const response = await fetch(`${API_URL}/suggestion/liste`);
-    const result = await response.json();
-    return { success: true, suggestions: result };
+    const data = await response.json();
+    
+    // Vérifier si c'est un tableau directement ou dans 'suggestions'
+    const suggestions = Array.isArray(data) ? data : (data.suggestions || []);
+    
+    console.log('Suggestions reçues:', suggestions);
+    
+    return { 
+      success: true,
+      suggestions: suggestions
+    };
   } catch (error) {
     console.error('Erreur:', error);
     return { 
