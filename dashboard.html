@@ -204,8 +204,87 @@
 
         function genererQR() {
             const APP_URL = 'https://nacira-12.github.io/lear-frontend/app.html';
-            alert('QR Code pour : ' + APP_URL + '\n\nURL copiée !');
-            navigator.clipboard.writeText(APP_URL);
+            
+            // Créer une modal pour afficher le QR Code
+            const modal = document.createElement('div');
+            modal.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); display:flex; align-items:center; justify-content:center; z-index:9999;';
+            
+            const content = document.createElement('div');
+            content.style.cssText = 'background:white; padding:30px; border-radius:12px; text-align:center; box-shadow:0 10px 40px rgba(0,0,0,0.3);';
+            
+            const title = document.createElement('h2');
+            title.textContent = 'QR Code - Lear Corporation';
+            title.style.cssText = 'color:#C8102E; margin-bottom:20px;';
+            
+            const qrContainer = document.createElement('div');
+            qrContainer.id = 'qrcode-temp';
+            qrContainer.style.cssText = 'margin:20px 0; display:flex; justify-content:center;';
+            
+            const info = document.createElement('p');
+            info.textContent = 'Scannez ce code pour accéder à l\'application';
+            info.style.cssText = 'color:#333; margin-bottom:20px; font-size:14px;';
+            
+            const urlDisplay = document.createElement('p');
+            urlDisplay.textContent = APP_URL;
+            urlDisplay.style.cssText = 'color:#0066cc; font-size:12px; word-break:break-all; margin-bottom:20px;';
+            
+            const btnClose = document.createElement('button');
+            btnClose.textContent = 'Fermer';
+            btnClose.style.cssText = 'padding:10px 30px; background:#C8102E; color:white; border:none; border-radius:6px; cursor:pointer; font-weight:600;';
+            btnClose.onclick = () => modal.remove();
+            
+            const btnPrint = document.createElement('button');
+            btnPrint.textContent = 'Imprimer';
+            btnPrint.style.cssText = 'padding:10px 30px; background:#002F6C; color:white; border:none; border-radius:6px; cursor:pointer; font-weight:600; margin-left:10px;';
+            btnPrint.onclick = () => {
+                const printWindow = window.open('', '_blank');
+                const canvas = qrContainer.querySelector('canvas');
+                if (canvas) {
+                    const qrImage = canvas.toDataURL('image/png');
+                    printWindow.document.write(`
+                        <!DOCTYPE html>
+                        <html>
+                        <head>
+                            <title>QR Code - Lear Corporation</title>
+                            <style>
+                                body { text-align:center; padding:40px; font-family:Arial; }
+                                h1 { color:#C8102E; }
+                                img { max-width:400px; margin:30px 0; border:4px solid #C8102E; padding:20px; }
+                                p { font-size:18px; color:#333; }
+                            </style>
+                        </head>
+                        <body>
+                            <h1>LEAR CORPORATION</h1>
+                            <h2>Système d'Amélioration Continue</h2>
+                            <img src="${qrImage}" alt="QR Code">
+                            <p style="font-weight:bold; color:#C8102E;">Scannez ce code pour soumettre vos idées</p>
+                            <p>Votre contribution compte !</p>
+                        </body>
+                        </html>
+                    `);
+                    printWindow.document.close();
+                    setTimeout(() => printWindow.print(), 500);
+                }
+            };
+            
+            content.appendChild(title);
+            content.appendChild(qrContainer);
+            content.appendChild(info);
+            content.appendChild(urlDisplay);
+            content.appendChild(btnPrint);
+            content.appendChild(btnClose);
+            modal.appendChild(content);
+            document.body.appendChild(modal);
+            
+            // Générer le QR Code
+            new QRCode(document.getElementById('qrcode-temp'), {
+                text: APP_URL,
+                width: 256,
+                height: 256,
+                colorDark: "#000000",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            });
         }
 
         function afficherListe() {
