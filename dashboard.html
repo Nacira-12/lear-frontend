@@ -44,7 +44,7 @@
         .chart-container { height:350px; position:relative; }
         .chart-full { grid-column:1/-1; }
         .chart-full .chart-container { height:500px; }
-        .table-box { background:white; padding:25px; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.08); }
+        .table-box { background:white; padding:25px; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.08); overflow-x:auto; }
         table { width:100%; border-collapse:collapse; }
         th { background:#f5f5f5; padding:12px; text-align:left; font-weight:600; font-size:12px; border-bottom:2px solid #ddd; color:#000; }
         td { padding:12px; border-bottom:1px solid #ddd; font-size:13px; color:#000; }
@@ -71,9 +71,9 @@
     <div class="container">
         <div class="quick-nav">
             <button class="nav-btn excel" onclick="exportToExcel()"><i class="fas fa-file-excel"></i> Exporter Excel</button>
-            <button class="nav-btn refresh" onclick="chargerDonnees()"><i class="fas fa-sync"></i> Actualiser</button>
-            <button class="nav-btn qr" onclick="window.location.href='admin.html'"><i class="fas fa-qrcode"></i> QR Code</button>
-            <button class="nav-btn list" onclick="window.location.href='liste.html'"><i class="fas fa-list"></i> Listes Suggestions</button>
+            <button class="nav-btn refresh" onclick="actualiser()"><i class="fas fa-sync"></i> Actualiser</button>
+            <button class="nav-btn qr" onclick="genererQR()"><i class="fas fa-qrcode"></i> QR Code</button>
+            <button class="nav-btn list" onclick="afficherListe()"><i class="fas fa-list"></i> Listes Suggestions</button>
         </div>
 
         <div class="filters-box">
@@ -155,7 +155,11 @@
                         <th>Nom</th>
                         <th>Département</th>
                         <th>Titre</th>
-                        <th>Zones d'Impact</th>
+                        <th>Problème</th>
+                        <th>Fréquence</th>
+                        <th>Idée</th>
+                        <th>Gain</th>
+                        <th>Zones</th>
                         <th>KPIs</th>
                     </tr>
                 </thead>
@@ -166,6 +170,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script src="api.js"></script>
     <script>
         let allSuggestions = [];
@@ -173,21 +178,15 @@
         let charts = {};
 
         const COLORS = ['#C8102E','#002F6C','#2ecc71','#f39c12','#9b59b6','#1abc9c','#3498db','#e67e22'];
-        
-        // ZONES CORRECTES (comme dans app.html)
         const ALL_ZONES = ['Magasin','Coupe','Préparation','Assemblage','Expédition','Autre'];
-        
-        // KPIs CORRECTS (comme dans app.html)
         const ALL_KPIS = ['Productivité','Coûts','Qualité','Délais','Ergonomie','Traçabilité','Scrap','Énergie','Stocks','Ressources','Autre'];
 
         async function chargerDonnees() {
             try {
                 const result = await obtenirSuggestions();
-                console.log('Résultat API:', result);
                 if (result.success && result.suggestions && Array.isArray(result.suggestions)) {
                     allSuggestions = result.suggestions;
                     suggestions = result.suggestions;
-                    console.log('Suggestions chargées:', suggestions.length);
                     remplirDepartements();
                     updateAllStats();
                     updateAllCharts();
@@ -198,9 +197,26 @@
             }
         }
 
+        function actualiser() {
+            console.log('Actualiser');
+            chargerDonnees();
+        }
+
+        function genererQR() {
+            const APP_URL = 'https://nacira-12.github.io/lear-frontend/app.html';
+            alert('QR Code pour : ' + APP_URL + '\n\nURL copiée !');
+            navigator.clipboard.writeText(APP_URL);
+        }
+
+        function afficherListe() {
+            alert('Redirection vers la liste des suggestions');
+            window.location.href = 'liste.html';
+        }
+
         function remplirDepartements() {
             const depts = [...new Set(allSuggestions.map(s => s.departement))].filter(d => d).sort();
             const select = document.getElementById('filterDept');
+            select.innerHTML = '<option value="">Tous</option>';
             depts.forEach(dept => {
                 const option = document.createElement('option');
                 option.value = dept;
@@ -246,7 +262,6 @@
         }
 
         function appliquerFiltres() {
-            console.log('Appliquer filtres');
             const dept = document.getElementById('filterDept').value;
             const period = document.getElementById('filterPeriod').value;
 
@@ -261,14 +276,12 @@
                 return matchDept && matchPeriod;
             });
 
-            console.log('Suggestions filtrées:', suggestions.length);
             updateAllStats();
             updateAllCharts();
             mettreAJourTableau();
         }
 
         function reinitialiserFiltres() {
-            console.log('Réinitialiser filtres');
             document.getElementById('filterDept').value = '';
             document.getElementById('filterPeriod').value = '';
             suggestions = allSuggestions;
@@ -410,15 +423,30 @@
                 const date = new Date(s.dateCreation).toLocaleDateString('fr-FR');
                 const zones = (s.zonesImpact || []).join(', ');
                 const kpis = (s.kpisImpactes || []).join(', ');
+                const freqMap = {'quotidien':'Quotidienne','hebdomadaire':'Hebdomadaire','mensuel':'Mensuelle','occasionnel':'Occasionnelle'};
+                const freq = freqMap[s.frequence] || s.frequence || '-';
                 const row = document.createElement('tr');
-                row.innerHTML = `<td>${date}</td><td>${s.matricule}</td><td>${s.nom}</td><td>${s.departement || '-'}</td><td>${s.titreIdee || '-'}</td><td>${zones || '-'}</td><td>${kpis || '-'}</td>`;
+                row.innerHTML = `<td>${date}</td><td>${s.matricule}</td><td>${s.nom}</td><td>${s.departement || '-'}</td><td>${s.titreIdee || '-'}</td><td>${s.probleme || '-'}</td><td>${freq}</td><td>${s.idee || '-'}</td><td>${s.gain || '-'}</td><td>${zones || '-'}</td><td>${kpis || '-'}</td>`;
                 tbody.appendChild(row);
             });
         }
 
         function exportToExcel() {
             if (!suggestions.length) { alert('Aucune donnée'); return; }
-            const data = suggestions.map((s,i) => ({ 'N°':i+1, 'Date':new Date(s.dateCreation).toLocaleDateString('fr-FR'), 'Matricule':s.matricule, 'Nom':s.nom, 'Département':s.departement||'', 'Titre':s.titreIdee||'', 'Zones':(s.zonesImpact||[]).join(' | '), 'KPIs':(s.kpisImpactes||[]).join(' | ') }));
+            const data = suggestions.map((s,i) => ({
+                'N°':i+1,
+                'Date':new Date(s.dateCreation).toLocaleDateString('fr-FR'),
+                'Matricule':s.matricule,
+                'Nom':s.nom,
+                'Département':s.departement||'',
+                'Titre':s.titreIdee||'',
+                'Problème':s.probleme||'',
+                'Fréquence':s.frequence||'',
+                'Idée':s.idee||'',
+                'Gain':s.gain||'',
+                'Zones':(s.zonesImpact||[]).join(' | '),
+                'KPIs':(s.kpisImpactes||[]).join(' | ')
+            }));
             const ws = XLSX.utils.json_to_sheet(data);
             const wb = XLSX.utils.book_new();
             XLSX.utils.book_append_sheet(wb, ws, 'Suggestions');
