@@ -47,7 +47,7 @@
         th { background:#f5f5f5; padding:12px; text-align:left; font-weight:600; font-size:12px; border-bottom:2px solid #ddd; }
         td { padding:12px; border-bottom:1px solid #ddd; font-size:13px; }
         tr:hover { background:#f9f9f9; }
-        .tag { display:inline-block; padding:3px 8px; background:#e8f0f7; color:#0066cc; border-radius:4px; font-size:11px; margin:2px 2px 2px 0; }
+        .text-simple { color:#333; font-size:13px; line-height:1.6; }
     </style>
 </head>
 <body>
@@ -145,11 +145,11 @@
                 <div class="chart-container"><canvas id="freqChart"></canvas></div>
             </div>
             <div class="chart-box">
-                <div class="chart-title">Zones d'Impact</div>
+                <div class="chart-title">Zones d'Impact les plus citées</div>
                 <div class="chart-container"><canvas id="zoneChart"></canvas></div>
             </div>
             <div class="chart-box chart-full">
-                <div class="chart-title">KPIs Impactés — Analyse complète</div>
+                <div class="chart-title">KPIs Impactés</div>
                 <div class="chart-container"><canvas id="kpiChart"></canvas></div>
             </div>
         </div>
@@ -188,13 +188,17 @@
         async function chargerDonnees() {
             try {
                 const result = await obtenirSuggestions();
-                if (result.success) {
+                console.log('Résultat API:', result);
+                if (result.success && result.suggestions && Array.isArray(result.suggestions)) {
                     allSuggestions = result.suggestions;
                     suggestions = result.suggestions;
+                    console.log('Suggestions chargées:', suggestions.length);
                     remplirDepartements();
                     updateAllStats();
                     updateAllCharts();
                     mettreAJourTableau();
+                } else {
+                    console.error('Format de réponse invalide');
                 }
             } catch(e) {
                 console.error('Erreur:', e);
@@ -325,7 +329,7 @@
             if (Object.keys(kpiCounts).length > 0) {
                 const topKpi = Object.entries(kpiCounts).sort((a,b) => b[1] - a[1])[0];
                 document.getElementById('topKpi').textContent = topKpi[0];
-                document.getElementById('topKpiVal').textContent = topKpi[1] + ' occurrences';
+                document.getElementById('topKpiVal').textContent = topKpi[1] + ' fois';
             }
 
             const zoneCounts = {};
@@ -337,7 +341,7 @@
             if (Object.keys(zoneCounts).length > 0) {
                 const topZone = Object.entries(zoneCounts).sort((a,b) => b[1] - a[1])[0];
                 document.getElementById('topZone').textContent = topZone[0];
-                document.getElementById('topZoneVal').textContent = topZone[1] + ' occurrences';
+                document.getElementById('topZoneVal').textContent = topZone[1] + ' fois';
             }
         }
 
@@ -420,7 +424,7 @@
             const data = sorted.map(e => e[1]);
             charts.zone = new Chart(ctx, {
                 type: 'bar',
-                data: { labels: labels, datasets: [{label: 'Occurrences', data: data, backgroundColor: labels.map((_,i) => COLORS[i%COLORS.length]), borderRadius: 6}] },
+                data: { labels: labels, datasets: [{label: 'Occurrences', data: data, backgroundColor: COLORS, borderRadius: 6}] },
                 options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { beginAtZero: true } } }
             });
         }
@@ -438,7 +442,7 @@
             const data = sorted.map(e => e[1]);
             charts.kpi = new Chart(ctx, {
                 type: 'bar',
-                data: { labels: labels, datasets: [{label: 'Occurrences', data: data, backgroundColor: labels.map((_,i) => COLORS[i%COLORS.length]), borderRadius: 6}] },
+                data: { labels: labels, datasets: [{label: 'Occurrences', data: data, backgroundColor: COLORS, borderRadius: 6}] },
                 options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { beginAtZero: true } } }
             });
         }
@@ -448,17 +452,16 @@
             tbody.innerHTML = '';
             suggestions.slice(0, 20).forEach(s => {
                 const date = new Date(s.dateCreation).toLocaleDateString('fr-FR');
-                const zones = (s.zonesImpact || []).map(z => '<span class="tag">' + z + '</span>').join('');
-                const kpis = (s.kpisImpactes || []).map(k => '<span class="tag">' + k + '</span>').join('');
+                const zones = (s.zonesImpact || []).join(', ');
+                const kpis = (s.kpisImpactes || []).join(', ');
                 const row = document.createElement('tr');
-                row.innerHTML = `<td>${date}</td><td>${s.matricule}</td><td>${s.nom}</td><td>${s.departement || '-'}</td><td>${s.titreIdee || '-'}</td><td>${zones}</td><td>${kpis}</td>`;
+                row.innerHTML = `<td>${date}</td><td>${s.matricule}</td><td>${s.nom}</td><td>${s.departement || '-'}</td><td>${s.titreIdee || '-'}</td><td class="text-simple">${zones || '-'}</td><td class="text-simple">${kpis || '-'}</td>`;
                 tbody.appendChild(row);
             });
         }
 
         function exportToExcel() {
             if (!suggestions.length) { alert('Aucune donnée'); return; }
-            const freqMap = {'quotidien':'Quotidienne','hebdomadaire':'Hebdomadaire','mensuel':'Mensuelle','occasionnel':'Occasionnelle'};
             const data = suggestions.map((s,i) => ({ 'N°':i+1, 'Date':new Date(s.dateCreation).toLocaleDateString('fr-FR'), 'Matricule':s.matricule, 'Nom':s.nom, 'Département':s.departement||'', 'Titre':s.titreIdee||'', 'Zones':(s.zonesImpact||[]).join(' | '), 'KPIs':(s.kpisImpactes||[]).join(' | ') }));
             const ws = XLSX.utils.json_to_sheet(data);
             const wb = XLSX.utils.book_new();
