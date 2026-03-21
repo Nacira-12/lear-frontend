@@ -61,7 +61,7 @@
                 </svg>
                 <div>
                     <h1>Dashboard Admin</h1>
-                    <p>Lear Corporation - Excellence & Innovation</p>
+                    <p>Lear Corporation - Système de Suggestions</p>
                 </div>
             </div>
             <button class="btn-logout" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Déconnexion</button>
@@ -203,7 +203,7 @@
         }
 
         function genererQR() {
-            const APP_URL = 'https://nacira-12.github.io/lear-frontend/app.html';
+            const APP_URL = 'https://lear-suggestions.vercel.app/app.html';
             
             // Créer une modal pour afficher le QR Code
             const modal = document.createElement('div');
@@ -288,7 +288,6 @@
         }
 
         function afficherListe() {
-            alert('Redirection vers la liste des suggestions');
             window.location.href = 'liste.html';
         }
 
