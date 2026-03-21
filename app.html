@@ -412,7 +412,7 @@
 
         .multi-check-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             gap: 9px;
         }
 
@@ -433,7 +433,7 @@
 
         .kpi-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             gap: 9px;
         }
 
@@ -642,15 +642,12 @@
                         <span data-i18n="impact_area">ZONES D'IMPACT</span>
                     </label>
                     <div class="multi-check-grid" id="zoneGrid">
-                        <label class="check-item"><input type="checkbox" value="Logistique Entrée" onchange="toggleCheck(this.closest('.check-item'))"><span data-i18n="zone_logistique">Logistique Entrée</span></label>
+                        <label class="check-item"><input type="checkbox" value="Magasin" onchange="toggleCheck(this.closest('.check-item'))"><span data-i18n="zone_magasin">Magasin</span></label>
                         <label class="check-item"><input type="checkbox" value="Coupe" onchange="toggleCheck(this.closest('.check-item'))"><span data-i18n="zone_coupe">Coupe</span></label>
                         <label class="check-item"><input type="checkbox" value="Préparation" onchange="toggleCheck(this.closest('.check-item'))"><span data-i18n="zone_preparation">Préparation</span></label>
                         <label class="check-item"><input type="checkbox" value="Assemblage" onchange="toggleCheck(this.closest('.check-item'))"><span data-i18n="zone_assemblage">Assemblage</span></label>
-                        <label class="check-item"><input type="checkbox" value="Contrôle Qualité ECHOS Prise de Charge" onchange="toggleCheck(this.closest('.check-item'))"><span data-i18n="zone_qualite">Contrôle Qualité ECHOS Prise de Charge</span></label>
-                        <label class="check-item"><input type="checkbox" value="Maintenance" onchange="toggleCheck(this.closest('.check-item'))"><span data-i18n="zone_maintenance">Maintenance</span></label>
-                        <label class="check-item"><input type="checkbox" value="Expédition / Livraison" onchange="toggleCheck(this.closest('.check-item'))"><span data-i18n="zone_expedition">Expédition / Livraison</span></label>
-                        <label class="check-item"><input type="checkbox" value="Sécurité / RH" onchange="toggleCheck(this.closest('.check-item'))"><span data-i18n="zone_securite">Sécurité / RH</span></label>
-                        <label class="check-item"><input type="checkbox" value="Support / Administration" onchange="toggleCheck(this.closest('.check-item'))"><span data-i18n="zone_support">Support / Administration</span></label>
+                        <label class="check-item"><input type="checkbox" value="Expédition" onchange="toggleCheck(this.closest('.check-item'))"><span data-i18n="zone_expedition">Expédition</span></label>
+                        <label class="check-item"><input type="checkbox" value="Autre" onchange="toggleCheck(this.closest('.check-item'))"><span data-i18n="zone_autre">Autre</span></label>
                     </div>
                 </div>
 
@@ -674,20 +671,17 @@
                         <span data-i18n="kpi_label">KPIs IMPACTÉS</span>
                     </label>
                     <div class="kpi-grid">
-                        <label class="kpi-item"><input type="checkbox" value="Augmenter Productivité" onchange="toggleKpi(this.closest('.kpi-item'))"><span data-i18n="kpi_productivity">Augmenter Productivité</span></label>
-                        <label class="kpi-item"><input type="checkbox" value="Réduire Coûts" onchange="toggleKpi(this.closest('.kpi-item'))"><span data-i18n="kpi_cost">Réduire Coûts</span></label>
-                        <label class="kpi-item"><input type="checkbox" value="Améliorer Qualité" onchange="toggleKpi(this.closest('.kpi-item'))"><span data-i18n="kpi_quality">Améliorer Qualité</span></label>
-                        <label class="kpi-item"><input type="checkbox" value="Réduire Délais" onchange="toggleKpi(this.closest('.kpi-item'))"><span data-i18n="kpi_delay">Réduire Délais</span></label>
-                        <label class="kpi-item"><input type="checkbox" value="Diminuer Rebuts" onchange="toggleKpi(this.closest('.kpi-item'))"><span data-i18n="kpi_scrap">Diminuer Rebuts</span></label>
-                        <label class="kpi-item"><input type="checkbox" value="Réduire Arrêts" onchange="toggleKpi(this.closest('.kpi-item'))"><span data-i18n="kpi_downtime">Réduire Arrêts</span></label>
-                        <label class="kpi-item"><input type="checkbox" value="Améliorer Traçabilité" onchange="toggleKpi(this.closest('.kpi-item'))"><span data-i18n="kpi_traceability">Améliorer Traçabilité</span></label>
-                        <label class="kpi-item"><input type="checkbox" value="Optimiser Stocks" onchange="toggleKpi(this.closest('.kpi-item'))"><span data-i18n="kpi_stock">Optimiser Stocks</span></label>
-                        <label class="kpi-item"><input type="checkbox" value="Réduire Accidents" onchange="toggleKpi(this.closest('.kpi-item'))"><span data-i18n="kpi_safety">Réduire Accidents</span></label>
-                        <label class="kpi-item"><input type="checkbox" value="Améliorer Satisfaction" onchange="toggleKpi(this.closest('.kpi-item'))"><span data-i18n="kpi_satisfaction">Améliorer Satisfaction</span></label>
-                        <label class="kpi-item"><input type="checkbox" value="Réduire Énergie" onchange="toggleKpi(this.closest('.kpi-item'))"><span data-i18n="kpi_energy">Réduire Énergie</span></label>
-                        <label class="kpi-item"><input type="checkbox" value="Optimiser Ressources" onchange="toggleKpi(this.closest('.kpi-item'))"><span data-i18n="kpi_resources">Optimiser Ressources</span></label>
-                        <label class="kpi-item"><input type="checkbox" value="Réduire Scrap" onchange="toggleKpi(this.closest('.kpi-item'))"><span data-i18n="kpi_reduce_scrap">Réduire Scrap</span></label>
-                        <label class="kpi-item"><input type="checkbox" value="Améliorer Ergonomie" onchange="toggleKpi(this.closest('.kpi-item'))"><span data-i18n="kpi_ergonomics">Améliorer Ergonomie</span></label>
+                        <label class="kpi-item"><input type="checkbox" value="Productivité" onchange="toggleKpi(this.closest('.kpi-item'))"><span data-i18n="kpi_productivity">Productivité</span></label>
+                        <label class="kpi-item"><input type="checkbox" value="Coûts" onchange="toggleKpi(this.closest('.kpi-item'))"><span data-i18n="kpi_cost">Coûts</span></label>
+                        <label class="kpi-item"><input type="checkbox" value="Qualité" onchange="toggleKpi(this.closest('.kpi-item'))"><span data-i18n="kpi_quality">Qualité</span></label>
+                        <label class="kpi-item"><input type="checkbox" value="Délais" onchange="toggleKpi(this.closest('.kpi-item'))"><span data-i18n="kpi_delay">Délais</span></label>
+                        <label class="kpi-item"><input type="checkbox" value="Ergonomie" onchange="toggleKpi(this.closest('.kpi-item'))"><span data-i18n="kpi_ergonomics">Ergonomie</span></label>
+                        <label class="kpi-item"><input type="checkbox" value="Traçabilité" onchange="toggleKpi(this.closest('.kpi-item'))"><span data-i18n="kpi_traceability">Traçabilité</span></label>
+                        <label class="kpi-item"><input type="checkbox" value="Scrap" onchange="toggleKpi(this.closest('.kpi-item'))"><span data-i18n="kpi_scrap">Scrap</span></label>
+                        <label class="kpi-item"><input type="checkbox" value="Énergie" onchange="toggleKpi(this.closest('.kpi-item'))"><span data-i18n="kpi_energy">Énergie</span></label>
+                        <label class="kpi-item"><input type="checkbox" value="Stocks" onchange="toggleKpi(this.closest('.kpi-item'))"><span data-i18n="kpi_stock">Stocks</span></label>
+                        <label class="kpi-item"><input type="checkbox" value="Ressources" onchange="toggleKpi(this.closest('.kpi-item'))"><span data-i18n="kpi_resources">Ressources</span></label>
+                        <label class="kpi-item"><input type="checkbox" value="Autre" onchange="toggleKpi(this.closest('.kpi-item'))"><span data-i18n="kpi_autre">Autre</span></label>
                     </div>
                 </div>
 
@@ -717,16 +711,12 @@
             idea_title:"TITRE DE L'IDÉE", problem_encountered:'PROBLÈME RENCONTRÉ',
             frequency:'FRÉQUENCE', daily:'Quotidienne', weekly:'Hebdomadaire', monthly:'Mensuelle', occasional:'Occasionnelle',
             impact_area:"ZONES D'IMPACT",
-            zone_logistique:'Logistique Entrée', zone_coupe:'Coupe', zone_preparation:'Préparation',
-            zone_assemblage:'Assemblage', zone_qualite:'Contrôle Qualité ECHOS Prise de Charge',
-            zone_maintenance:'Maintenance', zone_expedition:'Expédition / Livraison',
-            zone_securite:'Sécurité / RH', zone_support:'Support / Administration',
+            zone_magasin:'Magasin', zone_coupe:'Coupe', zone_preparation:'Préparation',
+            zone_assemblage:'Assemblage', zone_expedition:'Expédition', zone_autre:'Autre',
             your_idea:"DESCRIPTION DE L'IDÉE", estimated_gain:'GAIN ESTIMÉ', kpi_label:'KPIs IMPACTÉS',
-            kpi_productivity:'Augmenter Productivité', kpi_cost:'Réduire Coûts', kpi_quality:'Améliorer Qualité',
-            kpi_delay:'Réduire Délais', kpi_scrap:'Diminuer Rebuts', kpi_downtime:'Réduire Arrêts',
-            kpi_traceability:'Améliorer Traçabilité', kpi_stock:'Optimiser Stocks', kpi_safety:'Réduire Accidents',
-            kpi_satisfaction:'Améliorer Satisfaction', kpi_energy:'Réduire Énergie', kpi_resources:'Optimiser Ressources',
-            kpi_reduce_scrap:'Réduire Scrap', kpi_ergonomics:'Améliorer Ergonomie',
+            kpi_productivity:'Productivité', kpi_cost:'Coûts', kpi_quality:'Qualité',
+            kpi_delay:'Délais', kpi_scrap:'Scrap', kpi_ergonomics:'Ergonomie',
+            kpi_traceability:'Traçabilité', kpi_stock:'Stocks', kpi_energy:'Énergie', kpi_resources:'Ressources', kpi_autre:'Autre',
             validate_suggestion:'VALIDER MA SUGGESTION',
             freq_hint:"À quelle fréquence ce problème survient-il ? Indiquez si le problème se produit tous les jours, chaque semaine, chaque mois ou de manière irrégulière.",
             fill_required_fields:'Veuillez remplir les champs obligatoires (Titre, Problème, Description).',
@@ -747,16 +737,12 @@
             idea_title:'IDEA TITLE', problem_encountered:'PROBLEM ENCOUNTERED',
             frequency:'FREQUENCY', daily:'Daily', weekly:'Weekly', monthly:'Monthly', occasional:'Occasional',
             impact_area:'IMPACT AREAS',
-            zone_logistique:'Inbound Logistics', zone_coupe:'Cutting', zone_preparation:'Preparation',
-            zone_assemblage:'Assembly', zone_qualite:'Quality Control ECHOS Intake',
-            zone_maintenance:'Maintenance', zone_expedition:'Shipping / Delivery',
-            zone_securite:'Safety / HR', zone_support:'Support / Administration',
+            zone_magasin:'Warehouse', zone_coupe:'Cutting', zone_preparation:'Preparation',
+            zone_assemblage:'Assembly', zone_expedition:'Shipping', zone_autre:'Other',
             your_idea:'IDEA DESCRIPTION', estimated_gain:'ESTIMATED GAIN', kpi_label:'IMPACTED KPIs',
-            kpi_productivity:'Increase Productivity', kpi_cost:'Reduce Costs', kpi_quality:'Improve Quality',
-            kpi_delay:'Reduce Lead Times', kpi_scrap:'Reduce Rejects', kpi_downtime:'Reduce Downtime',
-            kpi_traceability:'Improve Traceability', kpi_stock:'Optimize Inventory', kpi_safety:'Reduce Accidents',
-            kpi_satisfaction:'Improve Satisfaction', kpi_energy:'Reduce Energy', kpi_resources:'Optimize Resources',
-            kpi_reduce_scrap:'Reduce Scrap', kpi_ergonomics:'Improve Ergonomics',
+            kpi_productivity:'Productivity', kpi_cost:'Costs', kpi_quality:'Quality',
+            kpi_delay:'Lead Times', kpi_scrap:'Scrap', kpi_ergonomics:'Ergonomics',
+            kpi_traceability:'Traceability', kpi_stock:'Inventory', kpi_energy:'Energy', kpi_resources:'Resources', kpi_autre:'Other',
             validate_suggestion:'VALIDATE MY SUGGESTION',
             freq_hint:"How often does this problem occur? Indicate whether the issue happens every day, every week, every month, or only occasionally.",
             fill_required_fields:'Please fill in the required fields (Title, Problem, Description).',
@@ -777,16 +763,12 @@
             idea_title:'عنوان الفكرة', problem_encountered:'المشكلة التي واجهتها',
             frequency:'التكرار', daily:'يومي', weekly:'أسبوعي', monthly:'شهري', occasional:'عرضي',
             impact_area:'مناطق التأثير',
-            zone_logistique:'اللوجستيك الوارد', zone_coupe:'القطع', zone_preparation:'التحضير',
-            zone_assemblage:'التجميع', zone_qualite:'مراقبة الجودة',
-            zone_maintenance:'الصيانة', zone_expedition:'الشحن والتسليم',
-            zone_securite:'السلامة / الموارد البشرية', zone_support:'الدعم / الإدارة',
+            zone_magasin:'المستودع', zone_coupe:'القطع', zone_preparation:'التحضير',
+            zone_assemblage:'التجميع', zone_expedition:'الشحن', zone_autre:'أخرى',
             your_idea:'وصف الفكرة', estimated_gain:'الكسب المقدر', kpi_label:'مؤشرات الأداء المتأثرة',
-            kpi_productivity:'زيادة الإنتاجية', kpi_cost:'تخفيض التكاليف', kpi_quality:'تحسين الجودة',
-            kpi_delay:'تقليل المهل', kpi_scrap:'تقليل المرفوضات', kpi_downtime:'تقليل التوقفات',
-            kpi_traceability:'تحسين التتبع', kpi_stock:'تحسين المخزون', kpi_safety:'تقليل الحوادث',
-            kpi_satisfaction:'تحسين الرضا', kpi_energy:'تقليل الطاقة', kpi_resources:'تحسين الموارد',
-            kpi_reduce_scrap:'تقليل الخردة', kpi_ergonomics:'تحسين بيئة العمل',
+            kpi_productivity:'الإنتاجية', kpi_cost:'التكاليف', kpi_quality:'الجودة',
+            kpi_delay:'المهل', kpi_scrap:'الخردة', kpi_ergonomics:'بيئة العمل',
+            kpi_traceability:'التتبع', kpi_stock:'المخزون', kpi_energy:'الطاقة', kpi_resources:'الموارد', kpi_autre:'أخرى',
             validate_suggestion:'تأكيد الاقتراح',
             freq_hint:"ما مدى تكرار هذه المشكلة؟ حدد ما إذا كانت تحدث يومياً أو أسبوعياً أو شهرياً أو بشكل متقطع.",
             fill_required_fields:'يرجى ملء الحقول المطلوبة (العنوان، المشكلة، الوصف).',
